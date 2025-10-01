@@ -1,0 +1,33 @@
+name: "⚙️ chore"
+description: 모듈, 빌드, CI/CD 이슈 템플릿
+title: "[Chore] "
+labels: ["⚙️ chore"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📌 이슈 내용 설명
+  - type: textarea
+    id: description
+    attributes:
+      label: 설명
+      description: 모듈, 빌드, CI/CD 관련 내용을 설명해주세요.
+      placeholder: 작업할 내용을 자세히 설명해주세요.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## ✅ TODO
+  - type: textarea
+    id: todo
+    attributes:
+      label: 할 일 목록
+      description: 작업을 위한 할 일 목록을 작성해주세요.
+      placeholder: |
+        - [ ] 작업 1
+        - [ ] 작업 2
+    validations:
+      required: true
+
