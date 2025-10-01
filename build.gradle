@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.cyclonedx.bom' version '1.10.0'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+description = 'Retriever-SpringBoot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-security:3.5.6'
+
+    // Data
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-neo4j:3.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.5.6'
+
+    // Json Web Token
+    implementation 'io.jsonwebtoken:jjwt-api:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.13.0'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.13.0'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
+
+    // Swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13'
+
+    // Java Simplified Encryption
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
+
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.5.6'
+    testImplementation 'org.springframework.security:spring-security-test:6.5.5'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:6.0.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
