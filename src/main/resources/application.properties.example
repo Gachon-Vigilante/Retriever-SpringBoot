@@ -1,0 +1,30 @@
+# Application name
+spring.application.name=retriever
+
+# MongoDB
+spring.data.mongodb.uri=mongodb+srv://<username>:<password>@<cluster-url>/<dbname>?retryWrites=true&w=majority
+spring.data.mongodb.database=<your-team-db>
+spring.data.mongodb.authentication-database=admin
+spring.data.mongodb.username=<your-username>
+spring.data.mongodb.password=<your-password>
+
+# Neo4j
+spring.neo4j.uri=bolt://<your-neo4j-host>:<your-neo4j-port>
+spring.neo4j.authentication.username=<your-username>
+spring.neo4j.authentication.password=<your-password>
+
+# redis
+spring.data.redis.host=<your-redis-host>
+spring.data.redis.port=<your-redis-port>
+spring.data.redis.password=<your-redis-password>
+
+# jwt
+jwt.secret=<your-jwt-secret>
+jwt.access-token-expire-time=<access-token-expire-time-in-milliseconds>
+jwt.refresh-token-expire-time=<refresh-token-expire-time-in-milliseconds>
+
+# CORS
+cors.allowed-origins=<your-allowed-origins>
+
+# Flask
+flask.url=<your-flask-url>
