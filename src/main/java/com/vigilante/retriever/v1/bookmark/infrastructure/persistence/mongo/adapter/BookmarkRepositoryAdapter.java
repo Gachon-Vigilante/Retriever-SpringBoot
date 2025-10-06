@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.bookmark.infrastructure.persistence.mongo.ada
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
 import com.vigilante.retriever.v1.bookmark.domain.port.out.BookmarkMongoPort;
@@ -13,7 +13,7 @@ import com.vigilante.retriever.v1.bookmark.infrastructure.persistence.mongo.repo
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class BookmarkRepositoryAdapter implements BookmarkMongoPort {
 

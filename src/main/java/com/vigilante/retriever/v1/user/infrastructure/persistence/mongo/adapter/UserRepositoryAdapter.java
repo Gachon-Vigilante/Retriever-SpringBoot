@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.user.infrastructure.persistence.mongo.adapter
 
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.user.domain.entity.UserEntity;
 import com.vigilante.retriever.v1.user.domain.port.out.UserMongoPort;
@@ -12,7 +12,7 @@ import com.vigilante.retriever.v1.user.infrastructure.persistence.mongo.reposito
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class UserRepositoryAdapter implements UserMongoPort {
 

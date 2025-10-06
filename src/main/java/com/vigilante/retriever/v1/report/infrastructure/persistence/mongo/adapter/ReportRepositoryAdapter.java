@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.report.infrastructure.persistence.mongo.adapt
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.report.domain.entity.ReportEntity;
 import com.vigilante.retriever.v1.report.domain.port.out.ReportMongoPort;
@@ -13,7 +13,7 @@ import com.vigilante.retriever.v1.report.infrastructure.persistence.mongo.reposi
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class ReportRepositoryAdapter implements ReportMongoPort {
 

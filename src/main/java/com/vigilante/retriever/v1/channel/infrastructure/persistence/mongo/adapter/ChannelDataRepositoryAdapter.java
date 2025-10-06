@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.channel.infrastructure.persistence.mongo.adap
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelDataEntity;
 import com.vigilante.retriever.v1.channel.domain.port.out.ChannelDataMongoPort;
@@ -13,7 +13,7 @@ import com.vigilante.retriever.v1.channel.infrastructure.persistence.mongo.repos
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class ChannelDataRepositoryAdapter implements ChannelDataMongoPort {
 

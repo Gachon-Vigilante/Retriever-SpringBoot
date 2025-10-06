@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.post.infrastructure.persistence.mongo.adapter
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.post.domain.entity.PostEntity;
 import com.vigilante.retriever.v1.post.domain.port.out.PostMongoPort;
@@ -13,7 +13,7 @@ import com.vigilante.retriever.v1.post.infrastructure.persistence.mongo.reposito
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class PostRepositoryAdapter implements PostMongoPort {
 

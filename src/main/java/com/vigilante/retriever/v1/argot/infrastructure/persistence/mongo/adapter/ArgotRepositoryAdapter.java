@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.argot.infrastructure.persistence.mongo.adapte
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.argot.domain.entity.ArgotEntity;
 import com.vigilante.retriever.v1.argot.domain.port.out.ArgotMongoPort;
@@ -13,7 +13,7 @@ import com.vigilante.retriever.v1.argot.infrastructure.persistence.mongo.reposit
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class ArgotRepositoryAdapter implements ArgotMongoPort {
 

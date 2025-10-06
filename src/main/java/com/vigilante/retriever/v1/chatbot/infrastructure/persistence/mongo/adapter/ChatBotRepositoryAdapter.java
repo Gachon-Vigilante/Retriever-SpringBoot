@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.chatbot.infrastructure.persistence.mongo.adap
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.chatbot.domain.entity.ChatBotEntity;
 import com.vigilante.retriever.v1.chatbot.domain.port.out.ChatBotMongoPort;
@@ -13,7 +13,7 @@ import com.vigilante.retriever.v1.chatbot.infrastructure.persistence.mongo.repos
 
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class ChatBotRepositoryAdapter implements ChatBotMongoPort {
 
