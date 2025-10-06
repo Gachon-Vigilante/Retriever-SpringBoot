@@ -15,9 +15,8 @@ public record ChannelSimilarityEntity(
 
 	@Builder
 	public record SimilarChannel(
-		long Id,
+		long channelId,
 		Double similarity
 	) {
-
 	}
 }

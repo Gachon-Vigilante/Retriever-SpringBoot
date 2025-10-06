@@ -35,8 +35,7 @@ public class ChannelSimilarityDocument {
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
 	public static class SimilarChannel {
 
-		@Field("channelId")
-		private long Id;
+		private long channelId;
 
 		private Double similarity;
 	}
