@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class UserQuery {
+public class UserMongoQuery {
 
 	private final UserMongoPort userMongoPort;
 

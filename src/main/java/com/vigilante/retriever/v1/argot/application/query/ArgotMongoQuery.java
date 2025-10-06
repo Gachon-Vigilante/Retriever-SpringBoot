@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class ArgotQuery {
+public class ArgotMongoQuery {
 
 	private final ArgotMongoPort argotMongoPort;
 

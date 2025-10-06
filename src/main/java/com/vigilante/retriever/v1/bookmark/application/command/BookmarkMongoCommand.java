@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @CommandService
 @RequiredArgsConstructor
-public class BookmarkCommand {
+public class BookmarkMongoCommand {
 
 	private final BookmarkMongoPort bookmarkMongoPort;
 

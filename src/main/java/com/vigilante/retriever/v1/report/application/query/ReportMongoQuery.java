@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class ReportQuery {
+public class ReportMongoQuery {
 
 	private final ReportMongoPort reportMongoPort;
 

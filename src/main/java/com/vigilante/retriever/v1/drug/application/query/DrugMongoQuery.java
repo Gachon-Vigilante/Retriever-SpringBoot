@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class DrugQuery {
+public class DrugMongoQuery {
 
 	private final DrugMongoPort drugMongoPort;
 

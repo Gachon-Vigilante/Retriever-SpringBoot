@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class ChatBotQuery {
+public class ChatBotMongoQuery {
 
 	private final ChatBotMongoPort chatBotMongoPort;
 

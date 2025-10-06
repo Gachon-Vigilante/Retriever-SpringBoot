@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class ChannelDataQuery {
+public class ChannelDataMongoQuery {
 
 	private final ChannelDataMongoPort channelDataMongoPort;
 

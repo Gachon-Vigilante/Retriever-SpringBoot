@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class ChannelSimilarityQuery {
+public class ChannelSimilarityMongoQuery {
 
 	private final ChannelSimilarityMongoPort channelSimilarityMongoPort;
 

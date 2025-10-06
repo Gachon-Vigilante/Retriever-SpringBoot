@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @QueryService
 @RequiredArgsConstructor
-public class BookmarkQuery {
+public class BookmarkMongoQuery {
 
 	private final BookmarkMongoPort bookmarkMongoPort;
 

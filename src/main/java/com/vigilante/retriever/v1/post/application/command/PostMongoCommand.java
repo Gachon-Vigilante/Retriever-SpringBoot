@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 @CommandService
 @RequiredArgsConstructor
-public class PostCommand {
+public class PostMongoCommand {
 
 	private final PostMongoPort postMongoPort;
 
