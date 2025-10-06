@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.post.application.command;
 
 import com.vigilante.retriever.global.common.annotation.CommandService;
 import com.vigilante.retriever.v1.post.domain.entity.PostEntity;
-import com.vigilante.retriever.v1.post.domain.port.out.PostPersistencePort;
+import com.vigilante.retriever.v1.post.domain.port.out.PostMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -10,9 +10,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostCommand {
 
-	private final PostPersistencePort postPersistencePort;
+	private final PostMongoPort postMongoPort;
 
 	public PostEntity save(PostEntity entity) {
-		return postPersistencePort.save(entity);
+		return postMongoPort.save(entity);
 	}
 }

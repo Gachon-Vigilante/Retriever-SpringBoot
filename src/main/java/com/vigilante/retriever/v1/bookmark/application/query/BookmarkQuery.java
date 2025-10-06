@@ -5,7 +5,7 @@ import java.util.List;
 import com.vigilante.retriever.global.common.annotation.QueryService;
 import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
 import com.vigilante.retriever.v1.bookmark.domain.exception.BookmarkNotFoundException;
-import com.vigilante.retriever.v1.bookmark.domain.port.out.BookmarkPersistencePort;
+import com.vigilante.retriever.v1.bookmark.domain.port.out.BookmarkMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,17 +13,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BookmarkQuery {
 
-	private final BookmarkPersistencePort bookmarkPersistencePort;
+	private final BookmarkMongoPort bookmarkMongoPort;
 
 	List<BookmarkEntity> findAll() {
-		return bookmarkPersistencePort.findAll();
+		return bookmarkMongoPort.findAll();
 	}
 
 	List<BookmarkEntity> findByTelegramUserId(String telegramUserId) {
-		return bookmarkPersistencePort.findByTelegramUserId(telegramUserId);
+		return bookmarkMongoPort.findByTelegramUserId(telegramUserId);
 	}
 
 	BookmarkEntity getById(String id) {
-		return bookmarkPersistencePort.findById(id).orElseThrow(BookmarkNotFoundException::new);
+		return bookmarkMongoPort.findById(id).orElseThrow(BookmarkNotFoundException::new);
 	}
 }

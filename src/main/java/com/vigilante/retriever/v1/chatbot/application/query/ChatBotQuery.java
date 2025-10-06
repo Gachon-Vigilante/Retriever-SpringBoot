@@ -5,7 +5,7 @@ import java.util.List;
 import com.vigilante.retriever.global.common.annotation.QueryService;
 import com.vigilante.retriever.v1.chatbot.domain.entity.ChatBotEntity;
 import com.vigilante.retriever.v1.chatbot.domain.exception.ChatBotNotFoundException;
-import com.vigilante.retriever.v1.chatbot.domain.port.out.ChatBotPersistencePort;
+import com.vigilante.retriever.v1.chatbot.domain.port.out.ChatBotMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,17 +13,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChatBotQuery {
 
-	private final ChatBotPersistencePort chatBotPersistencePort;
+	private final ChatBotMongoPort chatBotMongoPort;
 
 	List<ChatBotEntity> findAll() {
-		return chatBotPersistencePort.findAll();
+		return chatBotMongoPort.findAll();
 	}
 
 	ChatBotEntity getById(String id) {
-		return chatBotPersistencePort.findById(id).orElseThrow(ChatBotNotFoundException::new);
+		return chatBotMongoPort.findById(id).orElseThrow(ChatBotNotFoundException::new);
 	}
 
 	List<ChatBotEntity> findByChannels(List<Long> channelIds) {
-		return chatBotPersistencePort.findByChannels(channelIds);
+		return chatBotMongoPort.findByChannels(channelIds);
 	}
 }

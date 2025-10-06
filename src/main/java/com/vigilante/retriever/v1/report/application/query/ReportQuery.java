@@ -5,7 +5,7 @@ import java.util.List;
 import com.vigilante.retriever.global.common.annotation.QueryService;
 import com.vigilante.retriever.v1.report.domain.entity.ReportEntity;
 import com.vigilante.retriever.v1.report.domain.exception.ReportNotFoundException;
-import com.vigilante.retriever.v1.report.domain.port.out.ReportPersistencePort;
+import com.vigilante.retriever.v1.report.domain.port.out.ReportMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,18 +13,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReportQuery {
 
-	private final ReportPersistencePort reportPersistencePort;
+	private final ReportMongoPort reportMongoPort;
 
 	public List<ReportEntity> findAll() {
-		return reportPersistencePort.findAll();
+		return reportMongoPort.findAll();
 	}
 
 	public ReportEntity getById(String id) {
-		return reportPersistencePort.findById(id)
+		return reportMongoPort.findById(id)
 			.orElseThrow(ReportNotFoundException::new);
 	}
 
 	public List<ReportEntity> getByChannelId(long channelId) {
-		return reportPersistencePort.findByChannelId(channelId);
+		return reportMongoPort.findByChannelId(channelId);
 	}
 }

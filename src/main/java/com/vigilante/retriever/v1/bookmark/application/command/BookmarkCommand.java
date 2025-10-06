@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.bookmark.application.command;
 
 import com.vigilante.retriever.global.common.annotation.CommandService;
 import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
-import com.vigilante.retriever.v1.bookmark.domain.port.out.BookmarkPersistencePort;
+import com.vigilante.retriever.v1.bookmark.domain.port.out.BookmarkMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -10,13 +10,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BookmarkCommand {
 
-	private final BookmarkPersistencePort bookmarkPersistencePort;
+	private final BookmarkMongoPort bookmarkMongoPort;
 
 	public BookmarkEntity save(BookmarkEntity bookmarkEntity) {
-		return bookmarkPersistencePort.save(bookmarkEntity);
+		return bookmarkMongoPort.save(bookmarkEntity);
 	}
 
 	public void deleteById(String id) {
-		bookmarkPersistencePort.deleteById(id);
+		bookmarkMongoPort.deleteById(id);
 	}
 }

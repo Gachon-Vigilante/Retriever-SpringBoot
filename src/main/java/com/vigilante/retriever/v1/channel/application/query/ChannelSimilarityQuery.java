@@ -5,7 +5,7 @@ import java.util.List;
 import com.vigilante.retriever.global.common.annotation.QueryService;
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelSimilarityEntity;
 import com.vigilante.retriever.v1.channel.domain.exception.ChannelSimilarityNotFoundException;
-import com.vigilante.retriever.v1.channel.domain.port.out.ChannelSimilarityPersistencePort;
+import com.vigilante.retriever.v1.channel.domain.port.out.ChannelSimilarityMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,19 +13,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChannelSimilarityQuery {
 
-	private final ChannelSimilarityPersistencePort channelSimilarityPersistencePort;
+	private final ChannelSimilarityMongoPort channelSimilarityMongoPort;
 
 	public List<ChannelSimilarityEntity> findAll() {
-		return channelSimilarityPersistencePort.findAll();
+		return channelSimilarityMongoPort.findAll();
 	}
 
 	public ChannelSimilarityEntity getById(String id) {
-		return channelSimilarityPersistencePort.findById(id)
+		return channelSimilarityMongoPort.findById(id)
 			.orElseThrow(ChannelSimilarityNotFoundException::new);
 	}
 
 	public ChannelSimilarityEntity getByChannelId(long channelId) {
-		return channelSimilarityPersistencePort.findByChannelId(channelId)
+		return channelSimilarityMongoPort.findByChannelId(channelId)
 			.orElseThrow(ChannelSimilarityNotFoundException::new);
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import com.vigilante.retriever.global.common.annotation.QueryService;
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelInfoEntity;
 import com.vigilante.retriever.v1.channel.domain.exception.ChannelDataNotFoundException;
-import com.vigilante.retriever.v1.channel.domain.port.out.ChannelInfoPersistencePort;
+import com.vigilante.retriever.v1.channel.domain.port.out.ChannelInfoMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,27 +13,27 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChannelInfoQuery {
 
-	private final ChannelInfoPersistencePort channelInfoPersistencePort;
+	private final ChannelInfoMongoPort channelInfoMongoPort;
 
 	public List<ChannelInfoEntity> findAll() {
-		return channelInfoPersistencePort.findAll();
+		return channelInfoMongoPort.findAll();
 	}
 
 	public ChannelInfoEntity getById(String id) {
-		return channelInfoPersistencePort.findById(id)
+		return channelInfoMongoPort.findById(id)
 			.orElseThrow(ChannelDataNotFoundException::new);
 	}
 
 	public ChannelInfoEntity getByLink(String link) {
-		return channelInfoPersistencePort.findByLink(link)
+		return channelInfoMongoPort.findByLink(link)
 			.orElseThrow(ChannelDataNotFoundException::new);
 	}
 
 	public List<ChannelInfoEntity> findByTitleContaining(String title) {
-		return channelInfoPersistencePort.findByTitleContaining(title);
+		return channelInfoMongoPort.findByTitleContaining(title);
 	}
 
 	public boolean existsById(String id) {
-		return channelInfoPersistencePort.existsById(id);
+		return channelInfoMongoPort.existsById(id);
 	}
 }

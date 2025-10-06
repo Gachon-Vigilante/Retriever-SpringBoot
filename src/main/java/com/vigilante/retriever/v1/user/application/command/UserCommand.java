@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.user.application.command;
 
 import com.vigilante.retriever.global.common.annotation.CommandService;
 import com.vigilante.retriever.v1.user.domain.entity.UserEntity;
-import com.vigilante.retriever.v1.user.domain.port.out.UserPersistencePort;
+import com.vigilante.retriever.v1.user.domain.port.out.UserMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -10,9 +10,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserCommand {
 
-	private final UserPersistencePort userPersistencePort;
+	private final UserMongoPort userMongoPort;
 
 	public UserEntity save(UserEntity entity) {
-		return userPersistencePort.save(entity);
+		return userMongoPort.save(entity);
 	}
 }

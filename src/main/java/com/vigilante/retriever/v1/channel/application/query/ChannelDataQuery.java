@@ -5,7 +5,7 @@ import java.util.List;
 import com.vigilante.retriever.global.common.annotation.QueryService;
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelDataEntity;
 import com.vigilante.retriever.v1.channel.domain.exception.ChannelDataNotFoundException;
-import com.vigilante.retriever.v1.channel.domain.port.out.ChannelDataPersistencePort;
+import com.vigilante.retriever.v1.channel.domain.port.out.ChannelDataMongoPort;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,18 +13,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChannelDataQuery {
 
-	private final ChannelDataPersistencePort channelDataPersistencePort;
+	private final ChannelDataMongoPort channelDataMongoPort;
 
 	public List<ChannelDataEntity> findAll() {
-		return channelDataPersistencePort.findAll();
+		return channelDataMongoPort.findAll();
 	}
 
 	public ChannelDataEntity getById(String id) {
-		return channelDataPersistencePort.findById(id)
+		return channelDataMongoPort.findById(id)
 			.orElseThrow(ChannelDataNotFoundException::new);
 	}
 
 	public List<ChannelDataEntity> findByChannelId(long channelId) {
-		return channelDataPersistencePort.findByChannelId(channelId);
+		return channelDataMongoPort.findByChannelId(channelId);
 	}
 }
