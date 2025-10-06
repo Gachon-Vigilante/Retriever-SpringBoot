@@ -2,7 +2,6 @@ package com.vigilante.retriever.v1.post.infrastructure.persistence.neo4j.node;
 
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
 import com.vigilante.retriever.v1.channel.infrastructure.persistence.neo4j.node.ChannelNode;
