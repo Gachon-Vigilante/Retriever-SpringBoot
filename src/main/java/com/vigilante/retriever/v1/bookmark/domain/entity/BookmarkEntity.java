@@ -9,6 +9,9 @@ public record BookmarkEntity(
 	String id,
 	String channelId,
 	String userId,
-	LocalDateTime createdAt
+
+	// Mongo Auditing fields
+	LocalDateTime createdAt,
+	LocalDateTime updatedAt
 ) {
 }
