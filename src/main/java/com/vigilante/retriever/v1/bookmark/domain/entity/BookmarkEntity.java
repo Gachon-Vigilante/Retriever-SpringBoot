@@ -8,7 +8,7 @@ import lombok.Builder;
 public record BookmarkEntity(
 	String id,
 	String channelId,
-	String telegramUserId,
+	String userId,
 	LocalDateTime createdAt
 ) {
 }
