@@ -19,8 +19,8 @@ public class BookmarkMongoQuery {
 		return bookmarkMongoPort.findAll();
 	}
 
-	List<BookmarkEntity> findByTelegramUserId(String telegramUserId) {
-		return bookmarkMongoPort.findByTelegramUserId(telegramUserId);
+	List<BookmarkEntity> findByUserId(String userId) {
+		return bookmarkMongoPort.findByUserId(userId);
 	}
 
 	BookmarkEntity getById(String id) {

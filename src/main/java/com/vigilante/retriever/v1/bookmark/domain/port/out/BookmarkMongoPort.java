@@ -9,7 +9,7 @@ public interface BookmarkMongoPort {
 
 	List<BookmarkEntity> findAll();
 
-	List<BookmarkEntity> findByTelegramUserId(String telegramUserId);
+	List<BookmarkEntity> findByUserId(String telegramUserId);
 
 	Optional<BookmarkEntity> findById(String id);
 

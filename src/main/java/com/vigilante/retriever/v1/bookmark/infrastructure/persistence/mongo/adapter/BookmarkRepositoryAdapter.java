@@ -27,8 +27,8 @@ public class BookmarkRepositoryAdapter implements BookmarkMongoPort {
 	}
 
 	@Override
-	public List<BookmarkEntity> findByTelegramUserId(String telegramUserId) {
-		List<BookmarkDocument> bookmarkList = bookmarkMongoRepository.findByTelegramUserId(telegramUserId);
+	public List<BookmarkEntity> findByUserId(String userId) {
+		List<BookmarkDocument> bookmarkList = bookmarkMongoRepository.findByUserId(userId);
 		return bookmarkPersistenceMapper.getEntityList(bookmarkList);
 	}
 

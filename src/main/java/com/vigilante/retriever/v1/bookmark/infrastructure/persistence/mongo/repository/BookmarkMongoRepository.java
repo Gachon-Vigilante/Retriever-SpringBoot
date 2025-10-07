@@ -11,5 +11,5 @@ import com.vigilante.retriever.v1.bookmark.infrastructure.persistence.mongo.docu
 public interface BookmarkMongoRepository extends MongoRepository<BookmarkDocument, String> {
 
 	// 텔레그램 사용자 아이디로 조회
-	List<BookmarkDocument> findByTelegramUserId(String telegramUserId);
+	List<BookmarkDocument> findByUserId(String userId);
 }
