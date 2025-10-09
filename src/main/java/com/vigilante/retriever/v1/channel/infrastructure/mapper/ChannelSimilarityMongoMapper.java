@@ -29,5 +29,5 @@ public interface ChannelSimilarityMongoMapper
 	List<ChannelSimilarityDocument> getDocumentList(List<ChannelSimilarityEntity> entityList);
 
 	@Override
-	List<ChannelSimilarityEntity> getEntityList(List<ChannelSimilarityDocument> dodumentList);
+	List<ChannelSimilarityEntity> getEntityList(List<ChannelSimilarityDocument> documentList);
 }

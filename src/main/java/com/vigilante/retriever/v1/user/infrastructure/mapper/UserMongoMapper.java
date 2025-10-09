@@ -28,5 +28,5 @@ public interface UserMongoMapper extends GenericMongoMapper<UserDocument, UserEn
 	List<UserDocument> getDocumentList(List<UserEntity> entityList);
 
 	@Override
-	List<UserEntity> getEntityList(List<UserDocument> dodumentList);
+	List<UserEntity> getEntityList(List<UserDocument> documentList);
 }

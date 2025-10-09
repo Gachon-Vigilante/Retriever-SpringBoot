@@ -28,5 +28,5 @@ public interface DrugMongoMapper extends GenericMongoMapper<DrugDocument, DrugEn
 	List<DrugDocument> getDocumentList(List<DrugEntity> entityList);
 
 	@Override
-	List<DrugEntity> getEntityList(List<DrugDocument> dodumentList);
+	List<DrugEntity> getEntityList(List<DrugDocument> documentList);
 }

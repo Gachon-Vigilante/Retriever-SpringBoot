@@ -28,5 +28,5 @@ public interface ChannelNeo4jMapper extends GenericNeo4jMapper<ChannelNode, Chan
 	List<ChannelNode> getNodeList(List<ChannelGraphView> graphViewList);
 
 	@Override
-	List<ChannelGraphView> getGraphViewList(List<ChannelNode> dodumentList);
+	List<ChannelGraphView> getGraphViewList(List<ChannelNode> nodeList);
 }

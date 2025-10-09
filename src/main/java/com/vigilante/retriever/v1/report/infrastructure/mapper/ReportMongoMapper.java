@@ -28,5 +28,5 @@ public interface ReportMongoMapper extends GenericMongoMapper<ReportDocument, Re
 	List<ReportDocument> getDocumentList(List<ReportEntity> entityList);
 
 	@Override
-	List<ReportEntity> getEntityList(List<ReportDocument> dodumentList);
+	List<ReportEntity> getEntityList(List<ReportDocument> documentList);
 }

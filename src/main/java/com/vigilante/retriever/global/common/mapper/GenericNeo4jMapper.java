@@ -14,5 +14,5 @@ public interface GenericNeo4jMapper<N, G> {
 	List<N> getNodeList(List<G> graphViewList);
 
 	// Node 목록을 GraphView 목록으로 변환
-	List<G> getGraphViewList(List<N> dodumentList);
+	List<G> getGraphViewList(List<N> nodeList);
 }

@@ -14,5 +14,5 @@ public interface GenericMongoMapper<D, E> {
 	List<D> getDocumentList(List<E> entityList);
 
 	// Document 목록을 Entity 목록으로 변환
-	List<E> getEntityList(List<D> dodumentList);
+	List<E> getEntityList(List<D> documentList);
 }

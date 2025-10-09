@@ -28,5 +28,5 @@ public interface ArgotNeo4jMapper extends GenericNeo4jMapper<ArgotNode, ArgotGra
 	List<ArgotNode> getNodeList(List<ArgotGraphView> graphViewList);
 
 	@Override
-	List<ArgotGraphView> getGraphViewList(List<ArgotNode> dodumentList);
+	List<ArgotGraphView> getGraphViewList(List<ArgotNode> nodeList);
 }

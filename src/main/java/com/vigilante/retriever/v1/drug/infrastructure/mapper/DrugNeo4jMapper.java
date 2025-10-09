@@ -28,5 +28,5 @@ public interface DrugNeo4jMapper extends GenericNeo4jMapper<DrugNode, DrugGraphV
 	List<DrugNode> getNodeList(List<DrugGraphView> graphViewList);
 
 	@Override
-	List<DrugGraphView> getGraphViewList(List<DrugNode> dodumentList);
+	List<DrugGraphView> getGraphViewList(List<DrugNode> nodeList);
 }

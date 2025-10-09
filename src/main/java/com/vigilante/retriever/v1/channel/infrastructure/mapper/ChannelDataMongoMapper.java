@@ -28,5 +28,5 @@ public interface ChannelDataMongoMapper extends GenericMongoMapper<ChannelDataDo
 	List<ChannelDataDocument> getDocumentList(List<ChannelDataEntity> entityList);
 
 	@Override
-	List<ChannelDataEntity> getEntityList(List<ChannelDataDocument> dodumentList);
+	List<ChannelDataEntity> getEntityList(List<ChannelDataDocument> documentList);
 }

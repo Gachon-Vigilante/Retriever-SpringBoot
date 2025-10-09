@@ -28,5 +28,5 @@ public interface PostNeo4jMapper extends GenericNeo4jMapper<PostNode, PostGraphV
 	List<PostNode> getNodeList(List<PostGraphView> graphViewList);
 
 	@Override
-	List<PostGraphView> getGraphViewList(List<PostNode> dodumentList);
+	List<PostGraphView> getGraphViewList(List<PostNode> nodeList);
 }

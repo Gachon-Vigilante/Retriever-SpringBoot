@@ -28,5 +28,5 @@ public interface ArgotMongoMapper extends GenericMongoMapper<ArgotDocument, Argo
 	List<ArgotDocument> getDocumentList(List<ArgotEntity> entityList);
 
 	@Override
-	List<ArgotEntity> getEntityList(List<ArgotDocument> dodumentList);
+	List<ArgotEntity> getEntityList(List<ArgotDocument> documentList);
 }

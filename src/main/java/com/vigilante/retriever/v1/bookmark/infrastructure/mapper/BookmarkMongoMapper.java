@@ -28,5 +28,5 @@ public interface BookmarkMongoMapper extends GenericMongoMapper<BookmarkDocument
 	List<BookmarkDocument> getDocumentList(List<BookmarkEntity> entityList);
 
 	@Override
-	List<BookmarkEntity> getEntityList(List<BookmarkDocument> dodumentList);
+	List<BookmarkEntity> getEntityList(List<BookmarkDocument> documentList);
 }

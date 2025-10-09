@@ -28,5 +28,5 @@ public interface PostMongoMapper extends GenericMongoMapper<PostDocument, PostEn
 	List<PostDocument> getDocumentList(List<PostEntity> entityList);
 
 	@Override
-	List<PostEntity> getEntityList(List<PostDocument> dodumentList);
+	List<PostEntity> getEntityList(List<PostDocument> documentList);
 }

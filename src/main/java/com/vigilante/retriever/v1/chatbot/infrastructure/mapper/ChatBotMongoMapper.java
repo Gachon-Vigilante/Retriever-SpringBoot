@@ -28,5 +28,5 @@ public interface ChatBotMongoMapper extends GenericMongoMapper<ChatBotDocument, 
 	List<ChatBotDocument> getDocumentList(List<ChatBotEntity> entityList);
 
 	@Override
-	List<ChatBotEntity> getEntityList(List<ChatBotDocument> dodumentList);
+	List<ChatBotEntity> getEntityList(List<ChatBotDocument> documentList);
 }
