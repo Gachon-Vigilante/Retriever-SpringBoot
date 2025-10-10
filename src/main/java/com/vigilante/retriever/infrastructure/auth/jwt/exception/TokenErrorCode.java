@@ -16,7 +16,6 @@ public enum TokenErrorCode implements BaseCode {
 	AUTHENTICATION_CODE_EXPIRED("TOKEN-4011", "인가코드가 만료되었습니다"),
 	EMPTY_OR_INVALID_TOKEN("TOKEN-4012", "토큰이 존재하지 않거나 유효하지 않습니다"),
 	REFRESH_TOKEN_EXPIRED_ERROR("TOKEN-4013", "리프레쉬 토큰이 만료되었습니다"),
-	REFRESH_TOKEN_NOT_FOUND("TOKEN-4041", "리프레쉬 토큰이 존재하지 않습니다"),
 	UNKNOWN_REFRESH_TOKEN_ERROR("TOKEN-5001", "알 수 없는 리프레쉬 토큰 오류가 발생했습니다");
 
 	private final String code;
