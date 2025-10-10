@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.user.application.command;
 
-import com.vigilante.retriever.global.common.annotation.CommandService;
+import com.vigilante.retriever.common.domain.annotation.CommandService;
 import com.vigilante.retriever.v1.user.domain.entity.UserEntity;
 import com.vigilante.retriever.v1.user.domain.port.out.UserMongoPort;
 

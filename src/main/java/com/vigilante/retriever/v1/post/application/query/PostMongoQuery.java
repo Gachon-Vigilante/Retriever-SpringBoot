@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.post.application.query;
 
 import java.util.List;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.post.domain.entity.PostEntity;
 import com.vigilante.retriever.v1.post.domain.exception.PostNotFoundException;
 import com.vigilante.retriever.v1.post.domain.port.out.PostMongoPort;

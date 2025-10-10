@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.report.domain.enums;
 
-import com.vigilante.retriever.global.common.code.BaseCode;
+import com.vigilante.retriever.common.domain.code.BaseCode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

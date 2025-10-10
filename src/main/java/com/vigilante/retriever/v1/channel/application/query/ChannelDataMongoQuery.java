@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.channel.application.query;
 
 import java.util.List;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelDataEntity;
 import com.vigilante.retriever.v1.channel.domain.exception.ChannelDataNotFoundException;
 import com.vigilante.retriever.v1.channel.domain.port.out.ChannelDataMongoPort;

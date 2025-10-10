@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.drug.application.query;
 
 import java.util.List;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView;
 import com.vigilante.retriever.v1.drug.domain.port.out.DrugNeo4jPort;
 

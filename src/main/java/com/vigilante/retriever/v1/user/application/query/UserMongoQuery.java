@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.user.application.query;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.user.domain.entity.UserEntity;
 import com.vigilante.retriever.v1.user.domain.exception.UserNotFoundException;
 import com.vigilante.retriever.v1.user.domain.port.out.UserMongoPort;

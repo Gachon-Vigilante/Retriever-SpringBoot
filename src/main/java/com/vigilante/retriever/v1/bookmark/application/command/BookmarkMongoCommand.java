@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.bookmark.application.command;
 
-import com.vigilante.retriever.global.common.annotation.CommandService;
+import com.vigilante.retriever.common.domain.annotation.CommandService;
 import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
 import com.vigilante.retriever.v1.bookmark.domain.port.out.BookmarkMongoPort;
 

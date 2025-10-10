@@ -3,7 +3,7 @@ package com.vigilante.retriever.v1.post.application.query;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
 import com.vigilante.retriever.v1.post.domain.port.out.PostNeo4jPort;
 
