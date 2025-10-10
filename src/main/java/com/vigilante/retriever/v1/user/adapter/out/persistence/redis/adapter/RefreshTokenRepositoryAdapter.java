@@ -4,10 +4,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.vigilante.retriever.v1.user.adapter.out.persistence.redis.entity.RefreshTokenRedisEntity;
+import com.vigilante.retriever.v1.user.adapter.out.mapper.RefreshTokenRedisMapper;
+import com.vigilante.retriever.v1.user.adapter.out.persistence.redis.hash.RefreshTokenHash;
 import com.vigilante.retriever.v1.user.adapter.out.persistence.redis.repository.RefreshTokenRedisRepository;
 import com.vigilante.retriever.v1.user.domain.port.out.RefreshTokenRedisPort;
-import com.vigilante.retriever.v1.user.domain.vo.RefreshToken;
+import com.vigilante.retriever.v1.user.domain.entity.RefreshTokenEntity;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,33 +16,33 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RefreshTokenRepositoryAdapter implements RefreshTokenRedisPort {
 
-	private final RefreshTokenRedisRepository repository;
+	private final RefreshTokenRedisRepository refreshTokenRedisRepository;
+	private final RefreshTokenRedisMapper refreshTokenRedisMapper;
 
 	@Override
-	public void save(RefreshToken token) {
-		RefreshTokenRedisEntity entity = RefreshTokenRedisEntity.from(token);
-		repository.save(entity);
+	public RefreshTokenEntity save(RefreshTokenEntity token) {
+		RefreshTokenHash hash = refreshTokenRedisMapper.toHash(token);
+		RefreshTokenHash savedHash = refreshTokenRedisRepository.save(hash);
+		return refreshTokenRedisMapper.toEntity(savedHash);
 	}
 
 	@Override
-	public Optional<RefreshToken> findByTokenValue(String tokenValue) {
-		return repository.findByRefreshToken(tokenValue)
-			.map(RefreshTokenRedisEntity::toDomain);
+	public Optional<RefreshTokenEntity> findByTokenValue(String tokenValue) {
+		return refreshTokenRedisRepository.findByRefreshToken(tokenValue).map(refreshTokenRedisMapper::toEntity);
 	}
 
 	@Override
-	public Optional<RefreshToken> findByUserId(String userId) {
-		return repository.findById(userId)
-			.map(RefreshTokenRedisEntity::toDomain);
+	public Optional<RefreshTokenEntity> findByUserId(String userId) {
+		return refreshTokenRedisRepository.findById(userId).map(refreshTokenRedisMapper::toEntity);
 	}
 
 	@Override
 	public void deleteByUserId(String userId) {
-		repository.deleteById(userId);
+		refreshTokenRedisRepository.deleteById(userId);
 	}
 
 	@Override
 	public boolean existsByUserId(String userId) {
-		return repository.existsById(userId);
+		return refreshTokenRedisRepository.existsById(userId);
 	}
 }
