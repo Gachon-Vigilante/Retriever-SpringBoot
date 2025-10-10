@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.report.application.query;
 
 import java.util.List;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.report.domain.entity.ReportEntity;
 import com.vigilante.retriever.v1.report.domain.exception.ReportNotFoundException;
 import com.vigilante.retriever.v1.report.domain.port.out.ReportMongoPort;

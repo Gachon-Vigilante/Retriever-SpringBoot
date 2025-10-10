@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.user.domain.entity;
 
 import java.time.LocalDateTime;
 
-import com.vigilante.retriever.v1.user.domain.enums.Role;
+import com.vigilante.retriever.common.domain.enums.Role;
 
 import lombok.Builder;
 

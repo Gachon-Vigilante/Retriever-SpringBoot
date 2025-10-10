@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.argot.application.query;
 
 import java.util.List;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
 import com.vigilante.retriever.v1.argot.domain.port.out.ArgotNeo4jPort;
 

@@ -1,8 +1,8 @@
 package com.vigilante.retriever.v1.channel.domain.exception;
 
-import static com.vigilante.retriever.v1.channel.domain.enums.ChannelErrorCode.*;
+import static com.vigilante.retriever.v1.channel.domain.code.ChannelErrorCode.*;
 
-import com.vigilante.retriever.global.exception.NotFoundException;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
 
 public class ChannelNotFoundException extends NotFoundException {
 

@@ -2,7 +2,7 @@ package com.vigilante.retriever.v1.channel.domain.graphview;
 
 import java.util.Set;
 
-import com.vigilante.retriever.v1.argot.infrastructure.persistence.neo4j.node.ArgotNode;
+import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
 
 import lombok.Builder;
 
@@ -13,6 +13,6 @@ public record ChannelGraphView(
 	String username,
 	String status,
 	int promotedCount,
-	Set<ArgotNode> sellsArgots
+	Set<ArgotGraphView> sellsArgots
 ) {
 }

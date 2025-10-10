@@ -1,8 +1,8 @@
 package com.vigilante.retriever.v1.user.domain.exception;
 
-import static com.vigilante.retriever.v1.user.domain.enums.UserErrorCode.*;
+import static com.vigilante.retriever.v1.user.domain.code.UserErrorCode.*;
 
-import com.vigilante.retriever.global.exception.NotFoundException;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
 
 public class UserNotFoundException extends NotFoundException {
 

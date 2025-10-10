@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.channel.application.query;
 
-import com.vigilante.retriever.global.common.annotation.QueryService;
+import com.vigilante.retriever.common.domain.annotation.QueryService;
 import com.vigilante.retriever.v1.channel.domain.exception.ChannelNotFoundException;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
 import com.vigilante.retriever.v1.channel.domain.port.out.ChannelNeo4jPort;
