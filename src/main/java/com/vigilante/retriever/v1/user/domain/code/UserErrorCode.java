@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.user.domain.enums;
+package com.vigilante.retriever.v1.user.domain.code;
 
 import com.vigilante.retriever.common.domain.code.BaseCode;
 

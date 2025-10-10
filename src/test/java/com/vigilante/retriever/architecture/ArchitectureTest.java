@@ -186,7 +186,7 @@ public class ArchitectureTest {
 	@ArchTest
 	static final ArchRule error_codes_should_implement_base_code =
 		ArchRuleDefinition.classes()
-			.that().resideInAPackage("..domain.enums")
+			.that().resideInAPackage("..domain.code")
 			.and().haveSimpleNameEndingWith("ErrorCode")
 			.should().implement("com.vigilante.retriever.common.domain.code.BaseCode")
 			.allowEmptyShould(true)

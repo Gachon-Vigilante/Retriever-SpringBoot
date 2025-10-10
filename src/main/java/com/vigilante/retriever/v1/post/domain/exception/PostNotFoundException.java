@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.post.domain.exception;
 
-import static com.vigilante.retriever.v1.post.domain.enums.PostErrorCode.*;
+import static com.vigilante.retriever.v1.post.domain.code.PostErrorCode.*;
 
 import com.vigilante.retriever.common.domain.exception.NotFoundException;
 

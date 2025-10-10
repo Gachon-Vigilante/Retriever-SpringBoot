@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.drug.domain.exception;
 
-import static com.vigilante.retriever.v1.drug.domain.enums.DrugErrorCode.*;
+import static com.vigilante.retriever.v1.drug.domain.code.DrugErrorCode.*;
 
 import com.vigilante.retriever.common.domain.exception.NotFoundException;
 

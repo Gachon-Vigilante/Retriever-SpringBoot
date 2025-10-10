@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.chatbot.domain.exception;
 
-import static com.vigilante.retriever.v1.chatbot.domain.enums.ChatBotErrorCode.*;
+import static com.vigilante.retriever.v1.chatbot.domain.code.ChatBotErrorCode.*;
 
 import com.vigilante.retriever.common.domain.exception.NotFoundException;
 

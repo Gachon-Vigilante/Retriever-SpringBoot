@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.report.domain.enums;
+package com.vigilante.retriever.v1.channel.domain.code;
 
 import com.vigilante.retriever.common.domain.code.BaseCode;
 
@@ -7,8 +7,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ReportErrorCode implements BaseCode {
-	REPORT_NOT_FOUND("REPORT-4041", "해당하는 Ai 채널 리포트를 찾을 수 없습니다.");
+public enum ChannelErrorCode implements BaseCode {
+	CHANNEL_NOT_FOUND("CHANNEL-4041", "해당하는 채널을 찾을 수 없습니다.");
 
 	private final String code;
 	private final String message;

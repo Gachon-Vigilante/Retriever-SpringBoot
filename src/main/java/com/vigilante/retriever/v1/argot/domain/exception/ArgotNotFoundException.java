@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.argot.domain.exception;
 
-import static com.vigilante.retriever.v1.argot.domain.enums.ArgotErrorCode.*;
+import static com.vigilante.retriever.v1.argot.domain.code.ArgotErrorCode.*;
 
 import com.vigilante.retriever.common.domain.exception.NotFoundException;
 

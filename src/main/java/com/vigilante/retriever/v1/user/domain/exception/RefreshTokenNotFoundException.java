@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.user.domain.exception;
 
-import static com.vigilante.retriever.v1.user.domain.enums.RefreshTokenErrorCode.*;
+import static com.vigilante.retriever.v1.user.domain.code.RefreshTokenErrorCode.*;
 
 import com.vigilante.retriever.common.domain.exception.NotFoundException;
 
