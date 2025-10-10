@@ -57,19 +57,19 @@ public class JwtTokenProvider {
 			Claims claims = getBody(token);
 			return JwtValidationType.VALID_JWT;
 		} catch (MalformedJwtException ex) {
-			log.debug("올바르지 않은 JWT 토큰입니다: {}", ex.getMessage());
+			log.error("올바르지 않은 JWT 토큰입니다: {}", ex.getMessage());
 			return JwtValidationType.INVALID_JWT_TOKEN;
 		} catch (ExpiredJwtException ex) {
-			log.debug("만료된 JWT 토큰입니다: {}", ex.getMessage());
+			log.error("만료된 JWT 토큰입니다: {}", ex.getMessage());
 			return JwtValidationType.EXPIRED_JWT_TOKEN;
 		} catch (UnsupportedJwtException ex) {
-			log.debug("지원하지 않는 JWT 토큰입니다: {}", ex.getMessage());
+			log.error("지원하지 않는 JWT 토큰입니다: {}", ex.getMessage());
 			return JwtValidationType.UNSUPPORTED_JWT_TOKEN;
 		} catch (IllegalArgumentException ex) {
-			log.debug("JWT 토큰이 비어있거나 올바르지 않은 인자입니다: {}", ex.getMessage());
+			log.error("JWT 토큰이 비어있거나 올바르지 않은 인자입니다: {}", ex.getMessage());
 			return JwtValidationType.EMPTY_JWT;
 		} catch (SignatureException ex) {
-			log.debug("올바르지 않은 JWT Signature 입니다: {}", ex.getMessage());
+			log.error("올바르지 않은 JWT Signature 입니다: {}", ex.getMessage());
 			return JwtValidationType.INVALID_JWT_SIGNATURE;
 		}
 	}
