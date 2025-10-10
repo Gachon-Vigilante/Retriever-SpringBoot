@@ -10,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.vigilante.retriever.common.domain.enums.Role;
 import com.vigilante.retriever.infrastructure.auth.jwt.filter.JwtAuthenticationFilter;
 import com.vigilante.retriever.infrastructure.auth.security.CustomAccessDeniedHandler;
 import com.vigilante.retriever.infrastructure.auth.security.CustomJwtAuthenticationEntryPoint;
@@ -44,9 +45,9 @@ public class SecurityConfig {
 					.requestMatchers(endpointRegistry.whitelist())
 					.permitAll()
 					.requestMatchers(endpointRegistry.adminOrRootOnly())
-					.hasAnyAuthority("ROLE_ADMIN", "ROLE_ROOT")
+					.hasAnyAuthority(Role.ADMIN.getRoleName(), Role.ROOT.getRoleName())
 					.requestMatchers(endpointRegistry.rootOnly())
-					.hasAuthority("ROLE_ROOT")
+					.hasAuthority(Role.ROOT.getRoleName())
 					.anyRequest()
 					.authenticated()
 			)

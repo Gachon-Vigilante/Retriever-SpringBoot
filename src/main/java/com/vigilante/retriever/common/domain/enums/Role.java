@@ -3,6 +3,8 @@ package com.vigilante.retriever.common.domain.enums;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import com.vigilante.retriever.common.domain.exception.RoleNotFoundException;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +20,15 @@ public enum Role {
 
 	public GrantedAuthority toGrantedAuthority() {
 		return new SimpleGrantedAuthority(this.roleName);
+	}
+
+	public static Role fromRoleName(String roleName) {
+		for (Role role : Role.values()) {
+			if (role.roleName.equals(roleName)) {
+				return role;
+			}
+		}
+		throw new RoleNotFoundException();
 	}
 }
 

@@ -54,7 +54,7 @@ public class JwtTokenProvider {
 
 	public JwtValidationType validateToken(String token) {
 		try {
-			Claims claims = getBody(token);
+			getBody(token);
 			return JwtValidationType.VALID_JWT;
 		} catch (MalformedJwtException ex) {
 			log.error("올바르지 않은 JWT 토큰입니다: {}", ex.getMessage());
@@ -82,7 +82,7 @@ public class JwtTokenProvider {
 	public Role getRoleFromJwt(String token) {
 		Claims claims = getBody(token);
 		String roleName = claims.get(ROLE_KEY, String.class);
-		return Role.valueOf(roleName.replace("ROLE_", ""));
+		return Role.fromRoleName(roleName);
 	}
 
 	private String issueToken(final Authentication authentication, final long expiredTime) {

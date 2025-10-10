@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.vigilante.retriever.common.domain.enums.Role;
+import com.vigilante.retriever.common.domain.exception.RoleNotFoundException;
 import com.vigilante.retriever.infrastructure.auth.jwt.provider.JwtTokenProvider;
 import com.vigilante.retriever.infrastructure.auth.jwt.provider.JwtValidationType;
 import com.vigilante.retriever.infrastructure.auth.security.AdminAuthentication;
@@ -87,16 +88,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			return new MemberAuthentication(userId, null, authorities);
 		}
 
-		throw new IllegalArgumentException("Unknown role: " + role);
+		throw new RoleNotFoundException();
 	}
 
 	private void handleInvalidToken(JwtValidationType validationType, HttpServletResponse response) {
 		if (validationType == JwtValidationType.EXPIRED_JWT_TOKEN) {
-			log.debug("JWT 토큰이 만료되었습니다.");
-			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			log.warn("JWT 토큰이 만료되었습니다.");
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401 응답
 		} else {
-			log.debug("올바르지 않은 JWT 토큰입니다: {}", validationType);
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			log.warn("올바르지 않은 JWT 토큰입니다: {}", validationType);
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400 응답
 		}
 	}
 
