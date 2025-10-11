@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import com.vigilante.retriever.v1.user.adapter.out.mapper.RefreshTokenRedisMapper;
 import com.vigilante.retriever.v1.user.adapter.out.persistence.redis.hash.RefreshTokenHash;
 import com.vigilante.retriever.v1.user.adapter.out.persistence.redis.repository.RefreshTokenRedisRepository;
-import com.vigilante.retriever.v1.user.domain.port.out.RefreshTokenRedisPort;
 import com.vigilante.retriever.v1.user.domain.entity.RefreshTokenEntity;
+import com.vigilante.retriever.v1.user.domain.port.out.RefreshTokenRedisPort;
 
 import lombok.RequiredArgsConstructor;
 
