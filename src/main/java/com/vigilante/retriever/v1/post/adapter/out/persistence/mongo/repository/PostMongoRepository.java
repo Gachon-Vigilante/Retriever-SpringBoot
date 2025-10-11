@@ -13,12 +13,13 @@ public interface PostMongoRepository extends MongoRepository<PostDocument, Strin
 	// 제목에 포함되는 것
 	List<PostDocument> findByTitleContaining(String title);
 
-	// 홍보하는 채널 아이디로 조회
-	List<PostDocument> findByPromoChannelId(String promoChannelId);
+	// TODO: 로직 재설계 필요
+	// // 홍보하는 채널 아이디로 조회
+	// List<PostDocument> findByPromoChannelId(String promoChannelId);
+	//
+	// // 게시글 작성자 이름으로 조회
+	// List<PostDocument> findByAuthor(String author);
 
-	// 게시글 작성자 이름으로 조회
-	List<PostDocument> findByAuthor(String author);
-
-	// 게시글 링크로 조회 (createdAt ASC 정렬 고정)
-	List<PostDocument> findByLinkOrderByCreatedAtAsc(String link);
+	// 게시글 링크로 조회 (discoveredAt ASC 정렬 고정)
+	List<PostDocument> findByLinkOrderByDiscoveredAtAsc(String link);
 }

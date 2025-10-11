@@ -28,15 +28,16 @@ public class PostMongoQuery {
 		return postMongoPort.findByTitleContaining(title);
 	}
 
-	public List<PostEntity> findByPromoChannelId(String promoChannelId) {
-		return postMongoPort.findByPromoChannelId(promoChannelId);
-	}
-
-	public List<PostEntity> findByAuthor(String author) {
-		return postMongoPort.findByAuthor(author);
-	}
+	// TODO: 로직 재설계 필요
+	// public List<PostEntity> findByPromoChannelId(String promoChannelId) {
+	// 	return postMongoPort.findByPromoChannelId(promoChannelId);
+	// }
+	//
+	// public List<PostEntity> findByAuthor(String author) {
+	// 	return postMongoPort.findByAuthor(author);
+	// }
 
 	public List<PostEntity> findByLinkOrderByCreatedAtAsc(String link) {
-		return postMongoPort.findByLinkOrderByCreatedAtAsc(link);
+		return postMongoPort.findByLinkOrderByDiscoveredAtAsc(link);
 	}
 }

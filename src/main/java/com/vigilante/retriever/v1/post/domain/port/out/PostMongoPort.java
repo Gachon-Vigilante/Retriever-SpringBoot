@@ -15,9 +15,10 @@ public interface PostMongoPort {
 
 	List<PostEntity> findByTitleContaining(String title);
 
-	List<PostEntity> findByPromoChannelId(String promoChannelId);
+	// TODO: 로직 재설계 필요
+	// List<PostEntity> findByPromoChannelId(String promoChannelId);
+	//
+	// List<PostEntity> findByAuthor(String author);
 
-	List<PostEntity> findByAuthor(String author);
-
-	List<PostEntity> findByLinkOrderByCreatedAtAsc(String link);
+	List<PostEntity> findByLinkOrderByDiscoveredAtAsc(String link);
 }

@@ -3,13 +3,14 @@ package com.vigilante.retriever.v1.post.adapter.out.persistence.mongo.document;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.vigilante.retriever.infrastructure.common.document.BaseDocument;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -19,32 +20,88 @@ import lombok.experimental.SuperBuilder;
 @Document(collection = "posts")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class PostDocument extends BaseDocument {
+public class PostDocument {
+
+	@Id
+	private String id;
 
 	private String link;
 
-	private String tag;
+	private Analysis analysis;
 
-	private String siteName;
+	@Field("analysis_job_id")
+	private String analysisJobId;
+
+	private String description;
+
+	@Field("discovered_at")
+	private LocalDateTime discoveredAt;
+
+	private String domain;
+
+	private String html;
+
+	@Field("published_at")
+	private LocalDateTime publishedAt;
+
+	private String text;
 
 	private String title;
 
-	private String content;
+	@LastModifiedDate
+	private LocalDateTime updatedAt;
 
-	private String source;
+	private List<Similarity> similarities;
 
-	private List<String> promoSiteLink;
+	@Getter
+	@Builder
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	public static class Analysis {
 
-	private List<String> promoChannelId; // promoSiteName -> promoChannelId
+		@Field("drugs_related")
+		private boolean drugsRelated;
 
-	@Field("cluster_label")
-	private int clusterLabel;
+		private List<Promotion> promotions;
+	}
 
-	private String author;
+	@Getter
+	@Builder
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	public static class Promotion {
 
-	private boolean deleted;
+		private String content;
 
-	private LocalDateTime timestamp;
+		private List<Identifier> identifiers;
+	}
 
-	private LocalDateTime deletedAt;
+	@Getter
+	@Builder
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	public static class Identifier {
+
+		private String identifier;
+
+		@Field("channel_id")
+		private String channelId;
+
+		@Field("is_processed")
+		private boolean isProcessed;
+
+		private String error;
+	}
+
+	@Getter
+	@Builder
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	public static class Similarity {
+
+		@Field("post_id")
+		private String postId;
+
+		private double similarity;
+	}
 }
