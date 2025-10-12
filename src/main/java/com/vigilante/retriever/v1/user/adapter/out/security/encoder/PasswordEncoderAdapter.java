@@ -1,18 +1,17 @@
 package com.vigilante.retriever.v1.user.adapter.out.security.encoder;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.user.domain.port.out.PasswordEncoderPort;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
-public class BCryptPasswordAdapter implements PasswordEncoderPort {
+@RequiredArgsConstructor
+public class PasswordEncoderAdapter implements PasswordEncoderPort {
 
-	private final BCryptPasswordEncoder encoder;
-
-	public BCryptPasswordAdapter() {
-		this.encoder = new BCryptPasswordEncoder();
-	}
+	private final PasswordEncoder encoder;
 
 	@Override
 	public String encode(String rawPassword) {
