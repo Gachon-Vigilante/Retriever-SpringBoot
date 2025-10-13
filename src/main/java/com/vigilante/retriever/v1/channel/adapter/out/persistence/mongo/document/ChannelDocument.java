@@ -21,13 +21,14 @@ import lombok.experimental.SuperBuilder;
 public class ChannelDocument {
 
 	@Id
-	private String _id;
+	private String id;
 
 	private String title;
 
 	private String username;
 
-	private Long id;
+	@Field("channel_id")
+	private Long channelId;
 
 	private String about;
 
