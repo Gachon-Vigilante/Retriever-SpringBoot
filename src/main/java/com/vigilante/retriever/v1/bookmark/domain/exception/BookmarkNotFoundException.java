@@ -1,7 +1,5 @@
 package com.vigilante.retriever.v1.bookmark.domain.exception;
 
-import static com.vigilante.retriever.v1.argot.domain.code.ArgotErrorCode.*;
-
 import com.vigilante.retriever.common.domain.exception.NotFoundException;
 
 public class BookmarkNotFoundException extends NotFoundException {

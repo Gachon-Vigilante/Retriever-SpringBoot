@@ -30,4 +30,10 @@ public class DrugRepositoryAdapter implements DrugMongoPort {
 	public Optional<DrugEntity> findById(String id) {
 		return drugMongoRepository.findById(id).map(drugPersistenceMapper::toEntity);
 	}
+
+	@Override
+	public List<DrugEntity> findByArgot(String argot) {
+		List<DrugDocument> drugList = drugMongoRepository.findByArgot(argot);
+		return drugPersistenceMapper.getEntityList(drugList);
+	}
 }

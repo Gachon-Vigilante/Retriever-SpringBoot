@@ -10,4 +10,6 @@ public interface DrugMongoPort {
 	List<DrugEntity> findAll();
 
 	Optional<DrugEntity> findById(String id);
+
+	List<DrugEntity> findByArgot(String argot);
 }

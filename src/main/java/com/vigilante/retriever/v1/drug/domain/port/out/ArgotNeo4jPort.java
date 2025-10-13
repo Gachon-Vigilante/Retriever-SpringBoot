@@ -1,8 +1,8 @@
-package com.vigilante.retriever.v1.argot.domain.port.out;
+package com.vigilante.retriever.v1.drug.domain.port.out;
 
 import java.util.List;
 
-import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
+import com.vigilante.retriever.v1.drug.domain.graphview.ArgotGraphView;
 
 public interface ArgotNeo4jPort {
 

@@ -22,4 +22,8 @@ public class DrugMongoQuery {
 	public DrugEntity getById(String id) {
 		return drugMongoPort.findById(id).orElseThrow(DrugNotFoundException::new);
 	}
+
+	List<DrugEntity> getByArgot(String argot) {
+		return drugMongoPort.findByArgot(argot);
+	}
 }

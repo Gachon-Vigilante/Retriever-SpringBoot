@@ -4,9 +4,9 @@ import lombok.Builder;
 
 @Builder
 public record DrugGraphView(
-	String id,
+	String drugId,
 	String name,
 	String englishName,
-	String type
+	String drugType
 ) {
 }

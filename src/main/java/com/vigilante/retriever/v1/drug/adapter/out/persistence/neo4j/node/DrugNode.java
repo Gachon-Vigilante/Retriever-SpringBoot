@@ -17,11 +17,11 @@ import lombok.experimental.SuperBuilder;
 public class DrugNode {
 
 	@Id
-	private String id;
+	private String drugId;
 
 	private String name;
 
 	private String englishName;
 
-	private String type;
+	private String drugType;
 }

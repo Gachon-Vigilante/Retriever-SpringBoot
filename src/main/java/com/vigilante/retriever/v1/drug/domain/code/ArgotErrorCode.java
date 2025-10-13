@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.argot.domain.code;
+package com.vigilante.retriever.v1.drug.domain.code;
 
 import com.vigilante.retriever.common.domain.code.BaseCode;
 

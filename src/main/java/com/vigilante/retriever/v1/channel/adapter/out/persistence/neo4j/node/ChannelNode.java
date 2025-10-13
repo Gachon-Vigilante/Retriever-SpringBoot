@@ -7,7 +7,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vigilante.retriever.v1.argot.adapter.out.persistence.neo4j.node.ArgotNode;
+import com.vigilante.retriever.v1.drug.adapter.out.persistence.neo4j.node.ArgotNode;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

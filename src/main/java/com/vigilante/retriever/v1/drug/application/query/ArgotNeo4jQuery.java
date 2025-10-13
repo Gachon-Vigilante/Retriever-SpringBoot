@@ -1,10 +1,10 @@
-package com.vigilante.retriever.v1.argot.application.query;
+package com.vigilante.retriever.v1.drug.application.query;
 
 import java.util.List;
 
 import com.vigilante.retriever.common.domain.annotation.QueryService;
-import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
-import com.vigilante.retriever.v1.argot.domain.port.out.ArgotNeo4jPort;
+import com.vigilante.retriever.v1.drug.domain.graphview.ArgotGraphView;
+import com.vigilante.retriever.v1.drug.domain.port.out.ArgotNeo4jPort;
 
 import lombok.RequiredArgsConstructor;
 

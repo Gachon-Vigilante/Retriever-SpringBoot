@@ -1,8 +1,6 @@
-package com.vigilante.retriever.v1.argot.domain.graphview;
+package com.vigilante.retriever.v1.drug.domain.graphview;
 
 import java.util.Set;
-
-import com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView;
 
 import lombok.Builder;
 
@@ -10,7 +8,7 @@ import lombok.Builder;
 public record ArgotGraphView(
 	Long identity,
 	String name,
-	String drugId,
+	String description,
 	Set<DrugGraphView> refersDrugs
 ) {
 }
