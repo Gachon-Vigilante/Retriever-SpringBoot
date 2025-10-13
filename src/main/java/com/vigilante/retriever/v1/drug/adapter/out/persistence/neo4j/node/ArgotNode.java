@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,7 +23,8 @@ import lombok.experimental.SuperBuilder;
 public class ArgotNode {
 
 	@Id
-	private Long identity;
+	@Property("argot_id")
+	private Long argotId;
 
 	private String name;
 
@@ -30,5 +32,6 @@ public class ArgotNode {
 
 	@Relationship(type = "REFERS_TO", direction = Relationship.Direction.OUTGOING)
 	@JsonIgnoreProperties("argots")
+	@Property("refers_drugs")
 	private Set<DrugNode> refersDrugs;
 }

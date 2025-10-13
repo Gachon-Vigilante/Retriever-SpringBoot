@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
+import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
@@ -28,30 +29,39 @@ import lombok.experimental.SuperBuilder;
 public class PostNode {
 
 	@Id
+	@Property("post_id")
 	private String postId;
-
-	private int cluster;
-
-	private String link;
-
-	private String content;
 
 	private String title;
 
+	private String link;
+
 	private String domain;
 
+	@Property("site_name")
 	private String siteName;
 
-	private LocalDateTime createdAt;
+	private String content;
 
+	private int cluster;
+
+	@Property("discovered_at")
+	private LocalDateTime discoveredAt;
+
+	@Property("updated_at")
 	private LocalDateTime updatedAt;
+
+	@Property("is_deleted")
+	private boolean isDeleted;
 
 	@Relationship(type = "PROMOTES", direction = Relationship.Direction.OUTGOING)
 	@JsonManagedReference
+	@Property("promotes_channels")
 	private Set<Promote> promotesChannels;
 
 	@Relationship(type = "SIMILAR", direction = Relationship.Direction.OUTGOING)
 	@JsonIgnoreProperties({"promotesChannels", "similarPosts"})
+	@Property("similar_posts")
 	private Set<PostNode> similarPosts;
 
 	@Getter
