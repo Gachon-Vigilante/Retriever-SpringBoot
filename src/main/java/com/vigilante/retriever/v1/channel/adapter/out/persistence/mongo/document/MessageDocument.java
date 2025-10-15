@@ -94,6 +94,8 @@ public class MessageDocument {
 
 	private Integer views;
 
+	private List<String> argots;
+
 	@Getter
 	@Builder
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)

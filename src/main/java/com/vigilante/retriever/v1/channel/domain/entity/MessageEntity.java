@@ -33,7 +33,8 @@ public record MessageEntity(
 	Boolean silent,
 	LocalDateTime updatedAt,
 	Long viaBotId,
-	Integer views
+	Integer views,
+	List<String> argots
 ) {
 	@Builder
 	public record Media(
