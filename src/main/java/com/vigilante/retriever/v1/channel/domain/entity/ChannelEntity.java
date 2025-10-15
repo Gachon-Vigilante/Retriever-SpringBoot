@@ -3,6 +3,8 @@ package com.vigilante.retriever.v1.channel.domain.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.vigilante.retriever.v1.channel.domain.enums.ChannelStatus;
+
 import lombok.Builder;
 
 @Builder
@@ -35,7 +37,7 @@ public record ChannelEntity(
 	Boolean scam,
 	Boolean signatures,
 	Boolean slowModeEnabled,
-	String status,
+	ChannelStatus status,
 	LocalDateTime updatedAt,
 	Boolean verified
 ) {

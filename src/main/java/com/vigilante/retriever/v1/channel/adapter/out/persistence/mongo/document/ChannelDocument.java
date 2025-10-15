@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.convert.ValueConverter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.converter.ChannelStatusValueConverter;
+import com.vigilante.retriever.v1.channel.domain.enums.ChannelStatus;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -93,19 +97,19 @@ public class ChannelDocument {
 	@Field("slowmode_enabled")
 	private Boolean slowModeEnabled;
 
-	private String status;
+	@ValueConverter(ChannelStatusValueConverter.class)
+	private ChannelStatus status;
 
 	@Field("updated_at")
 	private LocalDateTime updatedAt;
 
 	private Boolean verified;
 
-
 	@Getter
 	@Builder
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
-	public static class RestrictionReason{
+	public static class RestrictionReason {
 
 		private String platform;
 
