@@ -3,6 +3,8 @@ package com.vigilante.retriever.v1.channel.domain.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.vigilante.retriever.v1.channel.domain.enums.SenderType;
+
 import lombok.Builder;
 
 @Builder
@@ -29,7 +31,7 @@ public record MessageEntity(
 	Boolean post,
 	List<String> reactions,
 	Integer replyToMsgId,
-	String senderType,
+	SenderType senderType,
 	Boolean silent,
 	LocalDateTime updatedAt,
 	Long viaBotId,

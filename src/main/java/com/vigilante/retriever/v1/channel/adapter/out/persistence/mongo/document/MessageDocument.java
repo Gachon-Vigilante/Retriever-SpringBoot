@@ -4,8 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.convert.ValueConverter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.converter.SenderTypeValueConverter;
+import com.vigilante.retriever.v1.channel.domain.enums.SenderType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -82,7 +86,8 @@ public class MessageDocument {
 	private Integer replyToMsgId;
 
 	@Field("sender_type")
-	private String senderType;
+	@ValueConverter(SenderTypeValueConverter.class)
+	private SenderType senderType;
 
 	private Boolean silent;
 
