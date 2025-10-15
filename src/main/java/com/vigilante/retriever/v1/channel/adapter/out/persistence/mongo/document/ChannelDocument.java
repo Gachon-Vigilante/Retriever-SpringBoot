@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -83,7 +84,7 @@ public class ChannelDocument {
 	private Boolean restricted;
 
 	@Field("restriction_reason")
-	private List<String> restrictionReason;
+	private List<RestrictionReason> restrictionReason;
 
 	private Boolean scam;
 
@@ -98,4 +99,18 @@ public class ChannelDocument {
 	private LocalDateTime updatedAt;
 
 	private Boolean verified;
+
+
+	@Getter
+	@Builder
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	public static class RestrictionReason{
+
+		private String platform;
+
+		private String reason;
+
+		private String text;
+	}
 }

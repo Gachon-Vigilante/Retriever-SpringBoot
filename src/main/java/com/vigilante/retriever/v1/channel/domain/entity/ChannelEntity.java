@@ -31,7 +31,7 @@ public record ChannelEntity(
 	Integer participantsCount,
 	String photo,
 	Boolean restricted,
-	List<String> restrictionReason,
+	List<RestrictionReason> restrictionReason,
 	Boolean scam,
 	Boolean signatures,
 	Boolean slowModeEnabled,
@@ -39,4 +39,11 @@ public record ChannelEntity(
 	LocalDateTime updatedAt,
 	Boolean verified
 ) {
+	@Builder
+	public record RestrictionReason(
+		String platform,
+		String reason,
+		String text
+	) {
+	}
 }
