@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.vigilante.retriever.v1.drug.adapter.out.persistence.neo4j.node.ArgotNode;
 
 @Repository
-public interface ArgotNeo4jRepository extends Neo4jRepository<ArgotNode, Long> {
+public interface ArgotNeo4jRepository extends Neo4jRepository<ArgotNode, String> {
 
 	@Query("""
 		    MATCH (a: Argot)

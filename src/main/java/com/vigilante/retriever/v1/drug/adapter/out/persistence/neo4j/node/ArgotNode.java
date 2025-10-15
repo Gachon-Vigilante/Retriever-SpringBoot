@@ -23,9 +23,6 @@ import lombok.experimental.SuperBuilder;
 public class ArgotNode {
 
 	@Id
-	@Property("argot_id")
-	private Long argotId;
-
 	private String name;
 
 	private String description;
