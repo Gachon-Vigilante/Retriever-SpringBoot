@@ -9,21 +9,47 @@ import lombok.Builder;
 public record PostEntity(
 	String id,
 	String link,
-	String tag,
-	String siteName,
+	Analysis analysis,
+	String analysisJobId,
+	String description,
+	LocalDateTime discoveredAt,
+	String domain,
+	String html,
+	LocalDateTime publishedAt,
+	String text,
 	String title,
-	String content,
-	String source,
-	List<String> promoSiteLink,
-	List<String> promoChannelId,
-	int clusterLabel,
-	String author,
-	boolean deleted,
-	LocalDateTime timestamp,
-	LocalDateTime deletedAt,
-
-	// Mongo Auditing fields
-	LocalDateTime createdAt,
-	LocalDateTime updatedAt
+	LocalDateTime updatedAt,
+	List<Similarity> similarities,
+	String siteName,
+	Long cluster
 ) {
+	@Builder
+	public record Analysis(
+		boolean drugsRelated,
+		List<Promotion> promotions
+	) {
+	}
+
+	@Builder
+	public record Promotion(
+		String content,
+		List<Identifier> identifiers
+	) {
+	}
+
+	@Builder
+	public record Identifier(
+		String identifier,
+		String channelId,
+		boolean isProcessed,
+		String error
+	) {
+	}
+
+	@Builder
+	public record Similarity(
+		String postId,
+		double similarity
+	) {
+	}
 }

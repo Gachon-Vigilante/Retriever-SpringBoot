@@ -44,21 +44,22 @@ public class PostRepositoryAdapter implements PostMongoPort {
 		return postPersistenceMapper.getEntityList(postList);
 	}
 
-	@Override
-	public List<PostEntity> findByPromoChannelId(String promoChannelId) {
-		List<PostDocument> postList = postMongoRepository.findByPromoChannelId(promoChannelId);
-		return postPersistenceMapper.getEntityList(postList);
-	}
+	// TODO: 로직 재설계 필요
+	// @Override
+	// public List<PostEntity> findByPromoChannelId(String promoChannelId) {
+	// 	List<PostDocument> postList = postMongoRepository.findByPromoChannelId(promoChannelId);
+	// 	return postPersistenceMapper.getEntityList(postList);
+	// }
+	//
+	// @Override
+	// public List<PostEntity> findByAuthor(String author) {
+	// 	List<PostDocument> postList = postMongoRepository.findByAuthor(author);
+	// 	return postPersistenceMapper.getEntityList(postList);
+	// }
 
 	@Override
-	public List<PostEntity> findByAuthor(String author) {
-		List<PostDocument> postList = postMongoRepository.findByAuthor(author);
-		return postPersistenceMapper.getEntityList(postList);
-	}
-
-	@Override
-	public List<PostEntity> findByLinkOrderByCreatedAtAsc(String link) {
-		List<PostDocument> postList = postMongoRepository.findByLinkOrderByCreatedAtAsc(link);
+	public List<PostEntity> findByLinkOrderByDiscoveredAtAsc(String link) {
+		List<PostDocument> postList = postMongoRepository.findByLinkOrderByDiscoveredAtAsc(link);
 		return postPersistenceMapper.getEntityList(postList);
 	}
 }

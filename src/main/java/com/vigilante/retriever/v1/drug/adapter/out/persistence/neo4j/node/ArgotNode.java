@@ -1,8 +1,13 @@
 package com.vigilante.retriever.v1.drug.adapter.out.persistence.neo4j.node;
 
+import java.util.Set;
+
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
+import org.springframework.data.neo4j.core.schema.Relationship;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,20 +17,18 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @SuperBuilder
-@Node("Drug")
+@Node("Argot")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class DrugNode {
+public class ArgotNode {
 
 	@Id
-	@Property("drug_id")
-	private String drugId;
-
 	private String name;
 
-	@Property("english_name")
-	private String englishName;
+	private String description;
 
-	@Property("drug_type")
-	private String drugType;
+	@Relationship(type = "REFERS_TO", direction = Relationship.Direction.OUTGOING)
+	@JsonIgnoreProperties("argots")
+	@Property("refers_drugs")
+	private Set<DrugNode> refersDrugs;
 }

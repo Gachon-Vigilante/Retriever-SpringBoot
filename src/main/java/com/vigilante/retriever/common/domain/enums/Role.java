@@ -18,10 +18,6 @@ public enum Role {
 
 	private final String roleName;
 
-	public GrantedAuthority toGrantedAuthority() {
-		return new SimpleGrantedAuthority(this.roleName);
-	}
-
 	public static Role fromRoleName(String roleName) {
 		for (Role role : Role.values()) {
 			if (role.roleName.equals(roleName)) {
@@ -29,6 +25,10 @@ public enum Role {
 			}
 		}
 		throw new RoleNotFoundException();
+	}
+
+	public GrantedAuthority toGrantedAuthority() {
+		return new SimpleGrantedAuthority(this.roleName);
 	}
 }
 
