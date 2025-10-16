@@ -19,7 +19,9 @@ public record PostEntity(
 	String text,
 	String title,
 	LocalDateTime updatedAt,
-	List<Similarity> similarities
+	List<Similarity> similarities,
+	String siteName,
+	Long cluster
 ) {
 	@Builder
 	public record Analysis(

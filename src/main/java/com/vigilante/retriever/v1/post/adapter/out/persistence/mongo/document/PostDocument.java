@@ -53,6 +53,11 @@ public class PostDocument {
 
 	private List<Similarity> similarities;
 
+	@Field("site_name")
+	private String siteName;
+
+	private Long cluster;
+
 	@Getter
 	@Builder
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
