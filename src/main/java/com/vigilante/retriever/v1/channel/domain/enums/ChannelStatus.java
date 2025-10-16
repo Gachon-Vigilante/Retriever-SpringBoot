@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ChannelStatus {
-	ACTIVATE("activate"),
-	INACTIVATE("inactivate"),
+	ACTIVE("active"),
+	INACTIVE("inactive"),
 	RESTRICTED("restricted"),
 	BANNED("banned");
 
