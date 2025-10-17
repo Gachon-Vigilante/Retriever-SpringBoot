@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.vigilante.retriever.common.domain.enums.Role;
-import com.vigilante.retriever.common.domain.exception.BadRequestException;
 import com.vigilante.retriever.common.domain.exception.ConflictException;
 import com.vigilante.retriever.v1.user.application.command.UserMongoCommand;
 import com.vigilante.retriever.v1.user.application.query.UserMongoQuery;
@@ -31,12 +30,8 @@ public class RegisterUserService implements RegisterUserUseCase {
 			throw new ConflictException(UserErrorCode.USER_DUPLICATED);
 		}
 
-		UserEntity user = UserEntity.create(
-			command.loginId(),
-			passwordEncoderPort.encode(command.password()),
-			command.name(),
-			Role.USER
-		);
+		UserEntity user = UserEntity.create(command.loginId(), passwordEncoderPort.encode(command.password()),
+			command.name(), Role.USER);
 
 		userMongoCommand.save(user);
 	}
