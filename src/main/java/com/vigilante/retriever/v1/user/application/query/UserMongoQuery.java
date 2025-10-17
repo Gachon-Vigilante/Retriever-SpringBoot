@@ -1,8 +1,11 @@
 package com.vigilante.retriever.v1.user.application.query;
 
+import java.util.List;
+
 import com.vigilante.retriever.common.domain.annotation.QueryService;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
+import com.vigilante.retriever.v1.user.domain.code.UserErrorCode;
 import com.vigilante.retriever.v1.user.domain.entity.UserEntity;
-import com.vigilante.retriever.v1.user.domain.exception.UserNotFoundException;
 import com.vigilante.retriever.v1.user.domain.port.out.UserMongoPort;
 
 import lombok.RequiredArgsConstructor;
@@ -15,7 +18,7 @@ public class UserMongoQuery {
 
 	public UserEntity findByLoginId(String id) {
 		return userMongoPort.findByLoginId(id)
-			.orElseThrow(UserNotFoundException::new);
+			.orElseThrow(() -> new NotFoundException(UserErrorCode.USER_NOT_FOUND));
 	}
 
 	public boolean existsByLoginId(String loginId) {
