@@ -1,9 +1,13 @@
 package com.vigilante.retriever.infrastructure.config;
 
+import java.util.Collections;
 import java.util.List;
 
+import org.springdoc.core.customizers.OperationCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.vigilante.retriever.adapter.web.openapi.annotation.DisableSwaggerSecurity;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -55,5 +59,16 @@ public class SwaggerConfig {
 			.contact(new Contact()
 				.name("김지성 팀장")
 				.email("softchocopie@gmail.com"));
+	}
+
+	@Bean
+	public OperationCustomizer customize() {
+		return (operation, handlerMethod) -> {
+			DisableSwaggerSecurity methodAnnotation = handlerMethod.getMethodAnnotation(DisableSwaggerSecurity.class);
+			if (methodAnnotation != null) {
+				operation.setSecurity(Collections.emptyList());
+			}
+			return operation;
+		};
 	}
 }
