@@ -24,4 +24,8 @@ public class UserMongoQuery {
 	public boolean existsByLoginId(String loginId) {
 		return userMongoPort.existsByLoginId(loginId);
 	}
+
+	public List<UserEntity> findAll() {
+		return userMongoPort.findAll();
+	}
 }

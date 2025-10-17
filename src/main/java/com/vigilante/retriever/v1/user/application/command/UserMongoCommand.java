@@ -15,4 +15,8 @@ public class UserMongoCommand {
 	public UserEntity save(UserEntity entity) {
 		return userMongoPort.save(entity);
 	}
+
+	public void delete(UserEntity entity) {
+		userMongoPort.delete(entity);
+	}
 }
