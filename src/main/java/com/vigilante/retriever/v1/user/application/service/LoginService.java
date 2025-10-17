@@ -50,9 +50,6 @@ public class LoginService implements LoginUseCase {
 		String refreshToken = issueAndSaveRefreshToken(userId, authenticationToken);
 		String accessToken = tokenProviderPort.issueAccessToken(authenticationToken);
 
-		log.info("로그인에 성공하였습니다. authorities: {}, accessToken: {}, refreshToken: {}", authorities, accessToken,
-			refreshToken);
-
 		return LoginResult.of(accessToken, refreshToken, name, role.getRoleName());
 	}
 
@@ -68,7 +65,6 @@ public class LoginService implements LoginUseCase {
 
 	private String issueAndSaveRefreshToken(String userId, UsernamePasswordAuthenticationToken authenticationToken) {
 		String refreshToken = tokenProviderPort.issueRefreshToken(authenticationToken);
-		log.info("새로운 refresh token이 발급되었습니다. userId: {}", userId);
 
 		RefreshTokenEntity tokenEntity = RefreshTokenEntity.builder()
 			.userId(userId)
