@@ -79,15 +79,31 @@ public class ArchitectureTest {
 			.because("Application은 Infrastructure에 의존해서는 안 됩니다");
 
 	@ArchTest
-	static final ArchRule application_services_should_use_service_annotation =
+	static final ArchRule command_services_should_use_service_annotation =
 		ArchRuleDefinition.classes()
 			.that().resideInAPackage("..v1..application..")
 			.and().haveSimpleNameEndingWith("Command")
-			.or().haveSimpleNameEndingWith("Query")
 			.should().beAnnotatedWith("com.vigilante.retriever.common.domain.annotation.CommandService")
-			.orShould().beAnnotatedWith("com.vigilante.retriever.common.domain.annotation.QueryService")
 			.allowEmptyShould(true)
-			.because("Application Service는 @CommandService 또는 @QueryService를 사용해야 합니다");
+			.because("command Service는 @CommandService를 사용해야 합니다");
+
+	@ArchTest
+	static final ArchRule query_services_should_use_service_annotation =
+		ArchRuleDefinition.classes()
+			.that().resideInAPackage("..v1..application..")
+			.and().haveSimpleNameEndingWith("Query")
+			.should().beAnnotatedWith("com.vigilante.retriever.common.domain.annotation.QueryService")
+			.allowEmptyShould(true)
+			.because("query Service는 @QueryService를 사용해야 합니다");
+
+	@ArchTest
+	static final ArchRule application_services_should_use_service_annotation =
+		ArchRuleDefinition.classes()
+			.that().resideInAPackage("..v1..application.service..")
+			.and().haveSimpleNameEndingWith("Service")
+			.should().beAnnotatedWith("org.springframework.stereotype.Service")
+			.allowEmptyShould(true)
+			.because("Application Service는 @Service를 사용해야 합니다");
 
 	/**
 	 * 3. Adapter Layer 규칙
@@ -110,13 +126,13 @@ public class ArchitectureTest {
 			.because("Adapter 구현체는 @Component로 등록되어야 합니다");
 
 	@ArchTest
-	static final ArchRule adapter_in_should_not_depend_on_domain_entity =
+	static final ArchRule adapter_in_controllers_should_not_depend_on_domain_entity =
 		ArchRuleDefinition.noClasses()
-			.that().resideInAPackage("..adapter.in..")
+			.that().resideInAPackage("..adapter.in.web.controller")
 			.should().dependOnClassesThat()
 			.resideInAnyPackage("..domain.entity..")
 			.allowEmptyShould(true)
-			.because("Adapter.In은 Domain Entity가 아닌 DTO를 사용해야 합니다");
+			.because("Controller는 Domain Entity가 아닌 DTO를 사용해야 합니다 (Mapper는 예외)");
 
 	/**
 	 * 4. Common Domain Layer 규칙
