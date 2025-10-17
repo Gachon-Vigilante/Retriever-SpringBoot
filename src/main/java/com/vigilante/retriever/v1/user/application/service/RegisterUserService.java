@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.vigilante.retriever.common.domain.enums.Role;
 import com.vigilante.retriever.common.domain.exception.BadRequestException;
+import com.vigilante.retriever.common.domain.exception.ConflictException;
 import com.vigilante.retriever.v1.user.application.command.UserMongoCommand;
 import com.vigilante.retriever.v1.user.application.query.UserMongoQuery;
 import com.vigilante.retriever.v1.user.domain.code.UserErrorCode;
@@ -27,7 +28,7 @@ public class RegisterUserService implements RegisterUserUseCase {
 	@Transactional
 	public void signUp(RegisterUserCommand command) {
 		if (userMongoQuery.existsByLoginId(command.loginId())) {
-			throw new BadRequestException(UserErrorCode.USER_DUPLICATED);
+			throw new ConflictException(UserErrorCode.USER_DUPLICATED);
 		}
 
 		UserEntity user = UserEntity.create(
