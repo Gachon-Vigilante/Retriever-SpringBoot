@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "userId": "user123",
+      "loginId": "testuser1",
+      "nickname": "테스트사용자1",
+      "role": "USER",
+      "createdAt": "2025-01-01T00:00:00.000000"
+    },
+    {
+      "userId": "user456",
+      "loginId": "testuser2",
+      "nickname": "테스트사용자2",
+      "role": "ADMIN",
+      "createdAt": "2025-01-01T00:00:00.000000"
+    }
+  ],
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
+

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import com.vigilante.retriever.adapter.web.code.CommonErrorCode;
-import com.vigilante.retriever.adapter.web.exception.dto.response.ErrorResponse;
+import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
 import com.vigilante.retriever.common.domain.code.BaseCode;
 import com.vigilante.retriever.common.domain.exception.BadRequestException;
 import com.vigilante.retriever.common.domain.exception.ConflictException;
@@ -26,71 +26,78 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(NotFoundException.class)
-	public ResponseEntity<ErrorResponse> handleNotFound(NotFoundException ex) {
-		return build(ex.getErrorCode(), NOT_FOUND, null, ex);
+	public ResponseEntity<CommonResponse<Void>> handleNotFound(NotFoundException ex) {
+		return build(ex.getErrorCode(), NOT_FOUND, ex);
 	}
 
 	@ExceptionHandler(ConflictException.class)
-	public ResponseEntity<ErrorResponse> handleConflict(ConflictException ex) {
-		return build(ex.getErrorCode(), CONFLICT, null, ex);
+	public ResponseEntity<CommonResponse<Void>> handleConflict(ConflictException ex) {
+		return build(ex.getErrorCode(), CONFLICT, ex);
 	}
 
 	@ExceptionHandler(BadRequestException.class)
-	public ResponseEntity<ErrorResponse> handleBadRequest(BadRequestException ex) {
-		return build(ex.getErrorCode(), BAD_REQUEST, null, ex);
+	public ResponseEntity<CommonResponse<Void>> handleBadRequest(BadRequestException ex) {
+		return build(ex.getErrorCode(), BAD_REQUEST, ex);
 	}
 
 	@ExceptionHandler(UnauthorizedException.class)
-	public ResponseEntity<ErrorResponse> handleUnauthorized(UnauthorizedException ex) {
-		return build(ex.getErrorCode(), UNAUTHORIZED, null, ex);
+	public ResponseEntity<CommonResponse<Void>> handleUnauthorized(UnauthorizedException ex) {
+		return build(ex.getErrorCode(), UNAUTHORIZED, ex);
 	}
 
 	@ExceptionHandler(ForbiddenException.class)
-	public ResponseEntity<ErrorResponse> handleForbidden(ForbiddenException ex) {
-		return build(ex.getErrorCode(), FORBIDDEN, null, ex);
+	public ResponseEntity<CommonResponse<Void>> handleForbidden(ForbiddenException ex) {
+		return build(ex.getErrorCode(), FORBIDDEN, ex);
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
+	public ResponseEntity<CommonResponse<Void>> handleValidation(MethodArgumentNotValidException ex) {
 		String aggregated = ex.getBindingResult().getFieldErrors().stream()
 			.map(err -> err.getField() + ": " + err.getDefaultMessage())
 			.distinct()
 			.reduce((a, b) -> a + ", " + b)
 			.orElse("Validation error");
-		return build(CommonErrorCode.VALIDATION_ERROR, BAD_REQUEST, aggregated, ex);
+		return build(CommonErrorCode.VALIDATION_ERROR, aggregated, BAD_REQUEST, ex);
 	}
 
 	@ExceptionHandler(MissingServletRequestParameterException.class)
-	public ResponseEntity<ErrorResponse> handleMissingParam(MissingServletRequestParameterException ex) {
+	public ResponseEntity<CommonResponse<Void>> handleMissingParam(MissingServletRequestParameterException ex) {
 		String message = "Missing required parameter: " + ex.getParameterName();
-		return build(CommonErrorCode.BAD_REQUEST, BAD_REQUEST, message, ex);
+		return build(CommonErrorCode.BAD_REQUEST, message, BAD_REQUEST, ex);
 	}
 
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
-	public ResponseEntity<ErrorResponse> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+	public ResponseEntity<CommonResponse<Void>> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
 		String requiredType = ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "Unknown";
 		String message = "Invalid value for parameter: " + ex.getName() + " (Expected: " + requiredType + ")";
-		return build(CommonErrorCode.BAD_REQUEST, BAD_REQUEST, message, ex);
+		return build(CommonErrorCode.BAD_REQUEST, message, BAD_REQUEST, ex);
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorResponse> handleUnexpected(Exception ex) {
+	public ResponseEntity<CommonResponse<Void>> handleUnexpected(Exception ex) {
 		log.error("Unexpected error", ex);
-		BaseCode code = CommonErrorCode.INTERNAL_SERVER_ERROR;
-		HttpStatus status = HttpStatus.valueOf(CommonErrorCode.INTERNAL_SERVER_ERROR.getHttpCode());
-		return build(code, status, null, ex);
+		return build(CommonErrorCode.INTERNAL_SERVER_ERROR, null, INTERNAL_SERVER_ERROR, ex);
 	}
 
-	private ResponseEntity<ErrorResponse> build(BaseCode code, HttpStatus status, String overrideMessage,
+	private ResponseEntity<CommonResponse<Void>> build(BaseCode errorCode, HttpStatus status,
 		Exception ex) {
-		logException(status, code, overrideMessage, ex);
-		ErrorResponse body = overrideMessage == null ? ErrorResponse.of(code) : ErrorResponse.of(code, overrideMessage);
+		logException(status, errorCode.getCode(), errorCode.getMessage(), ex);
+		CommonResponse<Void> body = CommonResponse.error(errorCode);
 		return ResponseEntity.status(status).body(body);
 	}
 
-	private void logException(HttpStatus status, BaseCode code, String overrideMessage, Exception ex) {
-		String logMsg = String.format("[%d] code=%s msg=%s", status.value(), code.getCode(),
-			overrideMessage != null ? overrideMessage : code.getMessage());
+	private ResponseEntity<CommonResponse<Void>> build(CommonErrorCode errorCode,
+		String overrideMessage, HttpStatus status, Exception ex) {
+		String message = overrideMessage != null ? overrideMessage : errorCode.getMessage();
+		logException(status, errorCode.getCode(), message, ex);
+		CommonResponse<Void> body = overrideMessage != null
+			? CommonResponse.error(errorCode, overrideMessage)
+			: CommonResponse.error(errorCode);
+		return ResponseEntity.status(status).body(body);
+	}
+
+	private void logException(HttpStatus status, String code, String message, Exception ex) {
+		String logMsg = String.format("[%d] code=%s msg=%s", status.value(), code, message);
 
 		if (status.is4xxClientError()) {
 			log.warn(logMsg);

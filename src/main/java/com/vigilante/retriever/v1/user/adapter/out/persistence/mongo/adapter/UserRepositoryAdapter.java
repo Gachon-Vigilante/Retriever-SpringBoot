@@ -1,5 +1,6 @@
 package com.vigilante.retriever.v1.user.adapter.out.persistence.mongo.adapter;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
@@ -34,5 +35,19 @@ public class UserRepositoryAdapter implements UserMongoPort {
 	@Override
 	public boolean existsByLoginId(String loginId) {
 		return userMongoRepository.existsByLoginId(loginId);
+	}
+
+	@Override
+	public List<UserEntity> findAll() {
+		return userMongoRepository.findAll()
+			.stream()
+			.map(userPersistenceMapper::toEntity)
+			.toList();
+	}
+
+	@Override
+	public void delete(UserEntity userEntity) {
+		UserDocument document = userPersistenceMapper.toDocument(userEntity);
+		userMongoRepository.delete(document);
 	}
 }
