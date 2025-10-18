@@ -12,4 +12,6 @@ public interface BookmarkMongoRepository extends MongoRepository<BookmarkDocumen
 
 	// 텔레그램 사용자 아이디로 조회
 	List<BookmarkDocument> findByUserId(String userId);
+
+	boolean existsByUserIdAndChannelId(String userId, String channelId);
 }

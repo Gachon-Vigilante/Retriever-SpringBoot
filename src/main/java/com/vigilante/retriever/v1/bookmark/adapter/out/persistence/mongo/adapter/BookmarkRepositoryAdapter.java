@@ -48,4 +48,9 @@ public class BookmarkRepositoryAdapter implements BookmarkMongoPort {
 	public void deleteById(String id) {
 		bookmarkMongoRepository.deleteById(id);
 	}
+
+	@Override
+	public boolean existsByUserIdAndChannelId(String userId, String channelId) {
+		return bookmarkMongoRepository.existsByUserIdAndChannelId(userId, channelId);
+	}
 }

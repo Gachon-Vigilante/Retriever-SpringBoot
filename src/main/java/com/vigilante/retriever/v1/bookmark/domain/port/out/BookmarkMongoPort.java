@@ -16,4 +16,6 @@ public interface BookmarkMongoPort {
 	BookmarkEntity save(BookmarkEntity bookmarkEntity);
 
 	void deleteById(String id);
+
+	boolean existsByUserIdAndChannelId(String userId, String channelId);
 }
