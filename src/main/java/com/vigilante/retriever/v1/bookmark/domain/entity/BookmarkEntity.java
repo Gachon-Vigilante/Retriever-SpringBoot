@@ -14,4 +14,10 @@ public record BookmarkEntity(
 	LocalDateTime createdAt,
 	LocalDateTime updatedAt
 ) {
+	public static BookmarkEntity create(String channelId, String userId) {
+		return BookmarkEntity.builder()
+			.channelId(channelId)
+			.userId(userId)
+			.build();
+	}
 }
