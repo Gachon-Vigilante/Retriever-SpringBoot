@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": {
+    "bookmarkId": "bkm-001",
+    "channelId": "chan-001",
+    "userId": "user-123",
+    "createdAt": "2025-10-18T12:00:00.000000"
+  },
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
