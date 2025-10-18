@@ -22,6 +22,16 @@ public final class ExampleKeyConstant {
 	public static final String USER_GRANT_ROLE_403 = "User__Grant__Role__403";
 	public static final String USER_GRANT_ROLE_404 = "User__Grant__Role__404";
 
+	public static final String BOOKMARK_ADD_BOOKMARK_201 = "Bookmark__Add__Bookmark__201";
+	public static final String BOOKMARK_ADD_BOOKMARK_409 = "Bookmark__Add__Bookmark__409";
+	public static final String BOOKMARK_DELETE_BOOKMARK_200 = "Bookmark__Delete__Bookmark__200";
+	public static final String BOOKMARK_DELETE_BOOKMARK_403 = "Bookmark__Delete__Bookmark__403";
+	public static final String BOOKMARK_DELETE_BOOKMARK_404 = "Bookmark__Delete__Bookmark__404";
+	public static final String BOOKMARK_GET_MY_BOOKMARKS_200 = "Bookmark__Get__My__Bookmarks__200";
+	public static final String BOOKMARK_GET_BOOKMARK_BY_ID_200 = "Bookmark__Get__Bookmark__By__Id__200";
+	public static final String BOOKMARK_GET_BOOKMARK_BY_ID_404 = "Bookmark__Get__Bookmark__By__Id__404";
+	public static final String BOOKMARK_GET_ALL_BOOKMARKS_200 = "Bookmark__Get__All__Bookmarks__200";
+
 	private ExampleKeyConstant() {
 	}
 }
