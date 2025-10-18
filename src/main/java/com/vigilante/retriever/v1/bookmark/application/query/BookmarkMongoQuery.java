@@ -26,7 +26,7 @@ public class BookmarkMongoQuery {
 	}
 
 	public BookmarkEntity getById(String id) {
-		return bookmarkMongoPort.findById(id).orElseThrow(BookmarkNotFoundException::new);
+		return bookmarkMongoPort.findById(id).orElseThrow(() -> new NotFoundException(BOOKMARK_NOT_FOUND));
 	}
 
 	public boolean existsByUserIdAndChannelId(String userId, String channelId) {
