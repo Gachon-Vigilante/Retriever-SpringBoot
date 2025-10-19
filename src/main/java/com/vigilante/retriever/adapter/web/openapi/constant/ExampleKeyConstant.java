@@ -38,6 +38,9 @@ public final class ExampleKeyConstant {
 	public static final String DRUG_GET_BY_ID_404 = "Drug__Get__By__Id__404";
 	public static final String DRUG_GRAPH_FIND_ALL_200 = "Drug__Graph__Find__All__200";
 
+	public static final String ARGOT_FIND_ALL_200 = "Argot__Find__All__200";
+	public static final String ARGOT_GRAPH_FIND_ALL_200 = "Argot__Graph__Find__All__200";
+
 	private ExampleKeyConstant() {
 	}
 }
