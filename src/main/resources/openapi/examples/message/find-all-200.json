@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "id": "msg-001",
+      "channelId": 123456789,
+      "message": "안녕하세요, 오늘의 공지입니다.",
+      "messageId": 1,
+      "date": "2025-01-01T00:00:00.000000",
+      "fromId": 111,
+      "views": 42,
+      "argots": [
+        "감미료"
+      ]
+    },
+    {
+      "id": "msg-002",
+      "channelId": 987654321,
+      "message": "판매 물품 목록 업데이트",
+      "messageId": 2,
+      "date": "2025-01-01T00:00:00.000000",
+      "fromId": 222,
+      "views": 15,
+      "argots": []
+    }
+  ],
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
+
