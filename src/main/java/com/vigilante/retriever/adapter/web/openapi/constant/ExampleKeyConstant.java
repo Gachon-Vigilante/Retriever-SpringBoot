@@ -58,6 +58,12 @@ public final class ExampleKeyConstant {
 	public static final String MESSAGE_FIND_ALL_200 = "Message__Find__All__200";
 	public static final String MESSAGE_FIND_BY_CHANNEL_200 = "Message__Find__By__Channel__200";
 
+	// Post
+	public static final String POST_GET_PAGE_200 = "Post__Get__Page__200";
+	public static final String POST_GET_BY_ID_200 = "Post__Get__By__Id__200";
+	public static final String POST_GET_BY_ID_404 = "Post__Get__By__Id__404";
+	public static final String POST_FIND_BY_TITLE_200 = "Post__Find__By__Title__200";
+
 	private ExampleKeyConstant() {
 	}
 }
