@@ -60,7 +60,7 @@ public class ChannelWebMapper {
 
 	private List<ChannelInfoResponse.RestrictionReason> mapRestrictionReasons(
 		List<ChannelEntity.RestrictionReason> reasons) {
-		if(reasons == null) {
+		if (reasons == null) {
 			return null;
 		}
 

@@ -24,7 +24,7 @@ public class DrugWebMapper {
 	}
 
 	private List<DrugInfoResponse.Argot> mapArgots(List<DrugEntity.Argot> argots) {
-		if(argots == null) {
+		if (argots == null) {
 			return null;
 		}
 

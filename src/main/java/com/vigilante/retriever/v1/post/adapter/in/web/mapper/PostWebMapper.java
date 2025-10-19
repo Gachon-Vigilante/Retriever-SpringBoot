@@ -33,7 +33,7 @@ public class PostWebMapper {
 	}
 
 	private PostInfoResponse.Analysis mapAnalysis(PostEntity.Analysis analysis) {
-		if(analysis == null) {
+		if (analysis == null) {
 			return null;
 		}
 
@@ -44,7 +44,7 @@ public class PostWebMapper {
 	}
 
 	private List<PostInfoResponse.Promotion> mapPromotions(List<PostEntity.Promotion> promotions) {
-		if(promotions == null) {
+		if (promotions == null) {
 			return null;
 		}
 
@@ -57,7 +57,7 @@ public class PostWebMapper {
 	}
 
 	private List<PostInfoResponse.Identifier> mapIdentifiers(List<PostEntity.Identifier> identifiers) {
-		if(identifiers == null) {
+		if (identifiers == null) {
 			return null;
 		}
 
@@ -72,7 +72,7 @@ public class PostWebMapper {
 	}
 
 	private List<PostInfoResponse.Similarity> mapSimilarities(List<PostEntity.Similarity> similarities) {
-		if(similarities == null) {
+		if (similarities == null) {
 			return null;
 		}
 
