@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "id": "rep-001",
+      "channelId": 123456789,
+      "chatId": 1001,
+      "type": "spam",
+      "content": "의심스러운 판매글 신고",
+      "description": "판매글에 약물 관련 키워드 포함",
+      "timestamp": "2025-01-01T00:00:00.000000"
+    },
+    {
+      "id": "rep-002",
+      "channelId": 987654321,
+      "chatId": 2002,
+      "type": "abuse",
+      "content": "욕설 포함 게시물 신고",
+      "description": "사용자 간 욕설 및 비방",
+      "timestamp": "2025-01-01T00:00:00.000000"
+    }
+  ],
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
