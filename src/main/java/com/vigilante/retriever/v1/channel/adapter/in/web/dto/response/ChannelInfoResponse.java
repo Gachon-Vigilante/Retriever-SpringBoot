@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.channel.domain.entity;
+package com.vigilante.retriever.v1.channel.adapter.in.web.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,7 +8,7 @@ import com.vigilante.retriever.v1.channel.domain.enums.ChannelStatus;
 import lombok.Builder;
 
 @Builder
-public record ChannelEntity(
+public record ChannelInfoResponse(
 	String id,
 	String title,
 	String username,

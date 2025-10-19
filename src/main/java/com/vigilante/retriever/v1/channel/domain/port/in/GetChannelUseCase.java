@@ -1,15 +1,14 @@
-package com.vigilante.retriever.v1.channel.domain.port.out;
+package com.vigilante.retriever.v1.channel.domain.port.in;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelEntity;
 
-public interface ChannelMongoPort {
+public interface GetChannelUseCase {
 
 	List<ChannelEntity> findAll();
 
-	Optional<ChannelEntity> findByChannelId(Long channelId);
+	ChannelEntity getByChannelId(Long ChannelId);
 
 	List<ChannelEntity> findByTitleContaining(String title);
 }

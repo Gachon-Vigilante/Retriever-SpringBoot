@@ -19,22 +19,12 @@ public class ChannelMongoQuery {
 		return channelMongoPort.findAll();
 	}
 
-	public ChannelEntity getById(String id) {
-		return channelMongoPort.findById(id)
+	public ChannelEntity getByChannelId(Long channelId) {
+		return channelMongoPort.findByChannelId(channelId)
 			.orElseThrow(MessageNotFoundException::new);
 	}
 
-	// TODO: 로직 재설계 필요
-	// public ChannelEntity getByLink(String link) {
-	// 	return channelMongoPort.findByLink(link)
-	// 		.orElseThrow(MessageNotFoundException::new);
-	// }
-
 	public List<ChannelEntity> findByTitleContaining(String title) {
 		return channelMongoPort.findByTitleContaining(title);
-	}
-
-	public boolean existsById(String id) {
-		return channelMongoPort.existsById(id);
 	}
 }

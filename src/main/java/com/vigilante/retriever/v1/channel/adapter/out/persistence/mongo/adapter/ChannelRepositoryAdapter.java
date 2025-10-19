@@ -27,24 +27,13 @@ public class ChannelRepositoryAdapter implements ChannelMongoPort {
 	}
 
 	@Override
-	public Optional<ChannelEntity> findById(String id) {
-		return channelMongoRepository.findById(id).map(channelMongoMapper::toEntity);
+	public Optional<ChannelEntity> findByChannelId(Long channelId) {
+		return channelMongoRepository.findByChannelId(channelId).map(channelMongoMapper::toEntity);
 	}
-
-	// TODO: 로직 재설계 필요
-	// @Override
-	// public Optional<ChannelEntity> findByLink(String link) {
-	// 	return channelMongoRepository.findByLink(link).map(channelMongoMapper::toEntity);
-	// }
 
 	@Override
 	public List<ChannelEntity> findByTitleContaining(String title) {
 		List<ChannelDocument> channelInfoList = channelMongoRepository.findByTitleContaining(title);
 		return channelMongoMapper.getEntityList(channelInfoList);
-	}
-
-	@Override
-	public boolean existsById(String id) {
-		return channelMongoRepository.existsById(id);
 	}
 }

@@ -1,0 +1,74 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "id": "ch-101",
+      "title": "새로운 채널 1",
+      "username": "NewChannelUser1",
+      "status": "active",
+      "promotedCount": 5,
+      "sellsArgots": [
+        {
+          "name": "물건",
+          "description": "새로운 설명입니다.",
+          "refersDrugs": [
+            {
+              "drugId": "drug-101",
+              "name": "신규마약A",
+              "englishName": "NewDrugA",
+              "drugType": "TypeA"
+            }
+          ]
+        },
+        {
+          "name": "그것",
+          "description": null,
+          "refersDrugs": [
+            {
+              "drugId": "drug-102",
+              "name": "신규마약B",
+              "englishName": "NewDrugB",
+              "drugType": "TypeB"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ch-102",
+      "title": "테스트 채널 2",
+      "username": "TestChannel2",
+      "status": "inactive",
+      "promotedCount": 10,
+      "sellsArgots": [
+        {
+          "name": "작업",
+          "description": "이것은 테스트 설명입니다.",
+          "refersDrugs": [
+            {
+              "drugId": "drug-103",
+              "name": "신규마약C",
+              "englishName": "NewDrugC",
+              "drugType": "TypeC"
+            }
+          ]
+        },
+        {
+          "name": "아이템",
+          "description": "두 번째 아이템입니다.",
+          "refersDrugs": [
+            {
+              "drugId": "drug-104",
+              "name": "신규마약D",
+              "englishName": "NewDrugD",
+              "drugType": "TypeD"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timestamp": "2025-01-01T00:00:00.000000"
+}

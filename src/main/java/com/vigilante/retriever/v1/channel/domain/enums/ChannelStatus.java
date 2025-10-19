@@ -1,6 +1,8 @@
 package com.vigilante.retriever.v1.channel.domain.enums;
 
-import com.vigilante.retriever.v1.channel.domain.exception.ChannelStatusNotFoundException;
+import static com.vigilante.retriever.v1.channel.domain.code.ChannelErrorCode.*;
+
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,6 @@ public enum ChannelStatus {
 				return channelStatus;
 			}
 		}
-		throw new ChannelStatusNotFoundException();
+		throw new NotFoundException(CHANNEL_STATUS_NOT_FOUND);
 	}
 }

@@ -41,6 +41,12 @@ public final class ExampleKeyConstant {
 	public static final String ARGOT_FIND_ALL_200 = "Argot__Find__All__200";
 	public static final String ARGOT_GRAPH_FIND_ALL_200 = "Argot__Graph__Find__All__200";
 
+	public static final String CHANNEL_FIND_ALL_200 = "Channel__Find__All__200";
+	public static final String CHANNEL_GET_BY_ID_200 = "Channel__Get__By__Id__200";
+	public static final String CHANNEL_GET_BY_ID_404 = "Channel__Get__By__Id__404";
+	public static final String CHANNEL_FIND_BY_TITLE_200 = "Channel__Find__By__Title__200";
+	public static final String CHANNEL_GRAPH_FIND_ALL_200 = "Channel__Graph__Find__All__200";
+
 	private ExampleKeyConstant() {
 	}
 }
