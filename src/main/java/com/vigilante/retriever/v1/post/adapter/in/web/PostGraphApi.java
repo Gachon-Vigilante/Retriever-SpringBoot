@@ -32,12 +32,18 @@ public interface PostGraphApi {
 	@GetMapping("/sync")
 	@Operation(summary = "게시글 그래프 동기화", description = "외부 소스에서 게시글을 동기화하여 그래프를 업데이트합니다.")
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = POST_GRAPH_SYNC_200)})
-	@ApiErrorExample(include = {"401", "500"})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "400", exampleKey = POST_GRAPH_SYNC_400)}
+	)
 	ResponseEntity<CommonResponse<Void>> syncPosts();
 
 	@PostMapping("/relation")
 	@Operation(summary = "홍보 관계 생성", description = "게시글과 채널 간 홍보 관계를 생성합니다.")
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "201", exampleKey = POST_GRAPH_CREATE_RELATION_201)})
-	@ApiErrorExample(include = {"401", "500"})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "409", exampleKey = POST_GRAPH_CREATE_RELATION_409)}
+	)
 	ResponseEntity<CommonResponse<Void>> createPromotionRelation(@RequestBody CreatePromotionRelationRequest request);
 }

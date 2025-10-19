@@ -1,11 +1,14 @@
 package com.vigilante.retriever.v1.post.application.service;
 
+import static com.vigilante.retriever.v1.post.domain.code.PostErrorCode.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.vigilante.retriever.common.domain.exception.ConflictException;
 import com.vigilante.retriever.v1.channel.application.command.ChannelNeo4jCommand;
 import com.vigilante.retriever.v1.channel.application.query.ChannelNeo4jQuery;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
@@ -38,7 +41,6 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 		String postId = command.postId();
 		log.info("[Service] 홍보 관계 생성을 시작합니다. channelId: {}, postId: {}", channelId, postId);
 
-		// 1. Find or create Channel
 		ChannelGraphView channel = channelNeo4jQuery.findById(channelId)
 			.orElseGet(() -> {
 				ChannelGraphView newChannel = ChannelGraphView.builder().id(channelId).build();
@@ -46,10 +48,8 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 				return channelNeo4jCommand.save(newChannel);
 			});
 
-		// 2. Find Post in Mongo
 		PostEntity mongoPost = postMongoQuery.getById(postId);
 
-		// 3. Find or create Post in Neo4j
 		PostGraphView post = postNeo4jQuery.findByPostId(postId)
 			.orElseGet(() -> {
 				PostGraphView newPost = PostGraphView.builder()
@@ -69,13 +69,14 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 				return postNeo4jCommand.save(newPost);
 			});
 
-		// 4. Check if relationship already exists
 		boolean alreadyPromoted = post.promotesChannels().stream()
 			.anyMatch(p -> p.channel().id().equals(channelId));
 
 		if (!alreadyPromoted) {
-			// 5. Create new relationship and a new PostGraphView with the new relationship
-			PostGraphView.Promote newPromote = new PostGraphView.Promote(null, channel);
+			PostGraphView.Promote newPromote = PostGraphView.Promote.builder()
+				.id(null)
+				.channel(channel)
+				.build();
 
 			Set<PostGraphView.Promote> newPromotes = new HashSet<>(post.promotesChannels());
 			newPromotes.add(newPromote);
@@ -95,9 +96,8 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 				.build();
 
 			postNeo4jCommand.save(updatedPost);
-			log.info("[Service] 홍보 관계를 성공적으로 생성했습니다.");
 		} else {
-			log.info("[Service] 이미 홍보 관계가 존재합니다.");
+			throw new ConflictException(ALREADY_EXIST_PROMOTE_RELATION);
 		}
 	}
 }

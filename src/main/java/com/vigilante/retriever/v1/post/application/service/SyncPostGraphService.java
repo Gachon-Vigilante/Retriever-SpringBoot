@@ -1,9 +1,12 @@
 package com.vigilante.retriever.v1.post.application.service;
 
+import static com.vigilante.retriever.v1.post.domain.code.PostErrorCode.*;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.vigilante.retriever.common.domain.exception.BadRequestException;
 import com.vigilante.retriever.v1.post.application.command.PostNeo4jCommand;
 import com.vigilante.retriever.v1.post.application.query.PostMongoQuery;
 import com.vigilante.retriever.v1.post.domain.entity.PostEntity;
@@ -42,8 +45,8 @@ public class SyncPostGraphService implements SyncPostGraphUseCase {
 						log.info("⚠️ 대상 없음 (혹은 이미 있음): postId={} | link={}", postId, link);
 					}
 				} catch (Exception e) {
-					log.error("❌ 실패: postId={} | link={}", postId, link);
-					e.printStackTrace();
+					log.warn("❌ 실패: postId={} | link={}", postId, link);
+					throw new BadRequestException(FAIL_UPDATE_POST_ID);
 				}
 			}
 		}
