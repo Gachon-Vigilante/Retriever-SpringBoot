@@ -16,10 +16,7 @@ public class PostWebMapper {
 		return PostInfoResponse.builder()
 			.id(entity.id())
 			.link(entity.link())
-			.analysis(PostInfoResponse.Analysis.builder()
-				.drugsRelated(entity.analysis().drugsRelated())
-				.promotions(mapPromotions(entity.analysis().promotions()))
-				.build())
+			.analysis(mapAnalysis(entity.analysis()))
 			.analysisJobId(entity.analysisJobId())
 			.description(entity.description())
 			.discoveredAt(entity.discoveredAt())
@@ -35,7 +32,22 @@ public class PostWebMapper {
 			.build();
 	}
 
+	private PostInfoResponse.Analysis mapAnalysis(PostEntity.Analysis analysis) {
+		if(analysis == null) {
+			return null;
+		}
+
+		return PostInfoResponse.Analysis.builder()
+			.drugsRelated(analysis.drugsRelated())
+			.promotions(mapPromotions(analysis.promotions()))
+			.build();
+	}
+
 	private List<PostInfoResponse.Promotion> mapPromotions(List<PostEntity.Promotion> promotions) {
+		if(promotions == null) {
+			return null;
+		}
+
 		return promotions.stream()
 			.map(promotion -> PostInfoResponse.Promotion.builder()
 				.content(promotion.content())
@@ -45,6 +57,10 @@ public class PostWebMapper {
 	}
 
 	private List<PostInfoResponse.Identifier> mapIdentifiers(List<PostEntity.Identifier> identifiers) {
+		if(identifiers == null) {
+			return null;
+		}
+
 		return identifiers.stream()
 			.map(identifier -> PostInfoResponse.Identifier.builder()
 				.identifier(identifier.identifier())
@@ -56,6 +72,10 @@ public class PostWebMapper {
 	}
 
 	private List<PostInfoResponse.Similarity> mapSimilarities(List<PostEntity.Similarity> similarities) {
+		if(similarities == null) {
+			return null;
+		}
+
 		return similarities.stream()
 			.map(similarity -> PostInfoResponse.Similarity.builder()
 				.postId(similarity.postId())
