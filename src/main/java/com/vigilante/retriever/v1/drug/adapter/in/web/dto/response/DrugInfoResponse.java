@@ -1,11 +1,11 @@
-package com.vigilante.retriever.v1.drug.domain.entity;
+package com.vigilante.retriever.v1.drug.adapter.in.web.dto.response;
 
 import java.util.List;
 
 import lombok.Builder;
 
 @Builder
-public record DrugEntity(
+public record DrugInfoResponse(
 	String id,
 	String drugBankId,
 	String name,

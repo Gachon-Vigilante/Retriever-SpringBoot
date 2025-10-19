@@ -41,23 +41,23 @@ public class BookmarkController implements BookmarkApi {
 	}
 
 	@Override
-	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> getMyBookmarks(String userId) {
-		List<BookmarkInfoResponse> response = bookmarkWebMapper.toInfoResponseList(
-			getBookmarksByUserUseCase.getBookmarksByUserId(userId));
+	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findByUserId(String userId) {
+		List<BookmarkInfoResponse> response = bookmarkWebMapper.toResponseList(
+			getBookmarksByUserUseCase.findByUserId(userId));
 		return ResponseEntity.ok(CommonResponse.retrieved(response));
 	}
 
 	@Override
-	public ResponseEntity<CommonResponse<BookmarkInfoResponse>> getBookmarkById(String bookmarkId) {
-		BookmarkInfoResponse response = bookmarkWebMapper.toInfoResponse(
-			getBookmarkByIdUseCase.getBookmarkById(bookmarkId));
+	public ResponseEntity<CommonResponse<BookmarkInfoResponse>> getById(String Id) {
+		BookmarkInfoResponse response = bookmarkWebMapper.toResponse(
+			getBookmarkByIdUseCase.getById(Id));
 		return ResponseEntity.ok(CommonResponse.retrieved(response));
 	}
 
 	@Override
-	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> getAllBookmarks() {
-		List<BookmarkInfoResponse> response = bookmarkWebMapper.toInfoResponseList(
-			getAllBookmarksUseCase.getAllBookmarks());
+	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findAll() {
+		List<BookmarkInfoResponse> response = bookmarkWebMapper.toResponseList(
+			getAllBookmarksUseCase.findAll());
 		return ResponseEntity.ok(CommonResponse.retrieved(response));
 	}
 }

@@ -6,5 +6,5 @@ import com.vigilante.retriever.v1.user.domain.entity.UserEntity;
 
 public interface GetUserUseCase {
 
-	List<UserEntity> getAllUsers();
+	List<UserEntity> findAll();
 }
