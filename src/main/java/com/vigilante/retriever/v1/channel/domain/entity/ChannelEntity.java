@@ -9,10 +9,10 @@ import lombok.Builder;
 
 @Builder
 public record ChannelEntity(
-	String _id,
+	String id,
 	String title,
 	String username,
-	Long id,
+	Long channelId,
 	String about,
 	Long accessHash,
 	Boolean broadcast,
