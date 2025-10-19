@@ -32,7 +32,7 @@ public class DrugDocument {
 	private String drugType;
 
 	@Field("english_name")
-	private String EnglishName;
+	private String englishName;
 
 	private List<Argot> argots;
 

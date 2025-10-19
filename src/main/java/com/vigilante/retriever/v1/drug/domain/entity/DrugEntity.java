@@ -10,7 +10,7 @@ public record DrugEntity(
 	String drugBankId,
 	String name,
 	String drugType,
-	String EnglishName,
+	String englishName,
 	List<Argot> argots
 ) {
 	@Builder
