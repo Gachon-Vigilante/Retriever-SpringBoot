@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": {
+    "id": "post-001",
+    "link": "https://example.com/post/1",
+    "analysis": {
+      "drugsRelated": true,
+      "promotions": [
+        {
+          "content": "특정 상품 홍보 글",
+          "identifiers": [
+            {
+              "identifier": "id-001",
+              "channelId": "12345",
+              "isProcessed": true,
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    "analysisJobId": "job-123",
+    "description": "게시글 요약",
+    "discoveredAt": "2025-01-01T00:00:00.000000",
+    "domain": "example.com",
+    "html": "<p>본문</p>",
+    "publishedAt": "2025-01-01T00:00:00.000000",
+    "text": "게시글 본문",
+    "title": "판매 게시물",
+    "updatedAt": "2025-01-01T00:00:00.000000",
+    "similarities": [
+      {
+        "postId": "post-002",
+        "similarity": 0.85
+      }
+    ],
+    "siteName": "Example",
+    "cluster": 42
+  },
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
+
