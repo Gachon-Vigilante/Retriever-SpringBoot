@@ -27,7 +27,7 @@ public final class ExampleKeyConstant {
 	public static final String BOOKMARK_DELETE_BOOKMARK_200 = "Bookmark__Delete__Bookmark__200";
 	public static final String BOOKMARK_DELETE_BOOKMARK_403 = "Bookmark__Delete__Bookmark__403";
 	public static final String BOOKMARK_DELETE_BOOKMARK_404 = "Bookmark__Delete__Bookmark__404";
-	public static final String BOOKMARK_GET_BY_USER_ID_200 = "Bookmark__Get__By__User_Id__200";
+	public static final String BOOKMARK_GET_BY_USER_ID_200 = "Bookmark__Get__By__User__Id__200";
 	public static final String BOOKMARK_GET_BY_ID_200 = "Bookmark__Get__By__Id__200";
 	public static final String BOOKMARK_GET_BY_ID_404 = "Bookmark__Get__By__Id__404";
 	public static final String BOOKMARK_FIND_ALL_200 = "Bookmark__Find__All__200";
