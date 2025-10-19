@@ -1,10 +1,12 @@
 package com.vigilante.retriever.v1.report.application.query;
 
+import static com.vigilante.retriever.v1.report.domain.code.ReportErrorCode.*;
+
 import java.util.List;
 
 import com.vigilante.retriever.common.domain.annotation.QueryService;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
 import com.vigilante.retriever.v1.report.domain.entity.ReportEntity;
-import com.vigilante.retriever.v1.report.domain.exception.ReportNotFoundException;
 import com.vigilante.retriever.v1.report.domain.port.out.ReportMongoPort;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ public class ReportMongoQuery {
 
 	public ReportEntity getById(String id) {
 		return reportMongoPort.findById(id)
-			.orElseThrow(ReportNotFoundException::new);
+			.orElseThrow(() -> new NotFoundException(REPORT_NOT_FOUND));
 	}
 
 	public List<ReportEntity> getByChannelId(long channelId) {
