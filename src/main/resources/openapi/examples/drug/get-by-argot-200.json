@@ -10,7 +10,10 @@
       "drugType": "stimulant",
       "englishName": "Cocaine",
       "argots": [
-        { "argot": "하얀가루", "description": "은어 설명 예시" }
+        {
+          "argot": "하얀가루",
+          "description": "은어 설명 예시"
+        }
       ]
     }
   ],
