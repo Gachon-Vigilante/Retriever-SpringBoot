@@ -32,6 +32,12 @@ public final class ExampleKeyConstant {
 	public static final String BOOKMARK_GET_BOOKMARK_BY_ID_404 = "Bookmark__Get__Bookmark__By__Id__404";
 	public static final String BOOKMARK_GET_ALL_BOOKMARKS_200 = "Bookmark__Get__All__Bookmarks__200";
 
+	public static final String DRUG_GET_BY_ID_200 = "Drug__Get__By__Id__200";
+	public static final String DRUG_FIND_ALL_200 = "Drug__Find__All__200";
+	public static final String DRUG_GET_BY_ARGOT_200 = "Drug__Get__By__Argot__200";
+	public static final String DRUG_GET_BY_ID_404 = "Drug__Get__By__Id__404";
+	public static final String DRUG_GRAPH_FIND_ALL_200 = "Drug__Graph__Find__All__200";
+
 	private ExampleKeyConstant() {
 	}
 }
