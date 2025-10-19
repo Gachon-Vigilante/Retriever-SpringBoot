@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "postId": "post-001",
+      "cluster": 42,
+      "link": "https://example.com/post/1",
+      "content": "특정 상품 홍보 게시글",
+      "title": "판매 게시물",
+      "domain": "example.com",
+      "siteName": "Example",
+      "createdAt": "2025-01-01T00:00:00.000000",
+      "updatedAt": "2025-01-01T00:00:00.000000",
+      "promotesChannels": [
+        {
+          "id": 1,
+          "channel": {
+            "id": "ch-002",
+            "title": "판매 채널",
+            "channelId": 987654321
+          }
+        }
+      ],
+      "similarPosts": []
+    }
+  ],
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
