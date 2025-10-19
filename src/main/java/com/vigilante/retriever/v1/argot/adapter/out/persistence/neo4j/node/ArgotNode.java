@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.drug.adapter.out.persistence.neo4j.node;
+package com.vigilante.retriever.v1.argot.adapter.out.persistence.neo4j.node;
 
 import java.util.Set;
 
@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vigilante.retriever.v1.drug.adapter.out.persistence.neo4j.node.DrugNode;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
