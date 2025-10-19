@@ -50,4 +50,10 @@ public class PostRepositoryAdapter implements PostMongoPort {
 		List<PostDocument> postList = postMongoRepository.findByLinkOrderByDiscoveredAtAsc(link);
 		return postPersistenceMapper.getEntityList(postList);
 	}
+
+	@Override
+	public List<PostEntity> findAll() {
+		List<PostDocument> postList = postMongoRepository.findAll();
+		return postPersistenceMapper.getEntityList(postList);
+	}
 }

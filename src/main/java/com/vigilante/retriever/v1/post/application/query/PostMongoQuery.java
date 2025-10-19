@@ -35,4 +35,8 @@ public class PostMongoQuery {
 	public List<PostEntity> findByLinkOrderByCreatedAtAsc(String link) {
 		return postMongoPort.findByLinkOrderByDiscoveredAtAsc(link);
 	}
+
+	public List<PostEntity> findAll() {
+		return postMongoPort.findAll();
+	}
 }
