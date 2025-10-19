@@ -17,7 +17,7 @@ public class GetUserService implements GetUserUseCase {
 	private final UserMongoQuery userMongoQuery;
 
 	@Override
-	public List<UserEntity> getAllUsers() {
+	public List<UserEntity> findAll() {
 		return userMongoQuery.findAll();
 	}
 }

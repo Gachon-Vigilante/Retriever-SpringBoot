@@ -5,5 +5,5 @@ import java.util.List;
 import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
 
 public interface GetAllBookmarksUseCase {
-	List<BookmarkEntity> getAllBookmarks();
+	List<BookmarkEntity> findAll();
 }

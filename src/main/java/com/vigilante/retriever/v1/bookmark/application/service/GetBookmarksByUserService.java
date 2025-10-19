@@ -17,7 +17,7 @@ public class GetBookmarksByUserService implements GetBookmarksByUserUseCase {
 	private final BookmarkMongoQuery bookmarkMongoQuery;
 
 	@Override
-	public List<BookmarkEntity> getBookmarksByUserId(String userId) {
+	public List<BookmarkEntity> findByUserId(String userId) {
 		return bookmarkMongoQuery.findByUserId(userId);
 	}
 }

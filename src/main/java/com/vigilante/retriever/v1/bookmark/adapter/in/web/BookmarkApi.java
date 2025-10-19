@@ -53,26 +53,26 @@ public interface BookmarkApi {
 
 	@GetMapping("/me")
 	@Operation(summary = "내 북마크 목록 조회", description = "현재 사용자의 모든 북마크 목록을 조회합니다.")
-	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_GET_MY_BOOKMARKS_200)})
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_GET_BY_USER_ID_200)})
 	@ApiErrorExample(include = {"401", "500"})
-	ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> getMyBookmarks(
+	ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findByUserId(
 		@AuthenticationPrincipal String userId);
 
 	@GetMapping("/{bookmarkId}")
 	@Operation(summary = "북마크 단건 조회", description = "특정 ID의 북마크 정보를 조회합니다.")
-	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_GET_BOOKMARK_BY_ID_200)})
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_GET_BY_ID_200)})
 	@ApiErrorExample(
 		include = {"401", "500"},
 		custom = {
-			@ApiErrorExample.ErrorSpec(code = "404", exampleKey = BOOKMARK_GET_BOOKMARK_BY_ID_404)
+			@ApiErrorExample.ErrorSpec(code = "404", exampleKey = BOOKMARK_GET_BY_ID_404)
 		}
 	)
-	ResponseEntity<CommonResponse<BookmarkInfoResponse>> getBookmarkById(
+	ResponseEntity<CommonResponse<BookmarkInfoResponse>> getById(
 		@PathVariable String bookmarkId);
 
 	@GetMapping("/all")
 	@Operation(summary = "모든 북마크 목록 조회 (관리자용)", description = "시스템의 모든 북마크 목록을 조회합니다. 관리자 권한이 필요합니다.")
-	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_GET_ALL_BOOKMARKS_200)})
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_FIND_ALL_200)})
 	@ApiErrorExample(include = {"401", "403", "500"})
-	ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> getAllBookmarks();
+	ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findAll();
 }

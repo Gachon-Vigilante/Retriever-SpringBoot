@@ -27,8 +27,8 @@ public class UserController implements UserApi {
 	private final UserWebMapper userWebMapper;
 
 	@Override
-	public ResponseEntity<CommonResponse<List<UserInfoResponse>>> getUsers() {
-		List<UserInfoResponse> users = userWebMapper.toResponseList(getUserService.getAllUsers());
+	public ResponseEntity<CommonResponse<List<UserInfoResponse>>> findAll() {
+		List<UserInfoResponse> users = userWebMapper.toResponseList(getUserService.findAll());
 		return ResponseEntity.ok(CommonResponse.retrieved(users));
 	}
 

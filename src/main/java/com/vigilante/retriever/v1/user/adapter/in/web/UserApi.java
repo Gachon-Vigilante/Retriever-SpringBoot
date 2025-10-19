@@ -26,9 +26,9 @@ public interface UserApi {
 
 	@GetMapping
 	@Operation(summary = "사용자 목록 조회", description = "전체 사용자 목록을 조회합니다.")
-	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = USER_GET_USERS_200)})
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = USER_FIND_ALL_200)})
 	@ApiErrorExample(include = {"401", "500"})
-	ResponseEntity<CommonResponse<List<UserInfoResponse>>> getUsers();
+	ResponseEntity<CommonResponse<List<UserInfoResponse>>> findAll();
 
 	@PatchMapping("/grant-role")
 	@Operation(summary = "권한 부여", description = "사용자에게 특정 권한을 부여합니다. 관리자 권한이 필요합니다.")

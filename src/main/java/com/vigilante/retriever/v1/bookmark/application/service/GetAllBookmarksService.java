@@ -17,7 +17,7 @@ public class GetAllBookmarksService implements GetAllBookmarksUseCase {
 	private final BookmarkMongoQuery bookmarkMongoQuery;
 
 	@Override
-	public List<BookmarkEntity> getAllBookmarks() {
+	public List<BookmarkEntity> findAll() {
 		return bookmarkMongoQuery.findAll();
 	}
 }
