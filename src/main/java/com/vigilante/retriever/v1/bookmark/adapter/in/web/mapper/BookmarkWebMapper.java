@@ -11,7 +11,7 @@ import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
 @Component
 public class BookmarkWebMapper {
 
-	public BookmarkInfoResponse toInfoResponse(BookmarkEntity entity) {
+	public BookmarkInfoResponse toResponse(BookmarkEntity entity) {
 		return BookmarkInfoResponse.builder()
 			.id(entity.id())
 			.channelId(entity.channelId())
@@ -21,9 +21,9 @@ public class BookmarkWebMapper {
 			.build();
 	}
 
-	public List<BookmarkInfoResponse> toInfoResponseList(List<BookmarkEntity> entities) {
+	public List<BookmarkInfoResponse> toResponseList(List<BookmarkEntity> entities) {
 		return entities.stream()
-			.map(this::toInfoResponse)
-			.collect(Collectors.toList());
+			.map(this::toResponse)
+			.toList();
 	}
 }
