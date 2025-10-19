@@ -11,9 +11,7 @@ import com.vigilante.retriever.v1.bookmark.adapter.in.web.dto.response.BookmarkI
 import com.vigilante.retriever.v1.bookmark.adapter.in.web.mapper.BookmarkWebMapper;
 import com.vigilante.retriever.v1.bookmark.domain.port.in.AddBookmarkUseCase;
 import com.vigilante.retriever.v1.bookmark.domain.port.in.DeleteBookmarkUseCase;
-import com.vigilante.retriever.v1.bookmark.domain.port.in.GetAllBookmarksUseCase;
-import com.vigilante.retriever.v1.bookmark.domain.port.in.GetBookmarkByIdUseCase;
-import com.vigilante.retriever.v1.bookmark.domain.port.in.GetBookmarksByUserUseCase;
+import com.vigilante.retriever.v1.bookmark.domain.port.in.GetBookmarkUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,9 +21,7 @@ public class BookmarkController implements BookmarkApi {
 
 	private final AddBookmarkUseCase addBookmarkUseCase;
 	private final DeleteBookmarkUseCase deleteBookmarkUseCase;
-	private final GetBookmarksByUserUseCase getBookmarksByUserUseCase;
-	private final GetBookmarkByIdUseCase getBookmarkByIdUseCase;
-	private final GetAllBookmarksUseCase getAllBookmarksUseCase;
+	private final GetBookmarkUseCase getBookmarkUseCase;
 	private final BookmarkWebMapper bookmarkWebMapper;
 
 	@Override
@@ -43,21 +39,21 @@ public class BookmarkController implements BookmarkApi {
 	@Override
 	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findByUserId(String userId) {
 		List<BookmarkInfoResponse> response = bookmarkWebMapper.toResponseList(
-			getBookmarksByUserUseCase.findByUserId(userId));
+			getBookmarkUseCase.findByUserId(userId));
 		return ResponseEntity.ok(CommonResponse.retrieved(response));
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<BookmarkInfoResponse>> getById(String Id) {
 		BookmarkInfoResponse response = bookmarkWebMapper.toResponse(
-			getBookmarkByIdUseCase.getById(Id));
+			getBookmarkUseCase.getById(Id));
 		return ResponseEntity.ok(CommonResponse.retrieved(response));
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findAll() {
 		List<BookmarkInfoResponse> response = bookmarkWebMapper.toResponseList(
-			getAllBookmarksUseCase.findAll());
+			getBookmarkUseCase.findAll());
 		return ResponseEntity.ok(CommonResponse.retrieved(response));
 	}
 }
