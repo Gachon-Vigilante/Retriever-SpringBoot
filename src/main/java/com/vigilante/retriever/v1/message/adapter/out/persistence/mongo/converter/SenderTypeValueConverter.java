@@ -1,9 +1,9 @@
-package com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.converter;
+package com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.converter;
 
 import org.springframework.data.convert.PropertyValueConverter;
 import org.springframework.data.mongodb.core.convert.MongoConversionContext;
 
-import com.vigilante.retriever.v1.channel.domain.enums.SenderType;
+import com.vigilante.retriever.v1.message.domain.enums.SenderType;
 
 public class SenderTypeValueConverter
 	implements PropertyValueConverter<SenderType, String, MongoConversionContext> {

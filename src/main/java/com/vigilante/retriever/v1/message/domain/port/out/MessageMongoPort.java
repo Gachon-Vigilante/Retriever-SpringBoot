@@ -1,9 +1,9 @@
-package com.vigilante.retriever.v1.channel.domain.port.out;
+package com.vigilante.retriever.v1.message.domain.port.out;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.vigilante.retriever.v1.channel.domain.entity.MessageEntity;
+import com.vigilante.retriever.v1.message.domain.entity.MessageEntity;
 
 public interface MessageMongoPort {
 

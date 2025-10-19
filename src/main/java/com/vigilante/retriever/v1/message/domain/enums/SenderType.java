@@ -1,6 +1,8 @@
-package com.vigilante.retriever.v1.channel.domain.enums;
+package com.vigilante.retriever.v1.message.domain.enums;
 
-import com.vigilante.retriever.v1.channel.domain.exception.SenderTypeNotFoundException;
+import static com.vigilante.retriever.v1.message.domain.code.MessageErrorCode.*;
+
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,6 @@ public enum SenderType {
 				return senderType;
 			}
 		}
-		throw new SenderTypeNotFoundException();
+		throw new NotFoundException(SENDER_TYPE_NOT_FOUND);
 	}
 }

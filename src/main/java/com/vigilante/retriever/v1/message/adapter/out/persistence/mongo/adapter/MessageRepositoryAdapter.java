@@ -1,15 +1,15 @@
-package com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.adapter;
+package com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.adapter;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.vigilante.retriever.v1.channel.adapter.out.mapper.MessageMongoMapper;
-import com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.document.MessageDocument;
-import com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.repository.MessageMongoRepository;
-import com.vigilante.retriever.v1.channel.domain.entity.MessageEntity;
-import com.vigilante.retriever.v1.channel.domain.port.out.MessageMongoPort;
+import com.vigilante.retriever.v1.message.adapter.out.mapper.MessageMongoMapper;
+import com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.document.MessageDocument;
+import com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.repository.MessageMongoRepository;
+import com.vigilante.retriever.v1.message.domain.entity.MessageEntity;
+import com.vigilante.retriever.v1.message.domain.port.out.MessageMongoPort;
 
 import lombok.RequiredArgsConstructor;
 

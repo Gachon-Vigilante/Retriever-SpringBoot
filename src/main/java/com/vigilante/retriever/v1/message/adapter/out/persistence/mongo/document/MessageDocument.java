@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.document;
+package com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.document;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.data.convert.ValueConverter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.converter.SenderTypeValueConverter;
-import com.vigilante.retriever.v1.channel.domain.enums.SenderType;
+import com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.converter.SenderTypeValueConverter;
+import com.vigilante.retriever.v1.message.domain.enums.SenderType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
