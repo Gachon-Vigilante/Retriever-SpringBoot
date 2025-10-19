@@ -1,7 +1,6 @@
 package com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.adapter;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -27,12 +26,7 @@ public class MessageRepositoryAdapter implements MessageMongoPort {
 	}
 
 	@Override
-	public Optional<MessageEntity> findById(String id) {
-		return messageMongoRepository.findById(id).map(messageMongoMapper::toEntity);
-	}
-
-	@Override
-	public List<MessageEntity> findByChannelId(long channelId) {
+	public List<MessageEntity> findByChannelId(Long channelId) {
 		List<MessageDocument> channelDataList = messageMongoRepository.findByChannelId(channelId);
 		return messageMongoMapper.getEntityList(channelDataList);
 	}

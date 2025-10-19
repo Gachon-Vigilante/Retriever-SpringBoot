@@ -1,11 +1,8 @@
 package com.vigilante.retriever.v1.message.application.query;
 
-import static com.vigilante.retriever.v1.message.domain.code.MessageErrorCode.*;
-
 import java.util.List;
 
 import com.vigilante.retriever.common.domain.annotation.QueryService;
-import com.vigilante.retriever.common.domain.exception.NotFoundException;
 import com.vigilante.retriever.v1.message.domain.entity.MessageEntity;
 import com.vigilante.retriever.v1.message.domain.port.out.MessageMongoPort;
 
@@ -21,12 +18,7 @@ public class MessageMongoQuery {
 		return messageMongoPort.findAll();
 	}
 
-	public MessageEntity getById(String id) {
-		return messageMongoPort.findById(id)
-			.orElseThrow(() -> new NotFoundException(MESSAGE_NOT_FOUND));
-	}
-
-	public List<MessageEntity> findByChannelId(long channelId) {
+	public List<MessageEntity> findByChannelId(Long channelId) {
 		return messageMongoPort.findByChannelId(channelId);
 	}
 }
