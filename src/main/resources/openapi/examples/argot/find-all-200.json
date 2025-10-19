@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "name": "감미료",
+      "description": "비공식적 은어: 달콤한 향을 의미",
+      "refersDrugs": [
+        {
+          "drugId": "drug-001",
+          "name": "아편",
+          "englishName": "Opium",
+          "drugType": "opioid"
+        }
+      ]
+    },
+    {
+      "name": "하얀가루",
+      "description": "코카인을 가리키는 은어",
+      "refersDrugs": [
+        {
+          "drugId": "drug-002",
+          "name": "코카인",
+          "englishName": "Cocaine",
+          "drugType": "stimulant"
+        }
+      ]
+    }
+  ],
+  "timestamp": "2025-10-19T10:10:00.000000"
+}
+

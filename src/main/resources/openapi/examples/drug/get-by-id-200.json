@@ -9,8 +9,14 @@
     "drugType": "opioid",
     "englishName": "Opium",
     "argots": [
-      { "argot": "감미료", "description": "은어 설명 예시 1" },
-      { "argot": "꽃가루", "description": "은어 설명 예시 2" }
+      {
+        "argot": "감미료",
+        "description": "은어 설명 예시 1"
+      },
+      {
+        "argot": "꽃가루",
+        "description": "은어 설명 예시 2"
+      }
     ]
   },
   "timestamp": "2025-01-01T00:00:00.000000"
