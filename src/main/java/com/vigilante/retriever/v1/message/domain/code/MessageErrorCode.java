@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.channel.domain.code;
+package com.vigilante.retriever.v1.message.domain.code;
 
 import com.vigilante.retriever.common.domain.code.BaseCode;
 

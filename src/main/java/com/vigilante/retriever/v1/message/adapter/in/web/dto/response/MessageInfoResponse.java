@@ -1,14 +1,14 @@
-package com.vigilante.retriever.v1.channel.domain.entity;
+package com.vigilante.retriever.v1.message.adapter.in.web.dto.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.vigilante.retriever.v1.channel.domain.enums.SenderType;
+import com.vigilante.retriever.v1.message.domain.enums.SenderType;
 
 import lombok.Builder;
 
 @Builder
-public record MessageEntity(
+public record MessageInfoResponse(
 	String id,
 	Long channelId,
 	String message,

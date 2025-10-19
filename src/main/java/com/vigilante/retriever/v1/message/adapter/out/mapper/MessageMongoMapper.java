@@ -1,4 +1,4 @@
-package com.vigilante.retriever.v1.channel.adapter.out.mapper;
+package com.vigilante.retriever.v1.message.adapter.out.mapper;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Primary;
 
 import com.vigilante.retriever.infrastructure.common.mapper.GenericMongoMapper;
-import com.vigilante.retriever.v1.channel.adapter.out.persistence.mongo.document.MessageDocument;
-import com.vigilante.retriever.v1.channel.domain.entity.MessageEntity;
+import com.vigilante.retriever.v1.message.adapter.out.persistence.mongo.document.MessageDocument;
+import com.vigilante.retriever.v1.message.domain.entity.MessageEntity;
 
 @Primary
 @Mapper(
