@@ -3,6 +3,8 @@ package com.vigilante.retriever.v1.post.adapter.out.persistence.mongo.adapter;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.post.adapter.out.mapper.PostMongoMapper;
@@ -28,9 +30,8 @@ public class PostRepositoryAdapter implements PostMongoPort {
 	}
 
 	@Override
-	public List<PostEntity> findAll() {
-		List<PostDocument> allPost = postMongoRepository.findAll();
-		return postPersistenceMapper.getEntityList(allPost);
+	public Page<PostEntity> findAll(Pageable pageable) {
+		return postMongoRepository.findAll(pageable).map(postPersistenceMapper::toEntity);
 	}
 
 	@Override
@@ -43,19 +44,6 @@ public class PostRepositoryAdapter implements PostMongoPort {
 		List<PostDocument> postList = postMongoRepository.findByTitleContaining(title);
 		return postPersistenceMapper.getEntityList(postList);
 	}
-
-	// TODO: 로직 재설계 필요
-	// @Override
-	// public List<PostEntity> findByPromoChannelId(String promoChannelId) {
-	// 	List<PostDocument> postList = postMongoRepository.findByPromoChannelId(promoChannelId);
-	// 	return postPersistenceMapper.getEntityList(postList);
-	// }
-	//
-	// @Override
-	// public List<PostEntity> findByAuthor(String author) {
-	// 	List<PostDocument> postList = postMongoRepository.findByAuthor(author);
-	// 	return postPersistenceMapper.getEntityList(postList);
-	// }
 
 	@Override
 	public List<PostEntity> findByLinkOrderByDiscoveredAtAsc(String link) {

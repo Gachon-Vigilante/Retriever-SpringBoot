@@ -24,7 +24,10 @@ public interface ChannelApi {
 	@GetMapping("/all")
 	@Operation(summary = "모든 채널 정보 조회", description = "시스템에 등록된 모든 채널 정보를 조회합니다.")
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = CHANNEL_FIND_ALL_200)})
-	@ApiErrorExample(include = {"401", "500"})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "404", exampleKey = CHANNEL_STATUS_404)}
+	)
 	ResponseEntity<CommonResponse<List<ChannelInfoResponse>>> findAll();
 
 	@GetMapping("/id/{ChannelId}")
@@ -32,13 +35,18 @@ public interface ChannelApi {
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = CHANNEL_GET_BY_ID_200)})
 	@ApiErrorExample(
 		include = {"401", "500"},
-		custom = {@ApiErrorExample.ErrorSpec(code = "404", exampleKey = CHANNEL_GET_BY_ID_404)}
+		custom = {
+			@ApiErrorExample.ErrorSpec(code = "404", exampleKey = CHANNEL_GET_BY_ID_404),
+			@ApiErrorExample.ErrorSpec(code = "404", exampleKey = CHANNEL_STATUS_404)
+		}
 	)
 	ResponseEntity<CommonResponse<ChannelInfoResponse>> findByChannelId(@PathVariable Long ChannelId);
 
 	@GetMapping("/title/{title}")
 	@Operation(summary = "채널 제목 키워드로 채널 검색", description = "제목에 포함되는 키워드로 채널을 검색합니다.")
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = CHANNEL_FIND_BY_TITLE_200)})
-	@ApiErrorExample(include = {"401", "500"})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "404", exampleKey = CHANNEL_STATUS_404)})
 	ResponseEntity<CommonResponse<List<ChannelInfoResponse>>> findByTitleContaining(@PathVariable String title);
 }

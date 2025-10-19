@@ -60,6 +60,10 @@ public class ChannelWebMapper {
 
 	private List<ChannelInfoResponse.RestrictionReason> mapRestrictionReasons(
 		List<ChannelEntity.RestrictionReason> reasons) {
+		if(reasons == null) {
+			return null;
+		}
+
 		return reasons.stream()
 			.map(reason -> ChannelInfoResponse.RestrictionReason.builder()
 				.platform(reason.platform())
