@@ -1,5 +1,9 @@
 package com.vigilante.retriever.adapter.web.openapi.constant;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ExampleKeyConstant {
 
 	// Common
@@ -64,7 +68,4 @@ public final class ExampleKeyConstant {
 	public static final String POST_GET_BY_ID_200 = "Post__Get__By__Id__200";
 	public static final String POST_GET_BY_ID_404 = "Post__Get__By__Id__404";
 	public static final String POST_FIND_BY_TITLE_200 = "Post__Find__By__Title__200";
-
-	private ExampleKeyConstant() {
-	}
 }
