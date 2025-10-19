@@ -1,0 +1,19 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": [
+    {
+      "id": "drug-002",
+      "drugBankId": "DB789012",
+      "name": "코카인",
+      "drugType": "stimulant",
+      "englishName": "Cocaine",
+      "argots": [
+        { "argot": "하얀가루", "description": "은어 설명 예시" }
+      ]
+    }
+  ],
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
+
