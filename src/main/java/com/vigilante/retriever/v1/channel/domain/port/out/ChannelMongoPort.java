@@ -9,12 +9,7 @@ public interface ChannelMongoPort {
 
 	List<ChannelEntity> findAll();
 
-	Optional<ChannelEntity> findById(String id);
-
-	// TODO: 로직 재설계 필요
-	// Optional<ChannelEntity> findByLink(String link);
+	Optional<ChannelEntity> findByChannelId(Long channelId);
 
 	List<ChannelEntity> findByTitleContaining(String title);
-
-	boolean existsById(String id);
 }
