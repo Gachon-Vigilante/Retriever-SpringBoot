@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
-import com.vigilante.retriever.v1.report.adapter.in.web.dto.ReportInfoResponse;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiErrorExample;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiSuccessExample;
+import com.vigilante.retriever.v1.report.adapter.in.web.dto.ReportInfoResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

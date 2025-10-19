@@ -8,7 +8,7 @@ public interface GetReportUseCase {
 
 	List<ReportEntity> findAll();
 
-	ReportEntity getById( String id);
+	ReportEntity getById(String id);
 
 	List<ReportEntity> getByChannelId(Long channelId);
 }
