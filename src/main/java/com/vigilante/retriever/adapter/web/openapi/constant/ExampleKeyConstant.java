@@ -68,4 +68,10 @@ public final class ExampleKeyConstant {
 	public static final String POST_GET_BY_ID_200 = "Post__Get__By__Id__200";
 	public static final String POST_GET_BY_ID_404 = "Post__Get__By__Id__404";
 	public static final String POST_FIND_BY_TITLE_200 = "Post__Find__By__Title__200";
+
+	// Report
+	public static final String REPORT_FIND_ALL_200 = "Report__Find__All__200";
+	public static final String REPORT_GET_BY_ID_200 = "Report__Get__By__Id__200";
+	public static final String REPORT_GET_BY_ID_404 = "Report__Get__By__Id__404";
+	public static final String REPORT_FIND_BY_CHANNEL_ID_200 = "Report__Find__By__Channel__Id__200";
 }
