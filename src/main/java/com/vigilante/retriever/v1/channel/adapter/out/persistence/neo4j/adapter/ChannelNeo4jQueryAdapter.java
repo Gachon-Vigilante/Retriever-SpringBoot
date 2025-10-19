@@ -30,4 +30,10 @@ public class ChannelNeo4jQueryAdapter implements ChannelNeo4jPort {
 		List<ChannelNode> channelNodes = channelNeo4jRepository.findAllWithSells();
 		return channelNeo4jMapper.getGraphViewList(channelNodes);
 	}
+
+	@Override
+	public List<ChannelGraphView> findAll() {
+		List<ChannelNode> allChannel = channelNeo4jRepository.findAll();
+		return channelNeo4jMapper.getGraphViewList(allChannel);
+	}
 }
