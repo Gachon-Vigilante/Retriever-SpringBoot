@@ -25,9 +25,9 @@ public class DrugWebMapper {
 
 	private List<DrugInfoResponse.Argot> mapArgots(List<DrugEntity.Argot> argots) {
 		return argots.stream()
-			.map(a -> DrugInfoResponse.Argot.builder()
-				.name(a.name())
-				.description(a.description())
+			.map(argot -> DrugInfoResponse.Argot.builder()
+				.name(argot.name())
+				.description(argot.description())
 				.build())
 			.toList();
 	}
