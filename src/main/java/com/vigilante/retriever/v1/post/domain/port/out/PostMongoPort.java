@@ -14,6 +14,8 @@ public interface PostMongoPort {
 
 	Page<PostEntity> findAll(Pageable pageable);
 
+	List<PostEntity> findAll();
+
 	Optional<PostEntity> findById(String id);
 
 	List<PostEntity> findByTitleContaining(String title);

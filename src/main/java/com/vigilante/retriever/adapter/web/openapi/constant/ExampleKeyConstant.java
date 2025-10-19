@@ -68,6 +68,11 @@ public final class ExampleKeyConstant {
 	public static final String POST_GET_BY_ID_200 = "Post__Get__By__Id__200";
 	public static final String POST_GET_BY_ID_404 = "Post__Get__By__Id__404";
 	public static final String POST_FIND_BY_TITLE_200 = "Post__Find__By__Title__200";
+	public static final String POST_GRAPH_GET_ALL_STREAMED_200 = "Post__Graph__Get__All__Streamed__200";
+	public static final String POST_GRAPH_SYNC_200 = "Post__Graph__Sync__200";
+	public static final String POST_GRAPH_SYNC_400 = "Post__Graph__Sync__400";
+	public static final String POST_GRAPH_CREATE_RELATION_201 = "Post__Graph__Create__Relation__201";
+	public static final String POST_GRAPH_CREATE_RELATION_409 = "Post__Graph__Create__Relation__409";
 
 	// Report
 	public static final String REPORT_FIND_ALL_200 = "Report__Find__All__200";
