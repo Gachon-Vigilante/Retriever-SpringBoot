@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": {
+    "id": "ch-001",
+    "title": "정보공유 채널",
+    "username": "info_channel",
+    "channelId": 123456789,
+    "about": "학술 정보 및 공지",
+    "participantsCount": 1024,
+    "checkedAt": "2025-01-01T00:00:00.000000",
+    "status": "active",
+    "verified": true
+  },
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
+
