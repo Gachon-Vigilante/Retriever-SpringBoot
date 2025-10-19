@@ -22,4 +22,12 @@ public interface PostNeo4jRepository extends Neo4jRepository<PostNode, String> {
 		    RETURN p, collect(pr), collect(c), collect(sim), collect(sp)
 		""")
 	Stream<PostNode> streamAllWithPromotesAndSimilar();
+
+	@Query("""
+			MATCH (p:Post)
+			WHERE p.content = $content AND p.link = $link AND p.postId IS NULL
+			SET p.postId = $postId
+			RETURN COUNT(p)
+		""")
+	int updatePostIdByContentAndLink(String content, String link, String postId);
 }

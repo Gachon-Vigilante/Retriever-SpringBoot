@@ -12,4 +12,6 @@ public interface PostNeo4jPort {
 	Optional<PostGraphView> findByPostId(String postId);
 
 	Stream<PostGraphView> streamAllWithPromotesAndSimilar();
+
+	int updatePostIdByContentAndLink(String content, String link, String postId);
 }

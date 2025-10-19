@@ -36,4 +36,9 @@ public class PostGraphQueryAdapter implements PostNeo4jPort {
 	public Stream<PostGraphView> streamAllWithPromotesAndSimilar() {
 		return postNeo4JRepository.streamAllWithPromotesAndSimilar().map(postNeo4jMapper::toGraphView);
 	}
+
+	@Override
+	public int updatePostIdByContentAndLink(String content, String link, String postId) {
+		return postNeo4JRepository.updatePostIdByContentAndLink(content, link, postId);
+	}
 }

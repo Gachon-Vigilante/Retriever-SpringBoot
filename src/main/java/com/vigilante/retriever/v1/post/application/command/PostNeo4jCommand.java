@@ -15,4 +15,8 @@ public class PostNeo4jCommand {
 	public PostGraphView save(PostGraphView entity) {
 		return postNeo4jPort.save(entity);
 	}
+
+	public int updatePostIdByContentAndLink(String content, String link, String postId) {
+		return postNeo4jPort.updatePostIdByContentAndLink(content, link, postId);
+	}
 }
