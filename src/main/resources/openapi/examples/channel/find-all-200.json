@@ -4,24 +4,42 @@
   "message": "조회가 완료되었습니다",
   "data": [
     {
-      "id": "ch-001",
-      "title": "정보공유 채널",
-      "username": "info_channel",
-      "channelId": 123456789,
-      "about": "학술 정보 및 공지",
-      "participantsCount": 1024,
-      "checkedAt": "2025-01-01T00:00:00.000000"
-    },
-    {
-      "id": "ch-002",
-      "title": "판매 채널",
-      "username": "sell_channel",
-      "channelId": 987654321,
-      "about": "중고 거래 및 판매",
-      "participantsCount": 256,
-      "checkedAt": "2025-01-01T00:00:00.000000"
+      "id": "example-001",
+      "title": "채널 제목 (예시)",
+      "username": "example_username",
+      "channelId": 1234567890,
+      "about": null,
+      "accessHash": 0,
+      "broadcast": false,
+      "callActive": false,
+      "callNotEmpty": false,
+      "checkedAt": "2025-01-01T00:00:00.000",
+      "date": "2025-01-01T00:00:00",
+      "fake": false,
+      "gigaGroup": false,
+      "hasGeo": false,
+      "hasLink": false,
+      "lastMessageDate": null,
+      "left": false,
+      "megaGroup": false,
+      "min": false,
+      "monitoring": false,
+      "noForwards": false,
+      "participantsCount": null,
+      "photo": null,
+      "restricted": false,
+      "restrictionReason": [],
+      "scam": false,
+      "signatures": false,
+      "slowModeEnabled": false,
+      "status": "ACTIVE",
+      "updatedAt": "2025-01-01T00:00:00.000",
+      "verified": false,
+      "catalog": {
+        "messageIds": [],
+        "summary": "예: 채팅을 찾을 수 없습니다. (예시)"
+      }
     }
   ],
-  "timestamp": "2025-01-01T00:00:00.000000"
+  "timestamp": "2025-01-01T00:00:00.000"
 }
-

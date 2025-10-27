@@ -23,6 +23,15 @@ public class ChannelWebMapper {
 	private final ArgotWebMapper argotWebMapper;
 
 	public ChannelInfoResponse toResponse(ChannelEntity entity) {
+		ChannelEntity.Catalog catalog = entity.catalog();
+		ChannelInfoResponse.Catalog catalogResponse = null;
+		if (catalog != null) {
+			catalogResponse = ChannelInfoResponse.Catalog.builder()
+				.messageIds(catalog.messageIds())
+				.summary(catalog.summary())
+				.build();
+		}
+
 		return ChannelInfoResponse.builder()
 			.id(entity.id())
 			.title(entity.title())
@@ -55,6 +64,7 @@ public class ChannelWebMapper {
 			.status(entity.status())
 			.updatedAt(entity.updatedAt())
 			.verified(entity.verified())
+			.catalog(catalogResponse)
 			.build();
 	}
 
