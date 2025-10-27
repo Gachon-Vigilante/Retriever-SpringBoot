@@ -41,7 +41,11 @@ public record MessageEntity(
 	@Builder
 	public record Media(
 		String url,
-		String type
+		String fileType,
+		String mineType,
+		String fileId,
+		String accessHash,
+		Long fileSize
 	) {
 	}
 }
