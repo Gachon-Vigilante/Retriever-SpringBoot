@@ -1,7 +1,6 @@
 package com.vigilante.retriever.v1.user.application.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.vigilante.retriever.v1.user.application.command.RefreshTokenRedisCommand;
 import com.vigilante.retriever.v1.user.application.command.UserMongoCommand;
@@ -24,7 +23,6 @@ public class WithdrawUserService implements WithdrawUserUseCase {
 	private final RefreshTokenRedisCommand refreshTokenRedisCommand;
 
 	@Override
-	@Transactional
 	public void withdraw(String loginId) {
 		UserEntity user = userMongoQuery.findByLoginId(loginId);
 

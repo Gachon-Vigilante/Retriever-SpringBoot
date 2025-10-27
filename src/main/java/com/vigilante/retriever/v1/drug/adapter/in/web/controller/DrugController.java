@@ -23,18 +23,18 @@ public class DrugController implements DrugApi {
 	@Override
 	public ResponseEntity<CommonResponse<DrugInfoResponse>> getById(String id) {
 		DrugInfoResponse response = drugWebMapper.toResponse(getDrugUseCase.getById(id));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<DrugInfoResponse>>> findAll() {
 		List<DrugInfoResponse> response = drugWebMapper.toResponseList(getDrugUseCase.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<DrugInfoResponse>>> getByArgot(String argot) {
 		List<DrugInfoResponse> response = drugWebMapper.toResponseList(getDrugUseCase.getByArgot(argot));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 }

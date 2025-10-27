@@ -219,6 +219,26 @@ public class ArchitectureTest {
 			.allowEmptyShould(true)
 			.because("RestController는 adapter.in.web 패키지에 있어야 합니다");
 
+	@ArchTest
+	static final ArchRule controllers_should_not_depend_on_service_implementations =
+		ArchRuleDefinition.noClasses()
+			.that().resideInAPackage("..adapter.in.web..")
+			.and().areAnnotatedWith(RestController.class)
+			.should().dependOnClassesThat()
+			.haveSimpleNameEndingWith("Service")
+			.allowEmptyShould(true)
+			.because("Controller는 구체적인 Service 구현체에 의존하면 안 됩니다. UseCase(인바운드 포트)를 통해 의존해야 합니다");
+
+	// 추가: Controller가 인바운드 포트(UseCase) 인터페이스에 의존하는지 검증
+	@ArchTest
+	static final ArchRule controllers_should_depend_on_inbound_ports =
+		ArchRuleDefinition.classes()
+			.that().resideInAPackage("..adapter.in.web..")
+			.and().areAnnotatedWith(RestController.class)
+			.should().dependOnClassesThat()
+			.resideInAnyPackage("..domain.port.in..")
+			.because("Controller는 UseCase(인바운드 포트) 인터페이스에 의존해야 합니다");
+
 	/**
 	 * 8. Value Object (VO) 규칙
 	 */

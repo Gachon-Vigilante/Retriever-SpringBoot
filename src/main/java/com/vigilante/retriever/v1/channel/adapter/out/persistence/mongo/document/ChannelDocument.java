@@ -105,6 +105,8 @@ public class ChannelDocument {
 
 	private Boolean verified;
 
+	private Catalog catalog;
+
 	@Getter
 	@Builder
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -116,5 +118,17 @@ public class ChannelDocument {
 		private String reason;
 
 		private String text;
+	}
+
+	@Getter
+	@Builder
+	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@AllArgsConstructor(access = AccessLevel.PRIVATE)
+	public static class Catalog {
+
+		@Field("message_ids")
+		private List<Integer> messageIds;
+
+		private String summary;
 	}
 }

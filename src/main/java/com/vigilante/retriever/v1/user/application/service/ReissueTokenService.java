@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.vigilante.retriever.common.domain.enums.Role;
 import com.vigilante.retriever.common.domain.exception.BadRequestException;
@@ -33,7 +32,6 @@ public class ReissueTokenService implements ReissueTokenUseCase {
 	private final AuthenticationPort authenticationPort;
 
 	@Override
-	@Transactional
 	public TokenResult reissueToken(String refreshToken) {
 		validateRefreshToken(refreshToken);
 

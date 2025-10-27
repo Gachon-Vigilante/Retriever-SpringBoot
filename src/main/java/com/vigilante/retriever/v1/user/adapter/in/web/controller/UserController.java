@@ -12,9 +12,9 @@ import com.vigilante.retriever.v1.user.adapter.in.web.UserApi;
 import com.vigilante.retriever.v1.user.adapter.in.web.dto.request.GrantRequest;
 import com.vigilante.retriever.v1.user.adapter.in.web.dto.response.UserInfoResponse;
 import com.vigilante.retriever.v1.user.adapter.in.web.mapper.UserWebMapper;
-import com.vigilante.retriever.v1.user.application.service.GetUserService;
-import com.vigilante.retriever.v1.user.application.service.GrantRoleService;
 import com.vigilante.retriever.v1.user.domain.dto.command.GrantRoleCommand;
+import com.vigilante.retriever.v1.user.domain.port.in.GetUserUseCase;
+import com.vigilante.retriever.v1.user.domain.port.in.GrantRoleUseCase;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,21 +22,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController implements UserApi {
 
-	private final GetUserService getUserService;
-	private final GrantRoleService grantRoleService;
+	private final GetUserUseCase getUserUseCase;
+	private final GrantRoleUseCase grantRoleUseCase;
 	private final UserWebMapper userWebMapper;
 
 	@Override
 	public ResponseEntity<CommonResponse<List<UserInfoResponse>>> findAll() {
-		List<UserInfoResponse> users = userWebMapper.toResponseList(getUserService.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(users));
+		List<UserInfoResponse> users = userWebMapper.toResponseList(getUserUseCase.findAll());
+		return CommonResponse.retrieved(users);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<Void>> grantRole(@AuthenticationPrincipal String adminId,
 		@RequestBody GrantRequest grantRequest) {
 		GrantRoleCommand command = userWebMapper.toCommand(adminId, grantRequest);
-		grantRoleService.grantRole(command);
-		return ResponseEntity.ok(CommonResponse.success());
+		grantRoleUseCase.grantRole(command);
+		return CommonResponse.success();
 	}
 }

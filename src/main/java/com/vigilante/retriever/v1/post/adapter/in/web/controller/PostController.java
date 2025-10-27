@@ -12,7 +12,7 @@ import com.vigilante.retriever.v1.post.adapter.in.web.PostApi;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostInfoResponse;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostPageResponse;
 import com.vigilante.retriever.v1.post.adapter.in.web.mapper.PostWebMapper;
-import com.vigilante.retriever.v1.post.application.service.GetPostService;
+import com.vigilante.retriever.v1.post.domain.port.in.GetPostUseCase;
 
 import lombok.AllArgsConstructor;
 
@@ -20,25 +20,25 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PostController implements PostApi {
 
-	private final GetPostService getPostService;
+	private final GetPostUseCase getPostUseCase;
 	private final PostWebMapper postWebMapper;
 
 	@Override
 	public ResponseEntity<CommonResponse<PostPageResponse>> getAllPosts(int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
-		PostPageResponse response = postWebMapper.toPageResponse(getPostService.findAll(pageable));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		PostPageResponse response = postWebMapper.toPageResponse(getPostUseCase.findAll(pageable));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<PostInfoResponse>> getPostById(String id) {
-		PostInfoResponse response = postWebMapper.toResponse(getPostService.getById(id));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		PostInfoResponse response = postWebMapper.toResponse(getPostUseCase.getById(id));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<PostInfoResponse>>> getPostsByTitleContaining(String title) {
-		List<PostInfoResponse> responses = postWebMapper.toResponseList(getPostService.findByTitleContaining(title));
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		List<PostInfoResponse> responses = postWebMapper.toResponseList(getPostUseCase.findByTitleContaining(title));
+		return CommonResponse.retrieved(responses);
 	}
 }

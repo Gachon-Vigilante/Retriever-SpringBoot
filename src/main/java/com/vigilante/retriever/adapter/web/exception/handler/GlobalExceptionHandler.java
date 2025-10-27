@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
 			.distinct()
 			.reduce((a, b) -> a + ", " + b)
 			.orElse("Validation error");
-		return build(CommonErrorCode.VALIDATION_ERROR, aggregated, BAD_REQUEST, ex);
+		return build(CommonErrorCode.VALIDATION_ERROR, aggregated, UNPROCESSABLE_ENTITY, ex);
 	}
 
 	@ExceptionHandler(MissingServletRequestParameterException.class)
@@ -76,7 +76,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<CommonResponse<Void>> handleUnexpected(Exception ex) {
 		log.error("Unexpected error", ex);
-		return build(CommonErrorCode.INTERNAL_SERVER_ERROR, null, INTERNAL_SERVER_ERROR, ex);
+		return build(CommonErrorCode.INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR, ex);
 	}
 
 	private ResponseEntity<CommonResponse<Void>> build(BaseCode errorCode, HttpStatus status,
@@ -88,11 +88,8 @@ public class GlobalExceptionHandler {
 
 	private ResponseEntity<CommonResponse<Void>> build(CommonErrorCode errorCode,
 		String overrideMessage, HttpStatus status, Exception ex) {
-		String message = overrideMessage != null ? overrideMessage : errorCode.getMessage();
-		logException(status, errorCode.getCode(), message, ex);
-		CommonResponse<Void> body = overrideMessage != null
-			? CommonResponse.error(errorCode, overrideMessage)
-			: CommonResponse.error(errorCode);
+		logException(status, errorCode.getCode(), overrideMessage, ex);
+		CommonResponse<Void> body = CommonResponse.error(errorCode, overrideMessage);
 		return ResponseEntity.status(status).body(body);
 	}
 

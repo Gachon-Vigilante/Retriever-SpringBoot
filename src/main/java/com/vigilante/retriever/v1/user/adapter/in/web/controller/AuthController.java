@@ -1,6 +1,5 @@
 package com.vigilante.retriever.v1.user.adapter.in.web.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,13 +11,13 @@ import com.vigilante.retriever.v1.user.adapter.in.web.dto.request.SignUpRequest;
 import com.vigilante.retriever.v1.user.adapter.in.web.dto.response.LoginResponse;
 import com.vigilante.retriever.v1.user.adapter.in.web.mapper.UserWebMapper;
 import com.vigilante.retriever.v1.user.adapter.in.web.util.TokenExtractor;
-import com.vigilante.retriever.v1.user.application.service.LoginService;
-import com.vigilante.retriever.v1.user.application.service.LogoutService;
-import com.vigilante.retriever.v1.user.application.service.RegisterUserService;
-import com.vigilante.retriever.v1.user.application.service.ReissueTokenService;
-import com.vigilante.retriever.v1.user.application.service.WithdrawUserService;
 import com.vigilante.retriever.v1.user.domain.dto.command.LoginCommand;
 import com.vigilante.retriever.v1.user.domain.dto.command.RegisterUserCommand;
+import com.vigilante.retriever.v1.user.domain.port.in.LoginUseCase;
+import com.vigilante.retriever.v1.user.domain.port.in.LogoutUseCase;
+import com.vigilante.retriever.v1.user.domain.port.in.RegisterUserUseCase;
+import com.vigilante.retriever.v1.user.domain.port.in.ReissueTokenUseCase;
+import com.vigilante.retriever.v1.user.domain.port.in.WithdrawUserUseCase;
 import com.vigilante.retriever.v1.user.domain.vo.LoginResult;
 import com.vigilante.retriever.v1.user.domain.vo.TokenResult;
 
@@ -30,11 +29,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthController implements AuthApi {
 
-	private final RegisterUserService registerUserService;
-	private final LoginService loginService;
-	private final LogoutService logoutService;
-	private final ReissueTokenService reissueTokenService;
-	private final WithdrawUserService withdrawUserService;
+	private final RegisterUserUseCase registerUserUseCase;
+	private final LoginUseCase loginUseCase;
+	private final LogoutUseCase logoutUseCase;
+	private final ReissueTokenUseCase reissueTokenUseCase;
+	private final WithdrawUserUseCase withdrawUserUseCase;
 	private final TokenExtractor tokenExtractor;
 	private final CookieProvider cookieProvider;
 	private final UserWebMapper userWebMapper;
@@ -42,16 +41,15 @@ public class AuthController implements AuthApi {
 	@Override
 	public ResponseEntity<CommonResponse<Void>> signUp(SignUpRequest signUpRequest) {
 		RegisterUserCommand command = userWebMapper.toCommand(signUpRequest);
-		registerUserService.signUp(command);
-		return ResponseEntity.status(HttpStatus.CREATED)
-			.body(CommonResponse.created());
+		registerUserUseCase.signUp(command);
+		return CommonResponse.created();
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<LoginResponse>> login(LoginRequest loginRequest,
 		HttpServletResponse httpServletResponse) {
 		LoginCommand command = userWebMapper.toCommand(loginRequest);
-		LoginResult loginResult = loginService.login(command);
+		LoginResult loginResult = loginUseCase.login(command);
 
 		cookieProvider.setTokenCookies(httpServletResponse,
 			loginResult.accessToken(),
@@ -59,37 +57,33 @@ public class AuthController implements AuthApi {
 		);
 
 		LoginResponse response = userWebMapper.toResponse(loginResult);
-		return ResponseEntity.status(HttpStatus.OK)
-			.body(CommonResponse.success(response));
+		return CommonResponse.success(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<Void>> logout(String userId, HttpServletResponse httpServletResponse) {
 		cookieProvider.deleteTokenCookies(httpServletResponse);
-		logoutService.logout(userId);
-		return ResponseEntity.status(HttpStatus.OK)
-			.body(CommonResponse.deleted());
+		logoutUseCase.logout(userId);
+		return CommonResponse.deleted();
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<Void>> reissueToken(HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse) {
 		String refreshToken = tokenExtractor.extractRefreshToken(httpServletRequest);
-		TokenResult tokenResult = reissueTokenService.reissueToken(refreshToken);
+		TokenResult tokenResult = reissueTokenUseCase.reissueToken(refreshToken);
 
 		cookieProvider.setTokenCookies(httpServletResponse,
 			tokenResult.accessToken(),
 			tokenResult.refreshToken()
 		);
 
-		return ResponseEntity.status(HttpStatus.OK)
-			.body(CommonResponse.success());
+		return CommonResponse.success();
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<Void>> withdraw(String loginId) {
-		withdrawUserService.withdraw(loginId);
-		return ResponseEntity.status(HttpStatus.OK)
-			.body(CommonResponse.deleted());
+		withdrawUserUseCase.withdraw(loginId);
+		return CommonResponse.deleted();
 	}
 }

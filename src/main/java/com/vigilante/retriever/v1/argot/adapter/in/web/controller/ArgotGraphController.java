@@ -23,13 +23,13 @@ public class ArgotGraphController implements ArgotGraphApi {
 	@Override
 	public ResponseEntity<CommonResponse<List<ArgotGraphInfoResponse>>> findAll() {
 		List<ArgotGraphInfoResponse> responses = argotWebMapper.toGraphResponseList(getArgotGraphUseCase.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<ArgotGraphInfoResponse>>> findAllWithRefersTo() {
 		List<ArgotGraphInfoResponse> responses = argotWebMapper.toGraphResponseList(
 			getArgotGraphUseCase.findAllWithRefersTo());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 }

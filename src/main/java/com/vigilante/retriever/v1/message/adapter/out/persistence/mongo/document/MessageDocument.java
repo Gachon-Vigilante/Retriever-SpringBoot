@@ -109,6 +109,19 @@ public class MessageDocument {
 
 		private String url;
 
-		private String type;
+		@Field("file_type")
+		private String fileType;
+
+		@Field("mime_type")
+		private String mimeType;
+
+		@Field("file_id")
+		private String fileId;
+
+		@Field("access_hash")
+		private String accessHash;
+
+		@Field("file_size")
+		private Long fileSize;
 	}
 }

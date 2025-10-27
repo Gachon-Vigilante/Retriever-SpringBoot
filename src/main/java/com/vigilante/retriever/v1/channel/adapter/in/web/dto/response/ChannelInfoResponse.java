@@ -39,13 +39,21 @@ public record ChannelInfoResponse(
 	Boolean slowModeEnabled,
 	ChannelStatus status,
 	LocalDateTime updatedAt,
-	Boolean verified
+	Boolean verified,
+	Catalog catalog
 ) {
 	@Builder
 	public record RestrictionReason(
 		String platform,
 		String reason,
 		String text
+	) {
+	}
+
+	@Builder
+	public record Catalog(
+		List<Integer> messageIds,
+		String summary
 	) {
 	}
 }

@@ -29,13 +29,13 @@ public class PostGraphController implements PostGraphApi {
 	@Override
 	public ResponseEntity<CommonResponse<List<PostGraphInfoResponse>>> getAllPost() {
 		List<PostGraphInfoResponse> responses = postWebMapper.toGraphResponseList(getPostGraphUseCase.getAllPost());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<Void>> syncPosts() {
 		syncPostGraphUseCase.syncPosts();
-		return ResponseEntity.ok(CommonResponse.success());
+		return CommonResponse.success();
 	}
 
 	@Override
@@ -43,6 +43,6 @@ public class PostGraphController implements PostGraphApi {
 		CreatePromotionRelationRequest createPromotionRelationRequest) {
 		CreatePromotionRelationCommand command = postWebMapper.toCommand(createPromotionRelationRequest);
 		savePostGraphRelationUseCase.createPromotionRelation(command);
-		return ResponseEntity.ok(CommonResponse.created());
+		return CommonResponse.created();
 	}
 }

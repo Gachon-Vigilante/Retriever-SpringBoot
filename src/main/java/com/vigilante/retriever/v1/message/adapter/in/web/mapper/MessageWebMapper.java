@@ -11,6 +11,22 @@ import com.vigilante.retriever.v1.message.domain.entity.MessageEntity;
 public class MessageWebMapper {
 
 	public MessageInfoResponse toResponse(MessageEntity entity) {
+
+		MessageEntity.Media media = entity.media();
+
+		MessageInfoResponse.Media mediaResponse = null;
+
+		if (media != null) {
+			mediaResponse = MessageInfoResponse.Media.builder()
+				.url(media.url())
+				.fileType(media.fileType())
+				.mineType(media.mineType())
+				.fileId(media.fileId())
+				.accessHash(media.accessHash())
+				.fileSize(media.fileSize())
+				.build();
+		}
+
 		return MessageInfoResponse.builder()
 			.id(entity.id())
 			.channelId(entity.channelId())
@@ -27,10 +43,7 @@ public class MessageWebMapper {
 			.fwdFromName(entity.fwdFromName())
 			.groupedId(entity.groupedId())
 			.legacy(entity.legacy())
-			.media(MessageInfoResponse.Media.builder()
-				.url(entity.media().url())
-				.type(entity.media().type())
-				.build())
+			.media(mediaResponse)
 			.mediaUnread(entity.mediaUnread())
 			.mentioned(entity.mentioned())
 			.out(entity.out())

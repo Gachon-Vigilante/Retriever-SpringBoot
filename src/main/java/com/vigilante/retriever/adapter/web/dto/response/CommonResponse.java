@@ -2,6 +2,9 @@ package com.vigilante.retriever.adapter.web.dto.response;
 
 import java.time.LocalDateTime;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.vigilante.retriever.adapter.web.code.CommonSuccessCode;
 import com.vigilante.retriever.common.domain.code.BaseCode;
@@ -24,39 +27,39 @@ public class CommonResponse<T> {
 	@Builder.Default
 	private final LocalDateTime timestamp = LocalDateTime.now();
 
-	public static CommonResponse<Void> success() {
-		return successWithCode(CommonSuccessCode.SUCCESS);
+	public static ResponseEntity<CommonResponse<Void>> success() {
+		return ResponseEntity.ok().body(successWithCode(CommonSuccessCode.SUCCESS));
 	}
 
-	public static <T> CommonResponse<T> success(T data) {
-		return successWithCode(CommonSuccessCode.SUCCESS, data);
+	public static <T> ResponseEntity<CommonResponse<T>> success(T data) {
+		return ResponseEntity.ok().body(successWithCode(CommonSuccessCode.SUCCESS, data));
 	}
 
-	public static <T> CommonResponse<T> retrieved(T data) {
-		return successWithCode(CommonSuccessCode.RETRIEVED, data);
+	public static <T> ResponseEntity<CommonResponse<T>> retrieved(T data) {
+		return ResponseEntity.ok().body(successWithCode(CommonSuccessCode.RETRIEVED, data));
 	}
 
-	public static CommonResponse<Void> updated() {
-		return successWithCode(CommonSuccessCode.UPDATED);
+	public static ResponseEntity<CommonResponse<Void>> updated() {
+		return ResponseEntity.ok().body(successWithCode(CommonSuccessCode.UPDATED));
 	}
 
-	public static <T> CommonResponse<T> updated(T data) {
-		return successWithCode(CommonSuccessCode.UPDATED, data);
+	public static <T> ResponseEntity<CommonResponse<T>> updated(T data) {
+		return ResponseEntity.ok().body(successWithCode(CommonSuccessCode.UPDATED, data));
 	}
 
-	public static CommonResponse<Void> deleted() {
-		return successWithCode(CommonSuccessCode.DELETED);
+	public static ResponseEntity<CommonResponse<Void>> deleted() {
+		return ResponseEntity.ok().body(successWithCode(CommonSuccessCode.DELETED));
 	}
 
-	public static <T> CommonResponse<T> created(T data) {
-		return successWithCode(CommonSuccessCode.CREATED, data);
+	public static <T> ResponseEntity<CommonResponse<T>> created(T data) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(successWithCode(CommonSuccessCode.CREATED, data));
 	}
 
-	public static CommonResponse<Void> created() {
-		return successWithCode(CommonSuccessCode.CREATED);
+	public static ResponseEntity<CommonResponse<Void>> created() {
+		return ResponseEntity.status(HttpStatus.CREATED).body(successWithCode(CommonSuccessCode.CREATED));
 	}
 
-	public static <T> CommonResponse<T> successWithCode(BaseCode successCode, T data) {
+	private static <T> CommonResponse<T> successWithCode(BaseCode successCode, T data) {
 		return CommonResponse.<T>builder()
 			.success(true)
 			.code(successCode.getCode())
@@ -65,7 +68,7 @@ public class CommonResponse<T> {
 			.build();
 	}
 
-	public static CommonResponse<Void> successWithCode(BaseCode successCode) {
+	private static CommonResponse<Void> successWithCode(BaseCode successCode) {
 		return CommonResponse.<Void>builder()
 			.success(true)
 			.code(successCode.getCode())
