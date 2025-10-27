@@ -1,7 +1,6 @@
 package com.vigilante.retriever.v1.user.application.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.vigilante.retriever.common.domain.enums.Role;
 import com.vigilante.retriever.common.domain.exception.BadRequestException;
@@ -25,7 +24,6 @@ public class GrantRoleService implements GrantRoleUseCase {
 	private final UserMongoCommand userMongoCommand;
 
 	@Override
-	@Transactional
 	public void grantRole(GrantRoleCommand command) {
 		if (command.role() == Role.ROOT) {
 			throw new BadRequestException(UserErrorCode.CAN_NOT_GRANT_ROOT_ROLE);
