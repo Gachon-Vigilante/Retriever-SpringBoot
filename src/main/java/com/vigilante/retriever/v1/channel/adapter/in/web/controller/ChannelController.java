@@ -23,19 +23,19 @@ public class ChannelController implements ChannelApi {
 	@Override
 	public ResponseEntity<CommonResponse<List<ChannelInfoResponse>>> findAll() {
 		List<ChannelInfoResponse> responses = channelWebMapper.toResponseList(getChannelUseCase.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<ChannelInfoResponse>> findByChannelId(Long ChannelId) {
 		ChannelInfoResponse response = channelWebMapper.toResponse(getChannelUseCase.getByChannelId(ChannelId));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<ChannelInfoResponse>>> findByTitleContaining(String title) {
 		List<ChannelInfoResponse> responses = channelWebMapper.toResponseList(
 			getChannelUseCase.findByTitleContaining(title));
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 }

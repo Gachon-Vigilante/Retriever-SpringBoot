@@ -23,13 +23,13 @@ public class MessageController implements MessageApi {
 	@Override
 	public ResponseEntity<CommonResponse<List<MessageInfoResponse>>> findAll() {
 		List<MessageInfoResponse> responses = messageWebMapper.toResponseList(getMessageUseCase.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<MessageInfoResponse>>> findByChannelId(Long channelId) {
 		List<MessageInfoResponse> responses = messageWebMapper.toResponseList(
 			getMessageUseCase.findByChannelId(channelId));
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 }

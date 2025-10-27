@@ -27,18 +27,18 @@ public class PostController implements PostApi {
 	public ResponseEntity<CommonResponse<PostPageResponse>> getAllPosts(int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
 		PostPageResponse response = postWebMapper.toPageResponse(getPostService.findAll(pageable));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<PostInfoResponse>> getPostById(String id) {
 		PostInfoResponse response = postWebMapper.toResponse(getPostService.getById(id));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<PostInfoResponse>>> getPostsByTitleContaining(String title) {
 		List<PostInfoResponse> responses = postWebMapper.toResponseList(getPostService.findByTitleContaining(title));
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 }

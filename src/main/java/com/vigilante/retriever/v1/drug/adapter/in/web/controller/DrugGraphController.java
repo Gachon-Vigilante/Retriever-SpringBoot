@@ -24,6 +24,6 @@ public class DrugGraphController implements DrugGraphApi {
 	public ResponseEntity<CommonResponse<List<DrugGraphInfoResponse>>> findAll() {
 		List<DrugGraphInfoResponse> response = drugWebMapper.toGraphResponseList(getDrugGraphUseCase.findAll());
 
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 }

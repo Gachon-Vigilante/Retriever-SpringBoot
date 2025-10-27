@@ -23,18 +23,18 @@ public class ReportController implements ReportApi {
 	@Override
 	public ResponseEntity<CommonResponse<List<ReportInfoResponse>>> findAll() {
 		List<ReportInfoResponse> responses = reportWebMapper.toResponseList(getReportUseCase.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<ReportInfoResponse>> getById(String id) {
 		ReportInfoResponse response = reportWebMapper.toResponse(getReportUseCase.getById(id));
-		return ResponseEntity.ok(CommonResponse.retrieved(response));
+		return CommonResponse.retrieved(response);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<ReportInfoResponse>>> getByChannelId(Long channelId) {
 		List<ReportInfoResponse> responses = reportWebMapper.toResponseList(getReportUseCase.getByChannelId(channelId));
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 }

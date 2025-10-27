@@ -24,13 +24,13 @@ public class ChannelGraphController implements ChannelGraphApi {
 	public ResponseEntity<CommonResponse<List<ChannelGraphInfoResponse>>> getAllChannels() {
 		List<ChannelGraphInfoResponse> responses = channelWebMapper.toGraphResponseList(
 			getChannelGraphUseCase.findAll());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 
 	@Override
 	public ResponseEntity<CommonResponse<List<ChannelGraphInfoResponse>>> findAllWithSells() {
 		List<ChannelGraphInfoResponse> responses = channelWebMapper.toGraphResponseList(
 			getChannelGraphUseCase.findAllWithSells());
-		return ResponseEntity.ok(CommonResponse.retrieved(responses));
+		return CommonResponse.retrieved(responses);
 	}
 }
