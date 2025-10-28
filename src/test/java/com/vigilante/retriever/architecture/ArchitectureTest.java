@@ -229,7 +229,6 @@ public class ArchitectureTest {
 			.allowEmptyShould(true)
 			.because("Controller는 구체적인 Service 구현체에 의존하면 안 됩니다. UseCase(인바운드 포트)를 통해 의존해야 합니다");
 
-	// 추가: Controller가 인바운드 포트(UseCase) 인터페이스에 의존하는지 검증
 	@ArchTest
 	static final ArchRule controllers_should_depend_on_inbound_ports =
 		ArchRuleDefinition.classes()

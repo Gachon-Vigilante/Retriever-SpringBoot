@@ -7,7 +7,7 @@ import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
 
 public interface ChannelNeo4jPort {
 
-	Optional<ChannelGraphView> findById(Long id);
+	Optional<ChannelGraphView> findById(String id);
 
 	ChannelGraphView save(ChannelGraphView channelGraphView);
 

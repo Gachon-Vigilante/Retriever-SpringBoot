@@ -8,7 +8,7 @@ import lombok.Builder;
 
 @Builder
 public record ChannelGraphInfoResponse(
-	Long id,
+	String id,
 	String title,
 	String username,
 	String status,

@@ -38,9 +38,6 @@ public class PostNode {
 
 	private String domain;
 
-	@Property("site_name")
-	private String siteName;
-
 	private String content;
 
 	private int cluster;
@@ -72,7 +69,7 @@ public class PostNode {
 
 		@Id
 		@GeneratedValue
-		private Long id;
+		private String id;
 
 		@TargetNode
 		private ChannelNode channel;
