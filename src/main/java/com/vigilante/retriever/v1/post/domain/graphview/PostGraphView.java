@@ -10,20 +10,20 @@ import lombok.Builder;
 @Builder
 public record PostGraphView(
 	String postId,
-	int cluster,
-	String link,
-	String content,
 	String title,
+	String link,
 	String domain,
-	String siteName,
-	LocalDateTime createdAt,
+	String content,
+	int cluster,
+	LocalDateTime discoveredAt,
 	LocalDateTime updatedAt,
+	boolean isDeleted,
 	Set<Promote> promotesChannels,
 	Set<PostGraphView> similarPosts
 ) {
 	@Builder
 	public record Promote(
-		Long id,
+		String id,
 		ChannelGraphView channel
 	) {
 	}

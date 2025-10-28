@@ -37,7 +37,7 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 	@Override
 	@Transactional
 	public void createPromotionRelation(CreatePromotionRelationCommand command) {
-		Long channelId = command.id();
+		String channelId = command.id();
 		String postId = command.postId();
 		log.info("[Service] 홍보 관계 생성을 시작합니다. channelId: {}, postId: {}", channelId, postId);
 
@@ -54,13 +54,12 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 			.orElseGet(() -> {
 				PostGraphView newPost = PostGraphView.builder()
 					.postId(mongoPost.id())
-					.link(mongoPost.link())
 					.title(mongoPost.title())
-					.content(mongoPost.text())
+					.link(mongoPost.link())
 					.domain(mongoPost.domain())
-					.siteName(mongoPost.siteName())
+					.content(mongoPost.text())
 					.cluster(mongoPost.cluster() != null ? mongoPost.cluster().intValue() : 0)
-					.createdAt(mongoPost.publishedAt())
+					.discoveredAt(mongoPost.publishedAt())
 					.updatedAt(mongoPost.updatedAt())
 					.promotesChannels(new HashSet<>())
 					.similarPosts(new HashSet<>())
@@ -83,13 +82,12 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 
 			PostGraphView updatedPost = PostGraphView.builder()
 				.postId(post.postId())
-				.cluster(post.cluster())
-				.link(post.link())
-				.content(post.content())
 				.title(post.title())
+				.link(post.link())
 				.domain(post.domain())
-				.siteName(post.siteName())
-				.createdAt(post.createdAt())
+				.content(post.content())
+				.cluster(post.cluster())
+				.discoveredAt(post.discoveredAt())
 				.updatedAt(post.updatedAt())
 				.promotesChannels(newPromotes)
 				.similarPosts(post.similarPosts())
