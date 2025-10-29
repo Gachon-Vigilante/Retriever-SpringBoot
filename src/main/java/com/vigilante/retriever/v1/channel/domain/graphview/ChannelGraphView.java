@@ -8,7 +8,7 @@ import lombok.Builder;
 
 @Builder
 public record ChannelGraphView(
-	Long id,
+	Long channelId,
 	String title,
 	String username,
 	String status,

@@ -43,8 +43,8 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 
 		ChannelGraphView channel = channelNeo4jQuery.findById(channelId)
 			.orElseGet(() -> {
-				ChannelGraphView newChannel = ChannelGraphView.builder().id(channelId).build();
-				log.info("[Service] 신규 채널 노드를 생성합니다. id: {}", channelId);
+				ChannelGraphView newChannel = ChannelGraphView.builder().channelId(channelId).build();
+				log.info("[Service] 신규 채널 노드를 생성합니다. channelId: {}", channelId);
 				return channelNeo4jCommand.save(newChannel);
 			});
 
@@ -64,12 +64,12 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 					.promotesChannels(new HashSet<>())
 					.similarPosts(new HashSet<>())
 					.build();
-				log.info("[Service] 신규 게시글 노드를 생성합니다. id: {}", postId);
+				log.info("[Service] 신규 게시글 노드를 생성합니다. channelId: {}", postId);
 				return postNeo4jCommand.save(newPost);
 			});
 
 		boolean alreadyPromoted = post.promotesChannels().stream()
-			.anyMatch(p -> p.channel().id().equals(channelId));
+			.anyMatch(p -> p.channel().channelId().equals(channelId));
 
 		if (!alreadyPromoted) {
 			PostGraphView.Promote newPromote = PostGraphView.Promote.builder()

@@ -2,6 +2,7 @@ package com.vigilante.retriever.v1.channel.adapter.out.persistence.neo4j.node;
 
 import java.util.Set;
 
+import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
@@ -24,7 +25,7 @@ import lombok.experimental.SuperBuilder;
 public class ChannelNode {
 
 	@Id
-	@Property("channel_id")
+	@GeneratedValue
 	private Long channelId;
 
 	private String title;

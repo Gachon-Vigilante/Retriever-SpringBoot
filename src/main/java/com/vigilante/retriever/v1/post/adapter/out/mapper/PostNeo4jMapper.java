@@ -41,15 +41,15 @@ public interface PostNeo4jMapper extends GenericNeo4jMapper<PostNode, PostGraphV
 			Set<PostGraphView.Promote> shallowPromotes = node.getPromotesChannels().stream()
 				.map(promote -> PostGraphView.Promote.builder()
 					.id(promote.getId())
-					.channel(promote.getChannel() != null 
+					.channel(promote.getChannel() != null
 						? ChannelGraphView.builder()
-							.id(promote.getChannel().getChannelId())
-							.title(promote.getChannel().getTitle())
-							.username(promote.getChannel().getUsername())
-							.status(promote.getChannel().getStatus())
-							.promotedCount(0)
-							.sellsArgots(Collections.emptySet())
-							.build()
+						.channelId(promote.getChannel().getChannelId())
+						.title(promote.getChannel().getTitle())
+						.username(promote.getChannel().getUsername())
+						.status(promote.getChannel().getStatus())
+						.promotedCount(0)
+						.sellsArgots(Collections.emptySet())
+						.build()
 						: null)
 					.build())
 				.collect(Collectors.toSet());
@@ -57,7 +57,7 @@ public interface PostNeo4jMapper extends GenericNeo4jMapper<PostNode, PostGraphV
 		} else {
 			builder.promotesChannels(Collections.emptySet());
 		}
-		
+
 		// similarPosts 매핑 (1 depth만)
 		if (node.getSimilarPosts() != null && !node.getSimilarPosts().isEmpty()) {
 			Set<PostGraphView> shallowSimilarPosts = node.getSimilarPosts().stream()
