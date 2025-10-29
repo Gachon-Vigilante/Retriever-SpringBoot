@@ -17,10 +17,6 @@ public class BookmarkMongoQuery {
 
 	private final BookmarkMongoPort bookmarkMongoPort;
 
-	public List<BookmarkEntity> findAll() {
-		return bookmarkMongoPort.findAll();
-	}
-
 	public List<BookmarkEntity> findByUserId(String userId) {
 		return bookmarkMongoPort.findByUserId(userId);
 	}

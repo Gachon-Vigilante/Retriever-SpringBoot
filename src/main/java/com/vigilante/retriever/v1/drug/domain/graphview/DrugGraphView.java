@@ -4,7 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record DrugGraphView(
-	String drugId,
+	String drugBankId,
 	String name,
 	String englishName,
 	String drugType

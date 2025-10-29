@@ -1,6 +1,6 @@
 package com.vigilante.retriever.v1.post.application.service;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class GetPostGraphService implements GetPostGraphUseCase {
 	private final PostNeo4jQuery postNeo4jQuery;
 
 	@Override
-	public List<PostGraphView> getAllPost() {
-		return postNeo4jQuery.streamAllWithPromotesAndSimilar().toList();
+	public Stream<PostGraphView> getAllPost() {
+		return postNeo4jQuery.streamAllWithPromotesAndSimilar();
 	}
 }

@@ -35,7 +35,8 @@ public interface BookmarkApi {
 	)
 	ResponseEntity<CommonResponse<Void>> addBookmark(
 		@AuthenticationPrincipal String userId,
-		@PathVariable String channelId);
+		@PathVariable String channelId
+	);
 
 	@DeleteMapping("/{bookmarkId}")
 	@Operation(summary = "북마크 삭제", description = "특정 북마크를 삭제합니다.")
@@ -56,7 +57,8 @@ public interface BookmarkApi {
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_GET_BY_USER_ID_200)})
 	@ApiErrorExample(include = {"401", "500"})
 	ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findByUserId(
-		@AuthenticationPrincipal String userId);
+		@AuthenticationPrincipal String userId
+	);
 
 	@GetMapping("/{bookmarkId}")
 	@Operation(summary = "북마크 단건 조회", description = "특정 ID의 북마크 정보를 조회합니다.")
@@ -68,11 +70,6 @@ public interface BookmarkApi {
 		}
 	)
 	ResponseEntity<CommonResponse<BookmarkInfoResponse>> getById(
-		@PathVariable String bookmarkId);
-
-	@GetMapping("/all")
-	@Operation(summary = "모든 북마크 목록 조회 (관리자용)", description = "시스템의 모든 북마크 목록을 조회합니다. 관리자 권한이 필요합니다.")
-	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = BOOKMARK_FIND_ALL_200)})
-	@ApiErrorExample(include = {"401", "403", "500"})
-	ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findAll();
+		@PathVariable String bookmarkId
+	);
 }

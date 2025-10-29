@@ -10,8 +10,6 @@ import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vigilante.retriever.v1.channel.adapter.out.persistence.neo4j.node.ChannelNode;
 
 import lombok.AccessLevel;
@@ -52,12 +50,10 @@ public class PostNode {
 	private boolean isDeleted;
 
 	@Relationship(type = "PROMOTES", direction = Relationship.Direction.OUTGOING)
-	@JsonManagedReference
 	@Property("promotes_channels")
 	private Set<Promote> promotesChannels;
 
-	@Relationship(type = "SIMILAR", direction = Relationship.Direction.OUTGOING)
-	@JsonIgnoreProperties({"promotesChannels", "similarPosts"})
+	@Relationship(type = "SIMILAR_TO", direction = Relationship.Direction.OUTGOING)
 	@Property("similar_posts")
 	private Set<PostNode> similarPosts;
 
@@ -69,7 +65,7 @@ public class PostNode {
 
 		@Id
 		@GeneratedValue
-		private String id;
+		private Long id;
 
 		@TargetNode
 		private ChannelNode channel;

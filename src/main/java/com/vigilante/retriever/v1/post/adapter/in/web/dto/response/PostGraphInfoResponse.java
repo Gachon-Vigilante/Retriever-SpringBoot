@@ -23,7 +23,7 @@ public record PostGraphInfoResponse(
 ) {
 	@Builder
 	public record Promote(
-		String id,
+		Long id,
 		ChannelGraphInfoResponse channel
 	) {
 	}

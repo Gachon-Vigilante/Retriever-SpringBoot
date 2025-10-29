@@ -39,7 +39,9 @@ public class SecurityConfig {
 				session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.exceptionHandling(exception ->
 				exception.authenticationEntryPoint(customJwtAuthenticationEntryPoint)
-					.accessDeniedHandler(customAccessDeniedHandler));
+					.accessDeniedHandler(customAccessDeniedHandler))
+			.securityContext(context ->
+				context.requireExplicitSave(false));
 
 		http.authorizeHttpRequests(auth ->
 				auth.requestMatchers(HttpMethod.OPTIONS, "/**")

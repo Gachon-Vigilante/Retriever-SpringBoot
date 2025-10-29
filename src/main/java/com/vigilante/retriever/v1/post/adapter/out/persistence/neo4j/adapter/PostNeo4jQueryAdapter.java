@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class PostGraphQueryAdapter implements PostNeo4jPort {
+public class PostNeo4jQueryAdapter implements PostNeo4jPort {
 
 	private final PostNeo4jRepository postNeo4JRepository;
 	private final PostNeo4jMapper postNeo4jMapper;

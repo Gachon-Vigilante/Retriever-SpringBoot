@@ -18,8 +18,8 @@ import lombok.experimental.SuperBuilder;
 public class DrugNode {
 
 	@Id
-	@Property("drug_id")
-	private String drugId;
+	@Property("drugbank_id")
+	private String drugBankId;
 
 	private String name;
 

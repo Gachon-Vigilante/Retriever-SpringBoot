@@ -4,7 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record CreatePromotionRelationCommand(
-	String id,
+	Long id,
 	String postId
 ) {
 }

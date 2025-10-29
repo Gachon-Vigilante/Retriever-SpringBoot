@@ -91,7 +91,7 @@ public class ChannelWebMapper {
 
 	public ChannelGraphInfoResponse toGraphResponse(ChannelGraphView graphView) {
 		return ChannelGraphInfoResponse.builder()
-			.id(graphView.id())
+			.channelId(graphView.channelId())
 			.title(graphView.title())
 			.username(graphView.username())
 			.status(graphView.status())

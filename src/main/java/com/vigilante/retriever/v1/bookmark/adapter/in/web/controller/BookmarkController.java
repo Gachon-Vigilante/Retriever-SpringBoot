@@ -49,11 +49,4 @@ public class BookmarkController implements BookmarkApi {
 			getBookmarkUseCase.getById(Id));
 		return CommonResponse.retrieved(response);
 	}
-
-	@Override
-	public ResponseEntity<CommonResponse<List<BookmarkInfoResponse>>> findAll() {
-		List<BookmarkInfoResponse> response = bookmarkWebMapper.toResponseList(
-			getBookmarkUseCase.findAll());
-		return CommonResponse.retrieved(response);
-	}
 }

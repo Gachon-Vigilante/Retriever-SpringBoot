@@ -7,8 +7,6 @@ import com.vigilante.retriever.v1.bookmark.domain.entity.BookmarkEntity;
 
 public interface BookmarkMongoPort {
 
-	List<BookmarkEntity> findAll();
-
 	List<BookmarkEntity> findByUserId(String telegramUserId);
 
 	Optional<BookmarkEntity> findById(String id);

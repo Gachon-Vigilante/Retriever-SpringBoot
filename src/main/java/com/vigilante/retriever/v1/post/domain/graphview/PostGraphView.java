@@ -23,7 +23,7 @@ public record PostGraphView(
 ) {
 	@Builder
 	public record Promote(
-		String id,
+		Long id,
 		ChannelGraphView channel
 	) {
 	}

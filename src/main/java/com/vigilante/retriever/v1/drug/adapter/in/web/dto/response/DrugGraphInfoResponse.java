@@ -4,7 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record DrugGraphInfoResponse(
-	String drugId,
+	String drugBankId,
 	String name,
 	String englishName,
 	String drugType

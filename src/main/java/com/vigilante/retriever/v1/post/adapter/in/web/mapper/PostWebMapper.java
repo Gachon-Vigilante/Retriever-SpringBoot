@@ -1,12 +1,17 @@
 package com.vigilante.retriever.v1.post.adapter.in.web.mapper;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vigilante.retriever.v1.channel.adapter.in.web.mapper.ChannelWebMapper;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.request.CreatePromotionRelationRequest;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostGraphInfoResponse;
@@ -23,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class PostWebMapper {
 
 	private final ChannelWebMapper channelWebMapper;
+	private final ObjectMapper objectMapper;
 
 	public PostInfoResponse toResponse(PostEntity entity) {
 		return PostInfoResponse.builder()
@@ -119,6 +125,15 @@ public class PostWebMapper {
 	}
 
 	public PostGraphInfoResponse toGraphResponse(PostGraphView graphView) {
+		Set<PostGraphView> similarPosts = graphView.similarPosts();
+		Set<PostGraphInfoResponse> mappedSimilarPosts = null;
+
+		if (similarPosts != null) {
+			mappedSimilarPosts = similarPosts.stream()
+				.map(this::toGraphResponse)
+				.collect(Collectors.toSet());
+		}
+
 		return PostGraphInfoResponse.builder()
 			.postId(graphView.postId())
 			.title(graphView.title())
@@ -130,9 +145,7 @@ public class PostWebMapper {
 			.updatedAt(graphView.updatedAt())
 			.isDeleted(graphView.isDeleted())
 			.promotesChannels(mapPromotesChannels(graphView.promotesChannels()))
-			.similarPosts(graphView.similarPosts().stream()
-				.map(this::toGraphResponse)
-				.collect(Collectors.toSet()))
+			.similarPosts(mappedSimilarPosts)
 			.build();
 	}
 
@@ -149,9 +162,18 @@ public class PostWebMapper {
 			.collect(Collectors.toSet());
 	}
 
-	public List<PostGraphInfoResponse> toGraphResponseList(List<PostGraphView> graphViews) {
-		return graphViews.stream()
-			.map(this::toGraphResponse)
-			.toList();
+	public StreamingResponseBody toStreamingResponseBody(Stream<PostGraphView> stream) {
+		return out -> {
+			try (stream) {
+				Iterator<PostGraphView> it = stream.iterator();
+
+				while (it.hasNext()) {
+					PostGraphView v = it.next();
+					PostGraphInfoResponse resp = toGraphResponse(v);
+					out.write((objectMapper.writeValueAsString(resp) + "\n").getBytes(StandardCharsets.UTF_8));
+					out.flush();
+				}
+			}
+		};
 	}
 }
