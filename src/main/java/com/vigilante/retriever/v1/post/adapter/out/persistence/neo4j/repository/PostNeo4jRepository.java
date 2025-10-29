@@ -19,12 +19,9 @@ public interface PostNeo4jRepository extends Neo4jRepository<PostNode, String> {
 			MATCH (p:Post)
 			OPTIONAL MATCH (p)-[pr:PROMOTES]->(c:Channel)
 			OPTIONAL MATCH (p)-[sr:SIMILAR_TO]->(sp:Post)
-			WITH p,
-			     collect(DISTINCT pr) AS promotes,
-			     collect(DISTINCT c) AS channels,
-			     collect(DISTINCT sr) AS similarities,
-			     collect(DISTINCT sp) AS similarPosts
-			RETURN p, promotes, channels, similarities, similarPosts
+			RETURN p, 
+			       collect(DISTINCT {rel: pr, node: c}) as promotes, 
+			       collect(DISTINCT sp) as similarPosts
 		""")
 	Stream<PostNode> streamAllWithPromotesAndSimilar();
 
