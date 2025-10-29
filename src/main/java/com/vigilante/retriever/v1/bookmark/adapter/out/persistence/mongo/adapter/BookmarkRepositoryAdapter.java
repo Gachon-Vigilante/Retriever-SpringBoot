@@ -21,12 +21,6 @@ public class BookmarkRepositoryAdapter implements BookmarkMongoPort {
 	private final BookmarkMongoMapper bookmarkPersistenceMapper;
 
 	@Override
-	public List<BookmarkEntity> findAll() {
-		List<BookmarkDocument> allBookmark = bookmarkMongoRepository.findAll();
-		return bookmarkPersistenceMapper.getEntityList(allBookmark);
-	}
-
-	@Override
 	public List<BookmarkEntity> findByUserId(String userId) {
 		List<BookmarkDocument> bookmarkList = bookmarkMongoRepository.findByUserId(userId);
 		return bookmarkPersistenceMapper.getEntityList(bookmarkList);

@@ -17,11 +17,6 @@ public class GetBookmarkService implements GetBookmarkUseCase {
 	private final BookmarkMongoQuery bookmarkMongoQuery;
 
 	@Override
-	public List<BookmarkEntity> findAll() {
-		return bookmarkMongoQuery.findAll();
-	}
-
-	@Override
 	public BookmarkEntity getById(String bookmarkId) {
 		return bookmarkMongoQuery.getById(bookmarkId);
 	}
