@@ -25,7 +25,7 @@ public class ChannelNode {
 
 	@Id
 	@Property("channel_id")
-	private String channelId;
+	private Long channelId;
 
 	private String title;
 

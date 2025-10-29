@@ -37,7 +37,7 @@ public class SavePostGraphRelationService implements SavePostGraphRelationUseCas
 	@Override
 	@Transactional
 	public void createPromotionRelation(CreatePromotionRelationCommand command) {
-		String channelId = command.id();
+		Long channelId = command.id();
 		String postId = command.postId();
 		log.info("[Service] 홍보 관계 생성을 시작합니다. channelId: {}, postId: {}", channelId, postId);
 

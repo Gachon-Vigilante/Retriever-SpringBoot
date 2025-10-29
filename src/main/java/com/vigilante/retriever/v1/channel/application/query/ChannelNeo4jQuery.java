@@ -15,7 +15,7 @@ public class ChannelNeo4jQuery {
 
 	private final ChannelNeo4jPort channelNeo4jPort;
 
-	public Optional<ChannelGraphView> findById(String id) {
+	public Optional<ChannelGraphView> findById(Long id) {
 		return channelNeo4jPort.findById(id);
 	}
 

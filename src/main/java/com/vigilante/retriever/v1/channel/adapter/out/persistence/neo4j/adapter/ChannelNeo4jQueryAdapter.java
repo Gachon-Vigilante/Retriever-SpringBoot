@@ -21,7 +21,7 @@ public class ChannelNeo4jQueryAdapter implements ChannelNeo4jPort {
 	private final ChannelNeo4jMapper channelNeo4jMapper;
 
 	@Override
-	public Optional<ChannelGraphView> findById(String id) {
+	public Optional<ChannelGraphView> findById(Long id) {
 		return channelNeo4jRepository.findById(id).map(channelNeo4jMapper::toGraphView);
 	}
 
