@@ -44,7 +44,7 @@ public class DrugWebMapper {
 
 	public DrugGraphInfoResponse toGraphResponse(DrugGraphView graphView) {
 		return DrugGraphInfoResponse.builder()
-			.drugId(graphView.drugId())
+			.drugBankId(graphView.drugBankId())
 			.name(graphView.name())
 			.englishName(graphView.englishName())
 			.drugType(graphView.drugType())
