@@ -16,12 +16,10 @@ public interface PostNeo4jRepository extends Neo4jRepository<PostNode, String> {
 
 	// stream
 	@Query("""
-			MATCH (p:Post)
-			OPTIONAL MATCH (p)-[pr:PROMOTES]->(c:Channel)
-			OPTIONAL MATCH (p)-[sr:SIMILAR_TO]->(sp:Post)
-			RETURN p,
-			       collect(DISTINCT {rel: pr, node: c}) as promotes,
-			       collect(DISTINCT sp) as similarPosts
+		MATCH (p:Post)
+		OPTIONAL MATCH (p)-[pr:PROMOTES]->(c:Channel)
+		OPTIONAL MATCH (p)-[sr:SIMILAR_TO]->(sp:Post)
+		RETURN p, collect(DISTINCT pr), collect(DISTINCT c), collect(DISTINCT sr), collect(DISTINCT sp)
 		""")
 	Stream<PostNode> streamAllWithPromotesAndSimilar();
 

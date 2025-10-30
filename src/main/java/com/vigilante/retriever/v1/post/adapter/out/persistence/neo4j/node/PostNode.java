@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
 import org.springframework.data.neo4j.core.schema.Relationship;
+import org.springframework.data.neo4j.core.schema.RelationshipProperties;
 import org.springframework.data.neo4j.core.schema.TargetNode;
 
 import com.vigilante.retriever.v1.channel.adapter.out.persistence.neo4j.node.ChannelNode;
@@ -59,6 +60,7 @@ public class PostNode {
 
 	@Getter
 	@Builder
+	@RelationshipProperties
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
 	public static class Promote {
