@@ -6,12 +6,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiErrorExample;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiSuccessExample;
 import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelGraphInfoResponse;
+import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelTraceResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,4 +33,13 @@ public interface ChannelGraphApi {
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = CHANNEL_GRAPH_FIND_ALL_200)})
 	@ApiErrorExample(include = {"401", "500"})
 	ResponseEntity<CommonResponse<List<ChannelGraphInfoResponse>>> findAllWithSells();
+
+	@GetMapping("{channelId}")
+	@Operation(summary = "채널 기준 데이터 조회", description = "특정 채널을 기준으로 관련된 채널 및 판매 데이터를 조회합니다.")
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = CHANNEL_GET_TRACE_200)})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "404", exampleKey = CHANNEL_GET_TRACE_404)}
+	)
+	ResponseEntity<CommonResponse<ChannelTraceResponse>> getChannelTrace(@PathVariable Long channelId);
 }
