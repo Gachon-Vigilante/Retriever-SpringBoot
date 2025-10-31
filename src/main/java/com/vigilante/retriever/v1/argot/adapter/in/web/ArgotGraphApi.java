@@ -6,12 +6,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiErrorExample;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiSuccessExample;
 import com.vigilante.retriever.v1.argot.adapter.in.web.dto.response.ArgotGraphInfoResponse;
+import com.vigilante.retriever.v1.argot.adapter.in.web.dto.response.ArgotTraceResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,4 +33,13 @@ public interface ArgotGraphApi {
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = ARGOT_GRAPH_FIND_ALL_200)})
 	@ApiErrorExample(include = {"401", "500"})
 	ResponseEntity<CommonResponse<List<ArgotGraphInfoResponse>>> findAllWithRefersTo();
+
+	@GetMapping("/{argotName}")
+	@Operation(summary = "마약 은어 상세 추적 조회", description = "지정한 은어에 대해 판매 채널과 참조되는 마약 정보를 포함한 추적 정보를 조회합니다.")
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = ARGOT_GET_TRACE_200)})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "404", exampleKey = ARGOT_GET_TRACE_404)}
+	)
+	ResponseEntity<CommonResponse<ArgotTraceResponse>> getArgotTrace(@PathVariable String argotName);
 }

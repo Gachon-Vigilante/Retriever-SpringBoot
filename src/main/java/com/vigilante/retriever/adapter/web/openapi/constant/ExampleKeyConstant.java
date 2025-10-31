@@ -50,6 +50,8 @@ public final class ExampleKeyConstant {
 	// Argot
 	public static final String ARGOT_FIND_ALL_200 = "Argot__Find__All__200";
 	public static final String ARGOT_GRAPH_FIND_ALL_200 = "Argot__Graph__Find__All__200";
+	public static final String ARGOT_GET_TRACE_200 = "Argot__Get__Trace__200";
+	public static final String ARGOT_GET_TRACE_404 = "Argot__Get__Trace__404";
 
 	// Channel
 	public static final String CHANNEL_FIND_ALL_200 = "Channel__Find__All__200";

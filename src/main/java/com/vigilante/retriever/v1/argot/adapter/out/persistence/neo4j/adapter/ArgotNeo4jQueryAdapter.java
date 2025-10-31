@@ -1,6 +1,7 @@
 package com.vigilante.retriever.v1.argot.adapter.out.persistence.neo4j.adapter;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -29,5 +30,10 @@ public class ArgotNeo4jQueryAdapter implements ArgotNeo4jPort {
 	public List<ArgotGraphView> findAllWithRefersTo() {
 		List<ArgotNode> argotNodes = argotNeo4jRepository.findAllWithRefersTo();
 		return argotGraphMapper.getGraphViewList(argotNodes);
+	}
+
+	@Override
+	public Optional<ArgotGraphView> findArgotWithAllRelations(String name) {
+		return argotNeo4jRepository.findArgotWithAllRelations(name).map(argotGraphMapper::toGraphView);
 	}
 }

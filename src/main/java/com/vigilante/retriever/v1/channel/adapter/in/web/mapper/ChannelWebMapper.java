@@ -1,10 +1,10 @@
 package com.vigilante.retriever.v1.channel.adapter.in.web.mapper;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.stereotype.Component;
 
 import com.vigilante.retriever.v1.argot.adapter.in.web.dto.response.ArgotGraphInfoResponse;
@@ -16,6 +16,7 @@ import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelTra
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelEntity;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
 import com.vigilante.retriever.v1.channel.domain.vo.ChannelTraceVO;
+import com.vigilante.retriever.v1.post.adapter.in.web.mapper.PostWebMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChannelWebMapper {
 
-	private final ArgotWebMapper argotWebMapper;
+	private final ObjectProvider<ArgotWebMapper> argotWebMapperProvider;
+	private final ObjectProvider<PostWebMapper> postWebMapperProvider;
 
 	public ChannelInfoResponse toResponse(ChannelEntity entity) {
 		ChannelEntity.Catalog catalog = entity.catalog();
@@ -103,6 +105,7 @@ public class ChannelWebMapper {
 	}
 
 	private Set<ArgotGraphInfoResponse> mapSellsArgots(Set<ArgotGraphView> argotGraphViews) {
+		ArgotWebMapper argotWebMapper = argotWebMapperProvider.getObject();
 		return argotGraphViews.stream()
 			.map(argotWebMapper::toGraphResponse)
 			.collect(Collectors.toSet());
@@ -115,36 +118,17 @@ public class ChannelWebMapper {
 	}
 
 	public ChannelTraceResponse toTraceResponse(ChannelTraceVO vo) {
+		PostWebMapper postWebMapper = postWebMapperProvider.getObject();
+		ArgotWebMapper argotWebMapper = argotWebMapperProvider.getObject();
 		return ChannelTraceResponse.builder()
 			.channelId(vo.channelId())
 			.title(vo.title())
 			.username(vo.username())
 			.status(vo.status())
-			.promotingPosts(mapSimilarPosts(vo.promotingPosts()))
+			.promotingPosts(postWebMapper.mapSimilarPosts(vo.promotingPosts()))
 			.sellsArgots(vo.sellsArgots().stream()
 				.map(argotWebMapper::toGraphResponse)
 				.collect(Collectors.toSet()))
 			.build();
-	}
-
-	// depth 제한을 두어 최상위에서 한 단계의 유사 게시글만 매핑하도록 함
-	private Set<ChannelTraceResponse.PostTrace> mapSimilarPosts(Set<ChannelTraceVO.PostTrace> similarPosts) {
-		if (similarPosts == null || similarPosts.isEmpty()) {
-			return Collections.emptySet();
-		}
-		return similarPosts.stream()
-			.map(post -> ChannelTraceResponse.PostTrace.builder()
-				.postId(post.postId())
-				.title(post.title())
-				.link(post.link())
-				.domain(post.domain())
-				.content(post.content())
-				.cluster(post.cluster())
-				.discoveredAt(post.discoveredAt())
-				.updatedAt(post.updatedAt())
-				.isDeleted(post.isDeleted())
-				.similarPosts(mapSimilarPosts(post.similarPosts()))
-				.build())
-			.collect(Collectors.toSet());
 	}
 }
