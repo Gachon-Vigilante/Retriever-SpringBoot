@@ -3,6 +3,8 @@ package com.vigilante.retriever.v1.argot.application.query;
 import java.util.List;
 
 import com.vigilante.retriever.common.domain.annotation.QueryService;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
+import com.vigilante.retriever.v1.argot.domain.code.ArgotErrorCode;
 import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
 import com.vigilante.retriever.v1.argot.domain.port.out.ArgotNeo4jPort;
 
@@ -20,5 +22,10 @@ public class ArgotNeo4jQuery {
 
 	public List<ArgotGraphView> findAllWithRefersTo() {
 		return argotNeo4jPort.findAllWithRefersTo();
+	}
+
+	public ArgotGraphView findArgotWithAllRelations(String name) {
+		return argotNeo4jPort.findArgotWithAllRelations(name)
+			.orElseThrow(() -> new NotFoundException(ArgotErrorCode.ARGOT_NOT_FOUND));
 	}
 }
