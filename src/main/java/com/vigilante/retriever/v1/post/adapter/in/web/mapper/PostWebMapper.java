@@ -1,12 +1,14 @@
 package com.vigilante.retriever.v1.post.adapter.in.web.mapper;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
@@ -17,9 +19,11 @@ import com.vigilante.retriever.v1.post.adapter.in.web.dto.request.CreatePromotio
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostGraphInfoResponse;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostInfoResponse;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostPageResponse;
+import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostTraceResponse;
 import com.vigilante.retriever.v1.post.domain.dto.command.CreatePromotionRelationCommand;
 import com.vigilante.retriever.v1.post.domain.entity.PostEntity;
 import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
+import com.vigilante.retriever.v1.post.domain.vo.PostTraceVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PostWebMapper {
 
-	private final ChannelWebMapper channelWebMapper;
+	private final ObjectProvider<ChannelWebMapper> channelWebMapperProvider;
 	private final ObjectMapper objectMapper;
 
 	public PostInfoResponse toResponse(PostEntity entity) {
@@ -154,6 +158,7 @@ public class PostWebMapper {
 			return null;
 		}
 
+		ChannelWebMapper channelWebMapper = channelWebMapperProvider.getObject();
 		return promotesChannels.stream()
 			.map(promote -> PostGraphInfoResponse.Promote.builder()
 				.id(promote.id())
@@ -175,5 +180,46 @@ public class PostWebMapper {
 				}
 			}
 		};
+	}
+
+	// depth 제한을 두어 최상위에서 한 단계의 유사 게시글만 매핑하도록 함
+	public Set<PostTraceResponse> mapSimilarPosts(Set<PostTraceVO> similarPosts) {
+		if (similarPosts == null || similarPosts.isEmpty()) {
+			return Collections.emptySet();
+		}
+		return similarPosts.stream()
+			.map(post -> PostTraceResponse.builder()
+				.postId(post.postId())
+				.title(post.title())
+				.link(post.link())
+				.domain(post.domain())
+				.content(post.content())
+				.cluster(post.cluster())
+				.discoveredAt(post.discoveredAt())
+				.updatedAt(post.updatedAt())
+				.isDeleted(post.isDeleted())
+				.similarPosts(mapSimilarShallow(post.similarPosts()))
+				.build())
+			.collect(Collectors.toSet());
+	}
+
+	private Set<PostTraceResponse> mapSimilarShallow(Set<PostTraceVO> similarPosts) {
+		if (similarPosts == null || similarPosts.isEmpty()) {
+			return Collections.emptySet();
+		}
+		return similarPosts.stream()
+			.map(post -> PostTraceResponse.builder()
+				.postId(post.postId())
+				.title(post.title())
+				.link(post.link())
+				.domain(post.domain())
+				.content(post.content())
+				.cluster(post.cluster())
+				.discoveredAt(post.discoveredAt())
+				.updatedAt(post.updatedAt())
+				.isDeleted(post.isDeleted())
+				.similarPosts(Collections.emptySet())
+				.build())
+			.collect(Collectors.toSet());
 	}
 }
