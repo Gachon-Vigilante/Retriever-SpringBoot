@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
 import com.vigilante.retriever.v1.argot.adapter.in.web.ArgotGraphApi;
 import com.vigilante.retriever.v1.argot.adapter.in.web.dto.response.ArgotGraphInfoResponse;
+import com.vigilante.retriever.v1.argot.adapter.in.web.dto.response.ArgotTraceResponse;
 import com.vigilante.retriever.v1.argot.adapter.in.web.mapper.ArgotWebMapper;
 import com.vigilante.retriever.v1.argot.domain.port.in.GetArgotGraphUseCase;
 
@@ -31,5 +32,12 @@ public class ArgotGraphController implements ArgotGraphApi {
 		List<ArgotGraphInfoResponse> responses = argotWebMapper.toGraphResponseList(
 			getArgotGraphUseCase.findAllWithRefersTo());
 		return CommonResponse.retrieved(responses);
+	}
+
+	@Override
+	public ResponseEntity<CommonResponse<ArgotTraceResponse>> getArgotTrace(String argotName) {
+		ArgotTraceResponse response = argotWebMapper.toTraceResponse(
+			getArgotGraphUseCase.findArgotWithAllRelations(argotName));
+		return CommonResponse.retrieved(response);
 	}
 }
