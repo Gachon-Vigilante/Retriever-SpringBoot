@@ -1,8 +1,8 @@
 package com.vigilante.retriever.v1.channel.adapter.out.persistence.neo4j.node;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Property;
@@ -10,6 +10,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vigilante.retriever.v1.argot.adapter.out.persistence.neo4j.node.ArgotNode;
+import com.vigilante.retriever.v1.post.adapter.out.persistence.neo4j.node.PostNode;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.experimental.SuperBuilder;
 public class ChannelNode {
 
 	@Id
-	@GeneratedValue
+	@Property("channel_id")
 	private Long channelId;
 
 	private String title;
@@ -38,4 +39,7 @@ public class ChannelNode {
 	@JsonIgnoreProperties("channels")
 	@Property("sells_argots")
 	private Set<ArgotNode> sellsArgots;
+
+	@Relationship(type = "PROMOTES", direction = Relationship.Direction.INCOMING)
+	private Set<PostNode> promotedByPosts = new HashSet<>();
 }

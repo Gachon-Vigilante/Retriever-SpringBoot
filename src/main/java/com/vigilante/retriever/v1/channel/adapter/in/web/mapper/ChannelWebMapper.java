@@ -1,5 +1,6 @@
 package com.vigilante.retriever.v1.channel.adapter.in.web.mapper;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,8 +12,10 @@ import com.vigilante.retriever.v1.argot.adapter.in.web.mapper.ArgotWebMapper;
 import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
 import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelGraphInfoResponse;
 import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelInfoResponse;
+import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelTraceResponse;
 import com.vigilante.retriever.v1.channel.domain.entity.ChannelEntity;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
+import com.vigilante.retriever.v1.channel.domain.vo.ChannelTraceVO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -95,7 +98,6 @@ public class ChannelWebMapper {
 			.title(graphView.title())
 			.username(graphView.username())
 			.status(graphView.status())
-			.promotedCount(graphView.promotedCount())
 			.sellsArgots(mapSellsArgots(graphView.sellsArgots()))
 			.build();
 	}
@@ -110,5 +112,39 @@ public class ChannelWebMapper {
 		return graphViews.stream()
 			.map(this::toGraphResponse)
 			.toList();
+	}
+
+	public ChannelTraceResponse toTraceResponse(ChannelTraceVO vo) {
+		return ChannelTraceResponse.builder()
+			.channelId(vo.channelId())
+			.title(vo.title())
+			.username(vo.username())
+			.status(vo.status())
+			.promotingPosts(mapSimilarPosts(vo.promotingPosts()))
+			.sellsArgots(vo.sellsArgots().stream()
+				.map(argotWebMapper::toGraphResponse)
+				.collect(Collectors.toSet()))
+			.build();
+	}
+
+	// depth 제한을 두어 최상위에서 한 단계의 유사 게시글만 매핑하도록 함
+	private Set<ChannelTraceResponse.PostTrace> mapSimilarPosts(Set<ChannelTraceVO.PostTrace> similarPosts) {
+		if (similarPosts == null || similarPosts.isEmpty()) {
+			return Collections.emptySet();
+		}
+		return similarPosts.stream()
+			.map(post -> ChannelTraceResponse.PostTrace.builder()
+				.postId(post.postId())
+				.title(post.title())
+				.link(post.link())
+				.domain(post.domain())
+				.content(post.content())
+				.cluster(post.cluster())
+				.discoveredAt(post.discoveredAt())
+				.updatedAt(post.updatedAt())
+				.isDeleted(post.isDeleted())
+				.similarPosts(mapSimilarPosts(post.similarPosts()))
+				.build())
+			.collect(Collectors.toSet());
 	}
 }

@@ -3,6 +3,7 @@ package com.vigilante.retriever.v1.channel.domain.graphview;
 import java.util.Set;
 
 import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
+import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
 
 import lombok.Builder;
 
@@ -12,7 +13,7 @@ public record ChannelGraphView(
 	String title,
 	String username,
 	String status,
-	int promotedCount,
-	Set<ArgotGraphView> sellsArgots
+	Set<ArgotGraphView> sellsArgots,
+	Set<PostGraphView> promotedByPosts
 ) {
 }

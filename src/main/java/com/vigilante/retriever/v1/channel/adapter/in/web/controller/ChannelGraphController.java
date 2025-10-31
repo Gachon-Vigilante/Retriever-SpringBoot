@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
 import com.vigilante.retriever.v1.channel.adapter.in.web.ChannelGraphApi;
 import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelGraphInfoResponse;
+import com.vigilante.retriever.v1.channel.adapter.in.web.dto.response.ChannelTraceResponse;
 import com.vigilante.retriever.v1.channel.adapter.in.web.mapper.ChannelWebMapper;
 import com.vigilante.retriever.v1.channel.domain.port.in.GetChannelGraphUseCase;
+import com.vigilante.retriever.v1.channel.domain.port.in.GetChannelTraceUseCase;
 
 import lombok.AllArgsConstructor;
 
@@ -18,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class ChannelGraphController implements ChannelGraphApi {
 
 	private final GetChannelGraphUseCase getChannelGraphUseCase;
+	private final GetChannelTraceUseCase getChannelTraceUseCase;
 	private final ChannelWebMapper channelWebMapper;
 
 	@Override
@@ -32,5 +35,12 @@ public class ChannelGraphController implements ChannelGraphApi {
 		List<ChannelGraphInfoResponse> responses = channelWebMapper.toGraphResponseList(
 			getChannelGraphUseCase.findAllWithSells());
 		return CommonResponse.retrieved(responses);
+	}
+
+	@Override
+	public ResponseEntity<CommonResponse<ChannelTraceResponse>> getChannelTrace(Long channelId) {
+		ChannelTraceResponse response = channelWebMapper.toTraceResponse(
+			getChannelTraceUseCase.getChannelPostTrace(channelId));
+		return CommonResponse.retrieved(response);
 	}
 }

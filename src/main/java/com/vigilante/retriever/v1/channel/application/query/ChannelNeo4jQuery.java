@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.vigilante.retriever.common.domain.annotation.QueryService;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
+import com.vigilante.retriever.v1.channel.domain.code.ChannelErrorCode;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
 import com.vigilante.retriever.v1.channel.domain.port.out.ChannelNeo4jPort;
 
@@ -25,5 +27,10 @@ public class ChannelNeo4jQuery {
 
 	public List<ChannelGraphView> findAll() {
 		return channelNeo4jPort.findAll();
+	}
+
+	public ChannelGraphView findChannelWithAllRelations(Long channelId) {
+		return channelNeo4jPort.findChannelWithAllRelations(channelId)
+			.orElseThrow(() -> new NotFoundException(ChannelErrorCode.CHANNEL_NOT_FOUND));
 	}
 }

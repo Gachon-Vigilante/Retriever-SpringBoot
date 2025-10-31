@@ -14,4 +14,6 @@ public interface ChannelNeo4jPort {
 	List<ChannelGraphView> findAllWithSells();
 
 	List<ChannelGraphView> findAll();
+
+	Optional<ChannelGraphView> findChannelWithAllRelations(Long channelId);
 }
