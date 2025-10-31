@@ -1,0 +1,102 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": {
+    "channelId": 1234567890,
+    "title": "Example Channel",
+    "username": "example_user",
+    "status": "active",
+    "promotingPosts": [
+      {
+        "postId": "mock0000000000000000000001",
+        "title": "[공지] 거래 관련 안내 - 예시 제목",
+        "link": "https://example.com/post/1",
+        "domain": "example.com",
+        "content": "이 게시물은 예시(mock) 내용입니다. 실제 데이터가 아님을 확인하세요.",
+        "cluster": 1,
+        "discoveredAt": "2025-01-01T00:00:00.000000",
+        "updatedAt": "2025-01-01T00:00:00.000000",
+        "isDeleted": false,
+        "similarPosts": [
+          {
+            "postId": "mock0000000000000000000002",
+            "title": "예시 연관글 1",
+            "link": "https://example.com/post/2",
+            "domain": "example.com",
+            "content": "이 항목은 모의 데이터이며 실제 게시글이 아닙니다.",
+            "cluster": 1,
+            "discoveredAt": "2025-01-01T00:00:00.000000",
+            "updatedAt": "2025-01-01T00:00:00.000000",
+            "isDeleted": false,
+            "similarPosts": []
+          },
+          {
+            "postId": "mock0000000000000000000003",
+            "title": "예시 연관글 2",
+            "link": "https://example.net/post/3",
+            "domain": "example.net",
+            "content": "모의 데이터 예시입니다.",
+            "cluster": 1,
+            "discoveredAt": "2025-01-01T00:00:00.000000",
+            "updatedAt": "2025-01-01T00:00:00.000000",
+            "isDeleted": false,
+            "similarPosts": []
+          }
+        ]
+      },
+      {
+        "postId": "mock0000000000000000000004",
+        "title": "예시: 강남 관련 게시물",
+        "link": "https://example.com/post/4",
+        "domain": "example.com",
+        "content": "이 내용은 테스트용 모의 텍스트입니다.",
+        "cluster": 1,
+        "discoveredAt": "2025-01-01T00:00:00.000000",
+        "updatedAt": "2025-01-01T00:00:00.000000",
+        "isDeleted": false,
+        "similarPosts": []
+      },
+      {
+        "postId": "mock0000000000000000000005",
+        "title": "예시: 지역 관련 게시물",
+        "link": "https://example.org/post/5",
+        "domain": "example.org",
+        "content": "모의 데이터로 대체된 게시물 본문입니다.",
+        "cluster": 1,
+        "discoveredAt": "2025-01-01T00:00:00.000000",
+        "updatedAt": "2025-01-01T00:00:00.000000",
+        "isDeleted": false,
+        "similarPosts": [
+          {
+            "postId": "mock0000000000000000000002",
+            "title": "예시 연관글 1",
+            "link": "https://example.com/post/2",
+            "domain": "example.com",
+            "content": "이 항목은 모의 데이터이며 실제 게시글이 아닙니다.",
+            "cluster": 1,
+            "discoveredAt": "2025-01-01T00:00:00.000000",
+            "updatedAt": "2025-01-01T00:00:00.000000",
+            "isDeleted": false,
+            "similarPosts": []
+          }
+        ]
+      }
+    ],
+    "sellsArgots": [
+      {
+        "name": "감미료",
+        "description": "비공식적 은어: 달콤한 향을 의미",
+        "refersDrugs": [
+          {
+            "drugId": "drug-001",
+            "name": "아편",
+            "englishName": "Opium",
+            "drugType": "opioid"
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
