@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": {
+    "name": "감미료",
+    "description": "비공식적 은어: 달콤한 향을 의미",
+    "soldByChannels": [
+      {
+        "id": 1234567890,
+        "title": "Example Channel",
+        "username": "example_user",
+        "status": "active",
+        "promotingPosts": [
+          {
+            "postId": "mock0000000000000000000001",
+            "title": "[공지] 거래 관련 안내 - 예시 제목",
+            "link": "https://example.com/post/1",
+            "domain": "example.com",
+            "content": "이 게시물은 예시(mock) 내용입니다. 실제 데이터가 아님을 확인하세요.",
+            "cluster": 1,
+            "discoveredAt": "2025-01-01T00:00:00.000000",
+            "updatedAt": "2025-01-01T00:00:00.000000",
+            "isDeleted": false,
+            "similarPosts": []
+          }
+        ]
+      }
+    ],
+    "refersToDrugs": [
+      {
+        "drugBankId": "drug-001",
+        "name": "아편",
+        "englishName": "Opium",
+        "drugType": "opioid"
+      }
+    ]
+  },
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
+
