@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Primary;
 import com.vigilante.retriever.infrastructure.common.mapper.GenericNeo4jMapper;
 import com.vigilante.retriever.v1.argot.adapter.out.persistence.neo4j.node.ArgotNode;
 import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
+import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
+import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
 
 @Primary
 @Mapper(
@@ -33,21 +35,21 @@ public interface ArgotNeo4jMapper extends GenericNeo4jMapper<ArgotNode, ArgotGra
 	// Argot의 soldByChannels를 1 depth만 매핑하여 순환 참조 방지
 	@AfterMapping
 	default void mapRelationshipsShallow(
-		@MappingTarget com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView.ArgotGraphViewBuilder builder,
+		@MappingTarget ArgotGraphView.ArgotGraphViewBuilder builder,
 		ArgotNode node) {
 		// soldByChannels 매핑 (shallow - sellsArgots를 빈 Set으로 설정하고, promotedByPosts는 1 depth만 매핑)
 		if (node.getSoldByChannels() != null && !node.getSoldByChannels().isEmpty()) {
-			Set<com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView> shallowSoldByChannels =
+			Set<ChannelGraphView> shallowSoldByChannels =
 				node.getSoldByChannels()
 					.stream()
 					.map(channel -> {
 						// promotedByPosts를 1 depth만 매핑 (내부 관계는 빈 Set)
-						Set<com.vigilante.retriever.v1.post.domain.graphview.PostGraphView> shallowPosts =
+						Set<PostGraphView> shallowPosts =
 							(channel.getPromotedByPosts() != null && !channel.getPromotedByPosts().isEmpty()) ?
 								channel.getPromotedByPosts()
 									.stream()
 									.map(
-										post -> com.vigilante.retriever.v1.post.domain.graphview.PostGraphView.builder()
+										post -> PostGraphView.builder()
 											.postId(post.getPostId())
 											.title(post.getTitle())
 											.link(post.getLink())
@@ -62,7 +64,7 @@ public interface ArgotNeo4jMapper extends GenericNeo4jMapper<ArgotNode, ArgotGra
 											.build())
 									.collect(Collectors.toSet()) : Collections.emptySet();
 
-						return com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView.builder()
+						return ChannelGraphView.builder()
 							.channelId(channel.getChannelId())
 							.title(channel.getTitle())
 							.username(channel.getUsername())

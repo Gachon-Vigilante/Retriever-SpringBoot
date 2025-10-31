@@ -13,8 +13,10 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Primary;
 
 import com.vigilante.retriever.infrastructure.common.mapper.GenericNeo4jMapper;
+import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
 import com.vigilante.retriever.v1.channel.adapter.out.persistence.neo4j.node.ChannelNode;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
+import com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView;
 import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
 
 @Primary
@@ -79,16 +81,16 @@ public interface ChannelNeo4jMapper extends GenericNeo4jMapper<ChannelNode, Chan
 
 		// sellsArgots 매핑 (shallow - soldByChannels를 빈 Set으로 설정하여 순환 참조 방지)
 		if (node.getSellsArgots() != null && !node.getSellsArgots().isEmpty()) {
-			Set<com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView> shallowSellsArgots =
+			Set<ArgotGraphView> shallowSellsArgots =
 				node.getSellsArgots()
 					.stream()
 					.map(argot -> {
-						Set<com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView> drugViews =
+						Set<DrugGraphView> drugViews =
 							(argot.getRefersDrugs() != null && !argot.getRefersDrugs().isEmpty()) ?
 								argot.getRefersDrugs()
 									.stream()
 									.map(
-										drug -> com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView.builder()
+										drug -> DrugGraphView.builder()
 											.drugBankId(drug.getDrugBankId())
 											.name(drug.getName())
 											.englishName(drug.getEnglishName())
@@ -96,7 +98,7 @@ public interface ChannelNeo4jMapper extends GenericNeo4jMapper<ChannelNode, Chan
 											.build())
 									.collect(Collectors.toSet()) : Collections.emptySet();
 
-						return com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView.builder()
+						return ArgotGraphView.builder()
 							.name(argot.getName())
 							.description(argot.getDescription())
 							.refersDrugs(drugViews)
