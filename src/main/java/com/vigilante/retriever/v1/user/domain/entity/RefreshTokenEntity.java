@@ -7,7 +7,7 @@ import lombok.Builder;
 @Builder
 public record RefreshTokenEntity(
 	String userId,
-	String tokenValue,
+	String refreshToken,
 	LocalDateTime issuedAt,
 	LocalDateTime expiresAt
 ) {
