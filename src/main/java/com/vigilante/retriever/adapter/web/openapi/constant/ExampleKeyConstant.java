@@ -58,6 +58,8 @@ public final class ExampleKeyConstant {
 	public static final String CHANNEL_FIND_BY_TITLE_200 = "Channel__Find__By__Title__200";
 	public static final String CHANNEL_GRAPH_FIND_ALL_200 = "Channel__Graph__Find__All__200";
 	public static final String CHANNEL_STATUS_404 = "Channel__Status__404";
+	public static final String CHANNEL_GET_TRACE_200 = "Channel__Get__Trace__200";
+	public static final String CHANNEL_GET_TRACE_404 = "Channel__Get__Trace__404";
 
 	// Message
 	public static final String MESSAGE_FIND_ALL_200 = "Message__Find__All__200";
