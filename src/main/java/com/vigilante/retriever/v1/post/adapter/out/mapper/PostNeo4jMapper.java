@@ -47,7 +47,6 @@ public interface PostNeo4jMapper extends GenericNeo4jMapper<PostNode, PostGraphV
 						.title(promote.getChannel().getTitle())
 						.username(promote.getChannel().getUsername())
 						.status(promote.getChannel().getStatus())
-						.promotedCount(0)
 						.sellsArgots(Collections.emptySet())
 						.build()
 						: null)
