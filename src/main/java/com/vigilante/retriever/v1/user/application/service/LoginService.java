@@ -68,7 +68,7 @@ public class LoginService implements LoginUseCase {
 
 		RefreshTokenEntity tokenEntity = RefreshTokenEntity.builder()
 			.userId(userId)
-			.tokenValue(refreshToken)
+			.refreshToken(refreshToken)
 			.build();
 
 		refreshTokenRedisCommand.save(tokenEntity);
