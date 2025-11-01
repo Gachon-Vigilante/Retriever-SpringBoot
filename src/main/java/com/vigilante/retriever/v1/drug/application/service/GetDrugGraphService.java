@@ -20,4 +20,9 @@ public class GetDrugGraphService implements GetDrugGraphUseCase {
 	public List<DrugGraphView> findAll() {
 		return drugNeo4jQuery.findAll();
 	}
+
+	@Override
+	public DrugGraphView findDrugWithAllRelationships(String drugBankId) {
+		return drugNeo4jQuery.findDrugWithAllRelationships(drugBankId);
+	}
 }
