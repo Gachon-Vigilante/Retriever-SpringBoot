@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "code": "200",
+  "message": "조회가 완료되었습니다",
+  "data": {
+    "postId": "mock0000000000000000000001",
+    "title": "[공지] 예시 게시물 제목입니다",
+    "link": "https://example.com/post/1",
+    "domain": "example.com",
+    "content": "이 게시물은 예시(mock) 데이터입니다. 실제 게시물이 아닙니다.",
+    "cluster": 1,
+    "discoveredAt": "2025-01-01T00:00:00.000000",
+    "updatedAt": "2025-01-02T12:00:00.000000",
+    "isDeleted": false,
+    "promotesChannels": [
+      {
+        "id": 101,
+        "channel": {
+          "channelId": 2858,
+          "title": "예시 채널",
+          "username": "mock_channel_user",
+          "status": "active"
+        }
+      },
+      {
+        "id": 102,
+        "channel": {
+          "channelId": 9999,
+          "title": "테스트 채널",
+          "username": "test_channel_user",
+          "status": "inactive"
+        }
+      }
+    ],
+    "similarPosts": [
+      {
+        "postId": "mock0000000000000000000002",
+        "title": "예시 연관 게시물 1",
+        "link": "https://example.com/post/2",
+        "domain": "example.com",
+        "content": "이 항목은 모의(mock) 데이터이며 실제 게시글이 아닙니다.",
+        "cluster": 1,
+        "discoveredAt": "2025-01-01T00:00:00.000000",
+        "updatedAt": "2025-01-02T00:00:00.000000",
+        "isDeleted": false,
+        "promotesChannels": [],
+        "similarPosts": []
+      },
+      {
+        "postId": "mock0000000000000000000003",
+        "title": "예시 연관 게시물 2",
+        "link": "https://example.net/post/3",
+        "domain": "example.net",
+        "content": "테스트용 더미 콘텐츠입니다.",
+        "cluster": 1,
+        "discoveredAt": "2025-01-01T00:00:00.000000",
+        "updatedAt": "2025-01-02T00:00:00.000000",
+        "isDeleted": false,
+        "promotesChannels": [],
+        "similarPosts": []
+      }
+    ]
+  },
+  "timestamp": "2025-01-01T00:00:00.000000"
+}
