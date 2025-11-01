@@ -60,15 +60,12 @@ jobs:
           fi
           echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
 
-      - name: Build Docker image
+      - name: Build and push ARM64 Docker image
         run: |
-          docker build -t ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BASE_TAG }} \
-                       -t ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BUILD_VERSION }} .
-
-      - name: Push Docker images
-        run: |
-          docker push ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BASE_TAG }}
-          docker push ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BUILD_VERSION }}
+          docker buildx build --platform linux/arm64 \
+            -t ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BASE_TAG }} \
+            -t ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BUILD_VERSION }} \
+            --push .
 
       - name: Update infra repo deployment (production/springboot/deployment.yaml)
         env:
