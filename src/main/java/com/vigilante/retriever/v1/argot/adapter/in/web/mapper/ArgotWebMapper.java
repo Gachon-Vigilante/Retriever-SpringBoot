@@ -64,4 +64,10 @@ public class ArgotWebMapper {
 			.refersToDrugs(vo.refersToDrugs())
 			.build();
 	}
+
+	public Set<ArgotTraceResponse> toTraceResponseSet(Set<ArgotGraphView> GraphViews) {
+		return GraphViews.stream()
+			.map(graphView -> toTraceResponse(ArgotTraceVO.create(graphView)))
+			.collect(Collectors.toSet());
+	}
 }

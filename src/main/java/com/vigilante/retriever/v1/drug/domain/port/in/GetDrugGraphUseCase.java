@@ -6,4 +6,6 @@ import com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView;
 
 public interface GetDrugGraphUseCase {
 	List<DrugGraphView> findAll();
+
+	DrugGraphView findDrugWithAllRelationships(String drugBankId);
 }

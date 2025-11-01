@@ -1,6 +1,7 @@
 package com.vigilante.retriever.v1.drug.adapter.out.persistence.neo4j.adapter;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -23,5 +24,10 @@ public class DrugGraphQueryAdapter implements DrugNeo4jPort {
 	public List<DrugGraphView> findAll() {
 		List<DrugNode> allDrug = drugNeo4jRepository.findAll();
 		return drugGraphMapper.getGraphViewList(allDrug);
+	}
+
+	@Override
+	public Optional<DrugGraphView> findDrugWithAllRelationships(String drugBankId) {
+		return drugNeo4jRepository.findDrugWithAllRelationships(drugBankId).map(drugGraphMapper::toGraphView);
 	}
 }
