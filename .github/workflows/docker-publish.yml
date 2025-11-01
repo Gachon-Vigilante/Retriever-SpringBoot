@@ -79,7 +79,7 @@ jobs:
           git clone --single-branch --branch main https://x-access-token:${{ secrets.K8S_REPO_TOKEN }}@github.com/Gachon-Vigilante/Retriever-INFRA.git
           DEPLOY_FILE=Retriever-INFRA/production/springboot/deployment.yaml
           if [[ -f "$DEPLOY_FILE" ]]; then
-            yq -i ".spec.template.spec.containers[0].image = \"$NEW_IMAGE\"" "$DEPLOY_FILE"
+            yq -i -y ".spec.template.spec.containers[0].image = \"$NEW_IMAGE\"" "$DEPLOY_FILE"
             cd Retriever-INFRA
             git config user.name ${{ secrets.GIT_USER_NAME }}
             git config user.email ${{ secrets.GIT_USER_EMAIL }}
