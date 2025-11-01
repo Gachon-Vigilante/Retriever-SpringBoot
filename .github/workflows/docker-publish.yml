@@ -39,6 +39,9 @@ jobs:
         with:
           arguments: clean bootJar
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to OCIR
         uses: docker/login-action@v2
         with:
@@ -60,9 +63,9 @@ jobs:
           fi
           echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
 
-      - name: Build and push ARM64 Docker image
+      - name: Build and push Docker image
         run: |
-          docker buildx build --platform linux/arm64 \
+          docker buildx build --platform linux/arm64,linux/amd64 \
             -t ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BASE_TAG }} \
             -t ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BUILD_VERSION }} \
             --push .
