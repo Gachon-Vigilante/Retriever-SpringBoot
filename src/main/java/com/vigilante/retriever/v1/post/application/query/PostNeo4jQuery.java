@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.vigilante.retriever.common.domain.annotation.QueryService;
+import com.vigilante.retriever.common.domain.exception.NotFoundException;
+import com.vigilante.retriever.v1.post.domain.code.PostErrorCode;
 import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
 import com.vigilante.retriever.v1.post.domain.port.out.PostNeo4jPort;
 
@@ -25,5 +27,10 @@ public class PostNeo4jQuery {
 
 	public Stream<PostGraphView> streamByClusterWithPromotesAndSimilar(int cluster) {
 		return postNeo4jPort.streamByClusterWithPromotesAndSimilar(cluster);
+	}
+
+	public PostGraphView findPostWithAllRelations(String postId) {
+		return postNeo4jPort.findPostWithAllRelations(postId)
+			.orElseThrow(() -> new NotFoundException(PostErrorCode.POST_NOT_FOUND));
 	}
 }

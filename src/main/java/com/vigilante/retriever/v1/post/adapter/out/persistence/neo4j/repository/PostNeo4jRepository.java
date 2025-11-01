@@ -34,6 +34,16 @@ public interface PostNeo4jRepository extends Neo4jRepository<PostNode, String> {
 	Stream<PostNode> streamByClusterWithPromotesAndSimilar(@Param("cluster") int cluster);
 
 	@Query("""
+		MATCH (p:Post {post_id: $postId})
+		OPTIONAL MATCH (p)-[sim:SIMILAR_TO]->(sp:Post)
+		OPTIONAL MATCH (p)-[pr:PROMOTES]->(c:Channel)
+		OPTIONAL MATCH (c)-[sell:SELLS]->(a:Argot)
+		OPTIONAL MATCH (a)-[rf:REFERS_TO]->(d:Drug)
+		RETURN p, collect(sim), collect(sp), collect(pr), collect(c), collect(sell), collect(a), collect(rf), collect(d)
+	""")
+	Optional<PostNode> findPostWithAllRelations(@Param("postId") String postId);
+
+	@Query("""
 			MATCH (p:Post)
 			WHERE p.content = $content AND p.link = $link AND p.postId IS NULL
 			SET p.postId = $postId

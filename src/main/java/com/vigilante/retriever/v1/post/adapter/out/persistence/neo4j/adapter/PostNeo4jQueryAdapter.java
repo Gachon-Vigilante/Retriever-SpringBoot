@@ -43,6 +43,11 @@ public class PostNeo4jQueryAdapter implements PostNeo4jPort {
 	}
 
 	@Override
+	public Optional<PostGraphView> findPostWithAllRelations(String postId) {
+		return postNeo4JRepository.findPostWithAllRelations(postId).map(postNeo4jMapper::toGraphView);
+	}
+
+	@Override
 	public int updatePostIdByContentAndLink(String content, String link, String postId) {
 		return postNeo4JRepository.updatePostIdByContentAndLink(content, link, postId);
 	}

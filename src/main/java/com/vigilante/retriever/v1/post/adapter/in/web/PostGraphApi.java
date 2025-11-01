@@ -15,6 +15,7 @@ import com.vigilante.retriever.adapter.web.dto.response.CommonResponse;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiErrorExample;
 import com.vigilante.retriever.adapter.web.openapi.annotation.ApiSuccessExample;
 import com.vigilante.retriever.v1.post.adapter.in.web.dto.request.CreatePromotionRelationRequest;
+import com.vigilante.retriever.v1.post.adapter.in.web.dto.response.PostGraphInfoResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,6 +34,15 @@ public interface PostGraphApi {
 	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = POST_GRAPH_GET_BY_CLUSTER_200)})
 	@ApiErrorExample(include = {"401", "500"})
 	ResponseEntity<StreamingResponseBody> getPostsByCluster(@PathVariable int cluster);
+
+	@GetMapping("{postId}")
+	@Operation(summary = "게시글 기준 데이터 조회", description = "특정 게시글을 기준으로 유사한 게시글, 관련된 채널 및 판매 데이터를 조회합니다.")
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = POST_GET_TRACE_200)})
+	@ApiErrorExample(
+		include = {"401", "500"},
+		custom = {@ApiErrorExample.ErrorSpec(code = "404", exampleKey = POST_GET_TRACE_404)}
+	)
+	ResponseEntity<CommonResponse<PostGraphInfoResponse>> getPostTrace(@PathVariable String postId);
 
 	@GetMapping("/sync")
 	@Operation(summary = "게시글 그래프 동기화", description = "외부 소스에서 게시글을 동기화하여 그래프를 업데이트합니다.")
