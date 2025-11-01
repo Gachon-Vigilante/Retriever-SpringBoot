@@ -71,7 +71,6 @@ jobs:
           docker push ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BUILD_VERSION }}
 
       - name: Update infra repo deployment (production/springboot/deployment.yaml)
-        if: github.ref == 'refs/heads/main'
         env:
           NEW_IMAGE: ${{ secrets.REGISTRY_PREFIX }}/retriever-springboot:${{ env.BUILD_VERSION }}
           BUILD_VERSION: ${{ env.BUILD_VERSION }}
