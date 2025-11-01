@@ -84,7 +84,7 @@ jobs:
             git config user.name ${{ secrets.GIT_USER_NAME }}
             git config user.email ${{ secrets.GIT_USER_EMAIL }}
             if [[ -n "$(git status --porcelain)" ]]; then
-              git add "$DEPLOY_FILE"
+              git add .
               git commit -m "Chore: Spring Boot 이미지 업데이트 - ${BUILD_VERSION} (from ${GITHUB_REPOSITORY}:${GITHUB_REF##*/})"
               git push https://x-access-token:${{ secrets.K8S_REPO_TOKEN }}@github.com/Gachon-Vigilante/Retriever-INFRA.git
             else
