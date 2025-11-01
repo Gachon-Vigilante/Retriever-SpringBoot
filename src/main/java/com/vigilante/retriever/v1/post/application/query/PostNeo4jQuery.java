@@ -22,4 +22,8 @@ public class PostNeo4jQuery {
 	public Stream<PostGraphView> streamAllWithPromotesAndSimilar() {
 		return postNeo4jPort.streamAllWithPromotesAndSimilar();
 	}
+
+	public Stream<PostGraphView> streamByClusterWithPromotesAndSimilar(int cluster) {
+		return postNeo4jPort.streamByClusterWithPromotesAndSimilar(cluster);
+	}
 }

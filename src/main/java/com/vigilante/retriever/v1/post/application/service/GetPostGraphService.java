@@ -20,4 +20,9 @@ public class GetPostGraphService implements GetPostGraphUseCase {
 	public Stream<PostGraphView> getAllPost() {
 		return postNeo4jQuery.streamAllWithPromotesAndSimilar();
 	}
+
+	@Override
+	public Stream<PostGraphView> getPostsByCluster(int cluster) {
+		return postNeo4jQuery.streamByClusterWithPromotesAndSimilar(cluster);
+	}
 }

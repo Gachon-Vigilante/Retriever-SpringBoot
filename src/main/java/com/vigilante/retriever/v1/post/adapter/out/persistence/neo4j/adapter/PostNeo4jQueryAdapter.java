@@ -38,6 +38,11 @@ public class PostNeo4jQueryAdapter implements PostNeo4jPort {
 	}
 
 	@Override
+	public Stream<PostGraphView> streamByClusterWithPromotesAndSimilar(int cluster) {
+		return postNeo4JRepository.streamByClusterWithPromotesAndSimilar(cluster).map(postNeo4jMapper::toGraphView);
+	}
+
+	@Override
 	public int updatePostIdByContentAndLink(String content, String link, String postId) {
 		return postNeo4JRepository.updatePostIdByContentAndLink(content, link, postId);
 	}
