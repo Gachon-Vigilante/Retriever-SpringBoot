@@ -32,6 +32,12 @@ public class PostGraphController implements PostGraphApi {
 	}
 
 	@Override
+	public ResponseEntity<StreamingResponseBody> getPostsByCluster(int cluster) {
+		StreamingResponseBody streamBody = postWebMapper.toStreamingResponseBody(getPostGraphUseCase.getPostsByCluster(cluster));
+		return ResponseEntity.ok().contentType(MediaType.APPLICATION_NDJSON).body(streamBody);
+	}
+
+	@Override
 	public ResponseEntity<CommonResponse<Void>> syncPosts() {
 		syncPostGraphUseCase.syncPosts();
 		return CommonResponse.success();

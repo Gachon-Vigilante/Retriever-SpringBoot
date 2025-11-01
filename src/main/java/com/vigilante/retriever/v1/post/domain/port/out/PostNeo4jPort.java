@@ -13,5 +13,7 @@ public interface PostNeo4jPort {
 
 	Stream<PostGraphView> streamAllWithPromotesAndSimilar();
 
+	Stream<PostGraphView> streamByClusterWithPromotesAndSimilar(int cluster);
+
 	int updatePostIdByContentAndLink(String content, String link, String postId);
 }

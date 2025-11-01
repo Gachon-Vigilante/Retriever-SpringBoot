@@ -5,6 +5,7 @@ import static com.vigilante.retriever.adapter.web.openapi.constant.ExampleKeyCon
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,12 @@ public interface PostGraphApi {
 	@Operation(summary = "모든 게시글 그래프 조회(스트리밍)", description = "Neo4j에 저장된 모든 게시글 그래프 정보를 스트리밍 형식으로 조회합니다.")
 	@ApiErrorExample(include = {"401", "500"})
 	ResponseEntity<StreamingResponseBody> getAllPost();
+
+	@GetMapping(value = "/cluster/{cluster}", produces = MediaType.APPLICATION_NDJSON_VALUE)
+	@Operation(summary = "특정 클러스터 게시글 조회", description = "해당 클러스터에 해당하는 게시글 및 관련 데이터를 조회합니다.")
+	@ApiSuccessExample({@ApiSuccessExample.Success(code = "200", exampleKey = POST_GRAPH_GET_BY_CLUSTER_200)})
+	@ApiErrorExample(include = {"401", "500"})
+	ResponseEntity<StreamingResponseBody> getPostsByCluster(@PathVariable int cluster);
 
 	@GetMapping("/sync")
 	@Operation(summary = "게시글 그래프 동기화", description = "외부 소스에서 게시글을 동기화하여 그래프를 업데이트합니다.")

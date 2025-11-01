@@ -27,4 +27,20 @@ public record PostGraphView(
 		ChannelGraphView channel
 	) {
 	}
+
+	public static PostGraphView create(PostGraphView postGraphView) {
+		return PostGraphView.builder()
+			.postId(postGraphView.postId())
+			.title(postGraphView.title())
+			.link(postGraphView.link())
+			.domain(postGraphView.domain())
+			.content(postGraphView.content())
+			.cluster(postGraphView.cluster())
+			.discoveredAt(postGraphView.discoveredAt())
+			.updatedAt(postGraphView.updatedAt())
+			.isDeleted(postGraphView.isDeleted())
+			.promotesChannels(postGraphView.promotesChannels())
+			.similarPosts(postGraphView.similarPosts())
+			.build();
+	}
 }
