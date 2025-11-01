@@ -58,55 +58,57 @@ public interface DrugNeo4jMapper extends GenericNeo4jMapper<DrugNode, DrugGraphV
 										.build())
 									.collect(Collectors.toSet()) : Collections.emptySet();
 
-					// soldByChannels를 1 depth만 매핑
-					Set<ChannelGraphView> shallowChannels =
-						(argot.getSoldByChannels() != null && !argot.getSoldByChannels().isEmpty()) ?
-							argot.getSoldByChannels()
-								.stream()
-								.map(channel -> {
-									// sellsArgots를 1 depth 표시 (내부 관계는 빈 Set)
-									Set<ArgotGraphView> channelArgots = 
-										(channel.getSellsArgots() != null && !channel.getSellsArgots().isEmpty()) ?
-											channel.getSellsArgots()
-												.stream()
-												.map(a -> ArgotGraphView.builder()
-													.name(a.getName())
-													.description(a.getDescription())
-													.refersDrugs(Collections.emptySet()) // 2 depth는 빈 Set
-													.soldByChannels(Collections.emptySet()) // 2 depth는 빈 Set
-													.build())
-												.collect(Collectors.toSet()) : Collections.emptySet();
-									
-									// promotedByPosts를 1 depth 표시 (내부 관계는 빈 Set)
-									Set<com.vigilante.retriever.v1.post.domain.graphview.PostGraphView> channelPosts =
-										(channel.getPromotedByPosts() != null && !channel.getPromotedByPosts().isEmpty()) ?
-											channel.getPromotedByPosts()
-												.stream()
-												.map(post -> com.vigilante.retriever.v1.post.domain.graphview.PostGraphView.builder()
-													.postId(post.getPostId())
-													.title(post.getTitle())
-													.link(post.getLink())
-													.domain(post.getDomain())
-													.content(post.getContent())
-													.cluster(post.getCluster())
-													.discoveredAt(post.getDiscoveredAt())
-													.updatedAt(post.getUpdatedAt())
-													.isDeleted(post.isDeleted())
-													.promotesChannels(Collections.emptySet()) // 2 depth는 빈 Set
-													.similarPosts(Collections.emptySet()) // 2 depth는 빈 Set
-													.build())
-												.collect(Collectors.toSet()) : Collections.emptySet();
-									
-									return ChannelGraphView.builder()
-										.channelId(channel.getChannelId())
-										.title(channel.getTitle())
-										.username(channel.getUsername())
-										.status(channel.getStatus())
-										.sellsArgots(channelArgots) // 1 depth 표시
-										.promotedByPosts(channelPosts) // 1 depth 표시
-										.build();
-								})
-								.collect(Collectors.toSet()) : Collections.emptySet();
+						// soldByChannels를 1 depth만 매핑
+						Set<ChannelGraphView> shallowChannels =
+							(argot.getSoldByChannels() != null && !argot.getSoldByChannels().isEmpty()) ?
+								argot.getSoldByChannels()
+									.stream()
+									.map(channel -> {
+										// sellsArgots를 1 depth 표시 (내부 관계는 빈 Set)
+										Set<ArgotGraphView> channelArgots =
+											(channel.getSellsArgots() != null && !channel.getSellsArgots().isEmpty()) ?
+												channel.getSellsArgots()
+													.stream()
+													.map(a -> ArgotGraphView.builder()
+														.name(a.getName())
+														.description(a.getDescription())
+														.refersDrugs(Collections.emptySet()) // 2 depth는 빈 Set
+														.soldByChannels(Collections.emptySet()) // 2 depth는 빈 Set
+														.build())
+													.collect(Collectors.toSet()) : Collections.emptySet();
+
+										// promotedByPosts를 1 depth 표시 (내부 관계는 빈 Set)
+										Set<com.vigilante.retriever.v1.post.domain.graphview.PostGraphView> channelPosts =
+											(channel.getPromotedByPosts() != null && !channel.getPromotedByPosts()
+												.isEmpty()) ?
+												channel.getPromotedByPosts()
+													.stream()
+													.map(
+														post -> com.vigilante.retriever.v1.post.domain.graphview.PostGraphView.builder()
+															.postId(post.getPostId())
+															.title(post.getTitle())
+															.link(post.getLink())
+															.domain(post.getDomain())
+															.content(post.getContent())
+															.cluster(post.getCluster())
+															.discoveredAt(post.getDiscoveredAt())
+															.updatedAt(post.getUpdatedAt())
+															.isDeleted(post.isDeleted())
+															.promotesChannels(Collections.emptySet()) // 2 depth는 빈 Set
+															.similarPosts(Collections.emptySet()) // 2 depth는 빈 Set
+															.build())
+													.collect(Collectors.toSet()) : Collections.emptySet();
+
+										return ChannelGraphView.builder()
+											.channelId(channel.getChannelId())
+											.title(channel.getTitle())
+											.username(channel.getUsername())
+											.status(channel.getStatus())
+											.sellsArgots(channelArgots) // 1 depth 표시
+											.promotedByPosts(channelPosts) // 1 depth 표시
+											.build();
+									})
+									.collect(Collectors.toSet()) : Collections.emptySet();
 
 						return ArgotGraphView.builder()
 							.name(argot.getName())
