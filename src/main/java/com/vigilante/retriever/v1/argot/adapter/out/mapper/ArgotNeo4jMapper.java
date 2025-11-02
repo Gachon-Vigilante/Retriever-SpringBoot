@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.context.annotation.Primary;
@@ -15,6 +16,7 @@ import com.vigilante.retriever.infrastructure.common.mapper.GenericNeo4jMapper;
 import com.vigilante.retriever.v1.argot.adapter.out.persistence.neo4j.node.ArgotNode;
 import com.vigilante.retriever.v1.argot.domain.graphview.ArgotGraphView;
 import com.vigilante.retriever.v1.channel.domain.graphview.ChannelGraphView;
+import com.vigilante.retriever.v1.drug.domain.graphview.DrugGraphView;
 import com.vigilante.retriever.v1.post.domain.graphview.PostGraphView;
 
 @Primary
@@ -29,14 +31,48 @@ public interface ArgotNeo4jMapper extends GenericNeo4jMapper<ArgotNode, ArgotGra
 	ArgotNode toNode(ArgotGraphView graphView);
 
 	@Override
-	@org.mapstruct.Mapping(target = "soldByChannels", ignore = true)
+	@Mapping(target = "soldByChannels", ignore = true)
+	@Mapping(target = "refersDrugs", ignore = true)
 	ArgotGraphView toGraphView(ArgotNode document);
 
-	// Argot의 soldByChannels를 1 depth만 매핑하여 순환 참조 방지
+	// Argot의 refersDrugs와 soldByChannels를 1 depth만 매핑하여 순환 참조 방지
 	@AfterMapping
 	default void mapRelationshipsShallow(
 		@MappingTarget ArgotGraphView.ArgotGraphViewBuilder builder,
 		ArgotNode node) {
+		// refersDrugs 매핑 (shallow - referredByArgots를 1 depth만 매핑하고, 그 안의 refersDrugs는 빈 Set으로 설정하여 순환 참조 방지)
+		if (node.getRefersDrugs() != null && !node.getRefersDrugs().isEmpty()) {
+			Set<DrugGraphView> shallowRefersDrugs =
+				node.getRefersDrugs()
+					.stream()
+					.map(drug -> {
+						// referredByArgots를 1 depth만 매핑 (내부 refersDrugs는 빈 Set으로 설정하여 순환 참조 방지)
+						Set<ArgotGraphView> shallowReferredByArgots =
+							(drug.getReferredByArgots() != null && !drug.getReferredByArgots().isEmpty()) ?
+								drug.getReferredByArgots()
+									.stream()
+									.map(argot -> ArgotGraphView.builder()
+										.name(argot.getName())
+										.description(argot.getDescription())
+										.refersDrugs(Collections.emptySet()) // 순환 참조 방지
+										.soldByChannels(Collections.emptySet()) // 순환 참조 방지
+										.build())
+									.collect(Collectors.toSet()) : Collections.emptySet();
+
+						return DrugGraphView.builder()
+							.drugBankId(drug.getDrugBankId())
+							.name(drug.getName())
+							.englishName(drug.getEnglishName())
+							.drugType(drug.getDrugType())
+							.referredByArgots(shallowReferredByArgots) // 1 depth만 표시
+							.build();
+					})
+					.collect(Collectors.toSet());
+			builder.refersDrugs(shallowRefersDrugs);
+		} else {
+			builder.refersDrugs(Collections.emptySet());
+		}
+
 		// soldByChannels 매핑 (shallow - sellsArgots를 빈 Set으로 설정하고, promotedByPosts는 1 depth만 매핑)
 		if (node.getSoldByChannels() != null && !node.getSoldByChannels().isEmpty()) {
 			Set<ChannelGraphView> shallowSoldByChannels =
